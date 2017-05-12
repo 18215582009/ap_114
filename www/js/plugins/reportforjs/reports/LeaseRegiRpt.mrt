@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer type="Flex" version="1.02" application="StiReport">
+  <Dictionary type="Dictionary" isKey="true" Ref="1">
+    <Databases count="1" isList="true">
+      <LeaseConn type="Stimulsoft.Report.Dictionary.StiXmlDatabase" isKey="true" Ref="2">
+        <Alias>LeaseConn</Alias>
+        <Name>LeaseConn</Name>
+        <PathData>http://localhost:73/test1.php?dsname=LeaseRegiRpt&amp;ID=72&amp;LEASEID=72</PathData>
+        <PathSchema/>
+      </LeaseConn>
+    </Databases>
+    <DataSources count="3" isList="true">
+      <REPORT1 type="DataTableSource" isKey="true" Ref="3">
+        <Alias>REPORT1</Alias>
+        <Columns count="22" isList="true">
+          <value>ID,System.String</value>
+          <value>LEASENO,System.String</value>
+          <value>OUTDATE,System.String</value>
+          <value>CONTTERM,System.String</value>
+          <value>CONTSTARTDATE,System.String</value>
+          <value>CONTENDDATE,System.String</value>
+          <value>BASTARTDATE,System.String</value>
+          <value>BAENDDATE,System.String</value>
+          <value>RENTFEE,System.String</value>
+          <value>LESSORFEE,System.String</value>
+          <value>TOTAREA,System.String</value>
+          <value>RENTAREA,System.String</value>
+          <value>BARENTPRICE,System.String</value>
+          <value>CLASSIFY,System.String</value>
+          <value>LREGION,System.String</value>
+          <value>INMAN,System.String</value>
+          <value>INDATE,System.String</value>
+          <value>STATUS,System.String</value>
+          <value>STATUSNO,System.String</value>
+          <value>PHASE,System.String</value>
+          <value>NOTE,System.String</value>
+          <value>DELFLAG,System.String</value>
+        </Columns>
+        <Dictionary isRef="1"/>
+        <Name>REPORT1</Name>
+        <NameInSource>LeaseConn.REPORT1</NameInSource>
+      </REPORT1>
+      <REPORT2 type="DataTableSource" isKey="true" Ref="4">
+        <Alias>REPORT2</Alias>
+        <Columns count="8" isList="true">
+          <value>ID,System.String</value>
+          <value>LEASEID,System.String</value>
+          <value>PERSONTYPE,System.String</value>
+          <value>PERSON,System.String</value>
+          <value>PERSONID,System.String</value>
+          <value>ISFLUID,System.String</value>
+          <value>PHONENO,System.String</value>
+          <value>DELFLAG,System.String</value>
+        </Columns>
+        <Dictionary isRef="1"/>
+        <Name>REPORT2</Name>
+        <NameInSource>LeaseConn.REPORT2</NameInSource>
+      </REPORT2>
+      <REPORT3 type="DataTableSource" isKey="true" Ref="5">
+        <Alias>REPORT3</Alias>
+        <Columns count="10" isList="true">
+          <value>ID,System.String</value>
+          <value>LEASEID,System.String</value>
+          <value>REGION,System.String</value>
+          <value>ADDRESS,System.String</value>
+          <value>CTYPE,System.String</value>
+          <value>CFNO,System.String</value>
+          <value>STRUCT,System.String</value>
+          <value>AREA,System.String</value>
+          <value>USAGE,System.String</value>
+          <value>DELFLAG,System.String</value>
+        </Columns>
+        <Dictionary isRef="1"/>
+        <Name>REPORT3</Name>
+        <NameInSource>LeaseConn.REPORT3</NameInSource>
+      </REPORT3>
+    </DataSources>
+    <Relations count="0" isList="true"/>
+    <Report isRef="0"/>
+    <Variables count="0" isList="true"/>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings count="0" isList="true"/>
+  <MetaTags count="0" isList="true"/>
+  <Pages count="1" isList="true">
+    <Page1 type="Page" isKey="true" Ref="6">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components count="23" isList="true">
+        <LeasePageHeader type="PageHeaderBand" isKey="true" Ref="7">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,19,8.8</ClientRectangle>
+          <Components count="29" isList="true">
+            <HeaderTitle1 type="Text" isKey="true" Ref="8">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,14.2,2.6</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>黑体,45,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderTitle1</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>房屋租赁登记证</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderTitle1>
+            <HeaderTitle2 type="Text" isKey="true" Ref="9">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.2,0,4.8,2.6</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>黑体,28</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderTitle2</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>(副本)</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderTitle2>
+            <cardnoleft type="Text" isKey="true" Ref="10">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,2.6,13.8,1</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>cardnoleft</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>常房租证第No</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </cardnoleft>
+            <cardnoc type="Text" isKey="true" Ref="11">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>13.8,2.6,3.2,1</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>219ee92a175039cc0e7e605d522e89bc</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>cardnoc</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>{REPORT1.LEASENO}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </cardnoc>
+            <cardr type="Text" isKey="true" Ref="12">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>17,2.6,2,1</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>c3fcaee298dbb70442da605e4bc15fdc</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>cardr</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>号</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </cardr>
+            <addrlabel type="Text" isKey="true" Ref="13">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,3.6,2.4,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>addrlabel</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>房屋坐落</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </addrlabel>
+            <Text2 type="Text" isKey="true" Ref="14">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.4,3.6,2.4,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>10bb5c052b127059147c60654602e25d</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>{REPORT3.REGION}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text3 type="Text" isKey="true" Ref="15">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.8,3.6,0.8,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>97df6d388527402ae67a606576d6465a</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>区</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text4 type="Text" isKey="true" Ref="16">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.6,3.6,6,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>bfc1f8101a7f1276f74b6065aa0ca1f2</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>{REPORT3.ADDRESS}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text5 type="Text" isKey="true" Ref="17">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11.6,3.6,2.6,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>6d49f15a159757cb1cb360694e7b2db8</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>房屋所有权证号</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <Text6 type="Text" isKey="true" Ref="18">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.2,3.6,4.8,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>04895a2a288fb4815af76069cab0f896</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>{REPORT3.CFNO}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text7 type="Text" isKey="true" Ref="19">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,4.4,2.4,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>3c8884f12605f19db1906070701a0571</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>出 租 人</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text8 type="Text" isKey="true" Ref="20">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.4,4.4,7,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>eb7c892196e792e096156070c2328db6</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>{REPORT2.PERSON}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text9 type="Text" isKey="true" Ref="21">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.4,4.4,2.4,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>417167a929706ba82ba66070e9fd7e4c</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>承  租 人</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+            <Text10 type="Text" isKey="true" Ref="22">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11.8,4.4,7.2,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>c5622de3b23dced64c5860711ac293dc</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text1 type="Text" isKey="true" Ref="23">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11.8,4.4,7.2,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>ad6ab832d4ea36373aed6074d8f35cf4</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>{REPORT2.PERSON}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+            <Text15 type="Text" isKey="true" Ref="24">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,5.2,2.4,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>d2ac441e4dd65f4c4e3d6075134c927c</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>房屋结构</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+            <Text11 type="Text" isKey="true" Ref="25">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.4,5.2,7,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>6482cbf0e228083b0b1d6075134c0fef</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>{REPORT3.STRUCT}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text12 type="Text" isKey="true" Ref="26">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.4,5.2,2.4,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>6baef09ea0ea428add8c6075134c62d1</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>面    积</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text13 type="Text" isKey="true" Ref="27">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11.8,5.2,7.2,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>276d9fbee9b861afc0346075134caef7</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>{REPORT3.AREA}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <Text16 type="Text" isKey="true" Ref="28">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,6,6.4,1.4</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,18,Bold</Font>
+              <Guid>995b5d38c1c1db90dc246076918f10d7</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>经审查，该房屋符合</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text17 type="Text" isKey="true" Ref="29">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.4,6,3.2,1.4</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,18,Bold</Font>
+              <Guid>b44d51632d5480c37ec0607739497fbc</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>{REPORT3.USAGE}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+            <Text18 type="Text" isKey="true" Ref="30">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.6,6,9.4,1.4</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,18,Bold</Font>
+              <Guid>7766051f94e84d0236c66077670007cb</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>用房出租标准及有关租赁条件，</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text18>
+            <Text19 type="Text" isKey="true" Ref="31">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.6,7.4,6.4,1.4</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,18,Bold</Font>
+              <Guid>a4b1be30c0a57521c5ac608a6b594a39</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>特发此证。</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text19>
+            <Text14 type="Text" isKey="true" Ref="32">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,8.8,1.8,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>有效期</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+            <Text21 type="Text" isKey="true" Ref="33">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.8,8.8,3.2,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>9decd99ba18cb849fb56608efc5b2bc8</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text21</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>{REPORT1.CONTTERM}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text21>
+            <Text22 type="Text" isKey="true" Ref="34">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5,8.8,0.8,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>2b5660d739707598027f608f2493264f</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text22</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>月</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text22>
+            <Text23 type="Text" isKey="true" Ref="35">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.6,8.8,1.8,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>0a6923884c9b7d3ba80f608fc4cb7f05</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text23</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>发证机关</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text23>
+            <Text24 type="Text" isKey="true" Ref="36">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.4,8.8,5.2,0.8</ClientRectangle>
+              <Conditions count="0" isList="true"/>
+              <Font>Arial,10</Font>
+              <Guid>6f67e6ae27ec00b37805609002ed4354</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text24</Name>
+              <Page isRef="6"/>
+              <Parent isRef="7"/>
+              <Text>{REPORT1.INMAN}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text24>
+          </Components>
+          <Conditions count="0" isList="true"/>
+          <Name>LeasePageHeader</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+        </LeasePageHeader>
+        <LeasePageFooter type="PageFooterBand" isKey="true" Ref="37">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,22.1,19,5.6</ClientRectangle>
+          <Components count="0" isList="true"/>
+          <Conditions count="0" isList="true"/>
+          <Name>LeasePageFooter</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+        </LeasePageFooter>
+        <Text25 type="Text" isKey="true" Ref="38">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,9.8,1.8,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>1b2e75ed21d189912ed66092748af0b8</Guid>
+          <HorAlignment>Right</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text25</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <Text>自</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text25>
+        <Text26 type="Text" isKey="true" Ref="39">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>1.8,9.8,1.4,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>2f47d71ccbcb2c4c9a976092af604263</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text26</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text26>
+        <Text27 type="Text" isKey="true" Ref="40">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>3.2,9.8,0.8,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>7ce002983054ee945ecb6092e5d29ae8</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text27</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <Text>年</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text27>
+        <Text28 type="Text" isKey="true" Ref="41">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>5,9.8,0.8,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>c32b8c9caebb1eb6b7b76092f86fd1e1</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text28</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <Text>月</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text28>
+        <Text29 type="Text" isKey="true" Ref="42">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>4,9.8,1,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>de749d37e25e15c5a9ab609307541232</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text29</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text29>
+        <Text30 type="Text" isKey="true" Ref="43">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>5.8,9.8,1,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>6492f76afa04bd40838a60936f45081b</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text30</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text30>
+        <Text31 type="Text" isKey="true" Ref="44">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>6.8,9.8,0.8,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>9ba67d971d97710cfb8f60937cc2b560</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text31</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <Text>日</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text31>
+        <Text37 type="Text" isKey="true" Ref="45">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,10.4,1.8,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>a79b6d9c478e574dec366093a71e0270</Guid>
+          <HorAlignment>Right</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text37</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <Text>至</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text37>
+        <Text20 type="Text" isKey="true" Ref="46">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>1.8,10.4,1.4,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>60c3e398e57848e82e106093a71e724b</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text20</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text20>
+        <Text32 type="Text" isKey="true" Ref="47">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>3.2,10.4,0.8,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>188d9113f1362eba4c1d6093a71e379e</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text32</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <Text>年</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text32>
+        <Text33 type="Text" isKey="true" Ref="48">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>5,10.4,0.8,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>663bf53d60c70deb65446093a71ee0ec</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text33</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <Text>月</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text33>
+        <Text34 type="Text" isKey="true" Ref="49">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>5.8,10.4,1,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>0e5dda6c8e65dc4d1d566093a71e621e</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text34</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text34>
+        <Text35 type="Text" isKey="true" Ref="50">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>6.8,10.4,0.8,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>0d54d423b91318e5e6aa6093a71e31d6</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text35</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <Text>日</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text35>
+        <Text48 type="Text" isKey="true" Ref="51">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>13.2,9.6,1.4,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>4607c3262d2965651fb96093f5bb2f61</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text48</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text48>
+        <Text42 type="Text" isKey="true" Ref="52">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>13.2,10.2,1.4,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>00e837f9cf61b13921696093f5bb05e5</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text42</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text42>
+        <Text43 type="Text" isKey="true" Ref="53">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>14.6,10.2,0.8,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>ac575b233b99f0b33fa16093f5bb5988</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text43</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <Text>年</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text43>
+        <Text44 type="Text" isKey="true" Ref="54">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>16.4,10.2,0.8,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>f65f6ad44f837d72dfb46093f5bbd071</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text44</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <Text>月</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text44>
+        <Text45 type="Text" isKey="true" Ref="55">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>17.2,10.2,1,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>723065ae957674ef43016093f5bb7649</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text45</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text45>
+        <Text46 type="Text" isKey="true" Ref="56">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>18.2,10.2,0.8,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>98a97cf83e32793154f66093f5bbebb7</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text46</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <Text>日</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text46>
+        <Text38 type="Text" isKey="true" Ref="57">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>4,10.4,1,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>264df42f9d9f9e34603c609433ed0c42</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text38</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text38>
+        <Text39 type="Text" isKey="true" Ref="58">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>15.4,10.2,1,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,10</Font>
+          <Guid>5110e7277c775fa4576e60944070877a</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text39</Name>
+          <Page isRef="6"/>
+          <Parent isRef="6"/>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+          <VertAlignment>Center</VertAlignment>
+        </Text39>
+      </Components>
+      <Conditions count="0" isList="true"/>
+      <Guid>37d6e1b7e8d28c6a6994603e6773e46d</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <Report isRef="0"/>
+      <Watermark type="Stimulsoft.Report.Components.StiWatermark" isKey="true" Ref="59">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" Ref="60"/>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>06/28/2013 10:13:20 AM</ReportChanged>
+  <ReportCreated>06/20/2013 02:21:09 PM</ReportCreated>
+  <ReportFile>LeaseRegiRpt.mrt</ReportFile>
+  <ReportGuid>358a97001c4180c97f9c888e653c0601</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2012.3.1500</ReportVersion>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles count="0" isList="true"/>
+</StiSerializer>

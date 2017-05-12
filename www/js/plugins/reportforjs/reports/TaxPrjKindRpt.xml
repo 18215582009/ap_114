@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="gb2312"?>
+<root>
+	<REPORT_NAME>房屋租赁备案登记申请表</REPORT_NAME>
+	<REPORT_TYPE>TaxPrjKind</REPORT_TYPE>
+	<CONDITIONS>
+		<COND  name="INDATE" type="DATE" label="开始时间" defaultvalue='' isnull='true'/>
+		<COND  name="EINDATE" type="DATE" label="结束时间" defaultvalue='' isnull='true'/>
+		<COND  name="INMAN" type="VARCHAR" label="申请人"  defaultvalue=''/>	
+		<COND  name="PROJECT" type="VARCHAR" label="项目名称"  defaultvalue=''/>	
+	</CONDITIONS>
+	<SQL cds="Report1">
+		<![CDATA[
+			select * from LEASE.HOUSELEASEINFO WHERE ID>0 @Condition FETCH FIRST 10 ROWS ONLY
+		]]>
+		<PARAMS>
+			<INDATE><![CDATA[ AND INDATE ='%INDATE'  ]]></INDATE>
+			<OWNERID><![CDATA[ AND (OWNERID ='%OWNERID' OR '%OWNERID'='') ]]></OWNERID>
+			<INMAN><![CDATA[ AND (INMAN LIKE '%%INMAN%' OR '%INMAN'='')  ]]></INMAN>	
+			<ID><![CDATA[ AND ID=%ID  ]]></ID>	
+		</PARAMS>		
+	</SQL>
+</root>

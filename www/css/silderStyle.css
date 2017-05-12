@@ -1,0 +1,120 @@
+#nav_out{
+	height: 40px;
+	width: 100%;
+	background: pink;
+	position: fixed;
+	top: 0;
+	left: 0;
+	box-shadow: 0 0 2px;
+}
+#nav_out .nav{
+	width: 1000px;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 auto;
+}
+#nav_out .nav ul li{
+	padding: 0 20px;
+	height: 40px;
+	float: left;
+	transition: all 0.5s;
+}
+#nav_out .nav ul li a{
+	color: #3e3e3e;
+	text-decoration: none;
+}
+#nav_out .nav ul li:hover{
+	transform: rotate(360deg);
+}
+
+*{
+	margin: 0;padding: 0;list-style: none;border: 0;
+}
+
+*:focus{
+	outline: none;
+}
+#banner{
+	width: 600px;
+	height: 280px;
+	padding: 10px;
+	background: #FFFFFF;
+	/*margin: 50px auto 10px;*/
+}
+.box{
+	width: 600px;
+	height: 280px;
+	overflow: hidden;
+	position: relative;
+}
+.box .pic{
+	height: 225px;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.box .pic li{
+	width: 800px;
+	height: 225px;
+	float: left;
+}
+.box .pic li img{
+	display: block;
+	width: 800px;
+	height: 225px;
+}
+.box .dian{
+	width: 100px;
+	height: 16px;
+	position: absolute;
+	right: 260px;
+	bottom: 8px;
+	z-index: 99;
+	overflow: hidden;
+}
+.box .dian li{
+	float: left;
+	width: 14px;
+	height: 14px;
+	background: #2196f3;
+	border-radius: 20px;
+	margin-left: 10px;
+	cursor: pointer;
+	margin-top: 2px;
+	border: 2px solid #FFFFFF;
+}
+.box .dian .current{
+	height: 12px;
+	width:12px;
+	border: 2px solid #2196f3;
+	margin-top: 0;
+}
+.left{
+	width: 42px;
+	height: 42px;
+	background: url(img/arrows-48-48-3.png) no-repeat -4px -51px;
+	position: absolute;
+	z-index: 99;
+	top: 91px;
+	left: 0;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+.right{
+	width: 42px;
+	height: 42px;
+	background: url(img/arrows-48-48-3.png) no-repeat -51px -51px;
+	position: absolute;
+	z-index: 99;
+	top: 91px;
+	right: 0;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+.left:hover{
+	background-position: -4px -3px;
+}
+.right:hover{
+	background-position: -51px -3px;
+}

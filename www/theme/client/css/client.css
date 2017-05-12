@@ -1,0 +1,9 @@
+html,body{height:100%;}
+#wrapper{padding:20px;background-color: #e6e6e6;}
+.page-content {background-color:#fff;min-height: 600px;}
+.page-content > .box-content > .content {padding: 25px;}
+.panel-body {background-color: #f7f8fc;}
+.nav > li > a > img {height:36px;margin-left: 32px; margin-top: 10px;}
+body.sidebar-color-white #wrapper #page-wrapper .sidebar-main ul#sidebar-main > li.active > a {background-color:#369ceb;color:#fff}
+body.sidebar-color-white #wrapper #page-wrapper .sidebar-main ul#sidebar-main > li.active > a > i {color: #fff;}
+.alert-warning{font-size: 12px;color:#000;}

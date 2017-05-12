@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer application="StiReport" version="1.02" type="Flex">
+  <Dictionary isKey="true" Ref="1" type="Dictionary">
+    <Databases isList="true" count="1">
+      <CandorConn isKey="true" Ref="2" type="Stimulsoft.Report.Dictionary.StiXmlDatabase">
+        <Alias>CandorConn</Alias>
+        <Name>CandorConn</Name>
+        <PathData>test.php?suffix=xml</PathData>
+        <PathSchema>test.php?suffix=xsd</PathSchema>
+      </CandorConn>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <CandorDs isKey="true" Ref="3" type="DataTableSource">
+        <Alias>CandorDs</Alias>
+        <Columns isList="true" count="5">
+          <value>Rank,System.String</value>
+          <value>Country,System.String</value>
+          <value>Year2009,System.String</value>
+          <value>Year2005,System.String</value>
+          <value>Year2000,System.String</value>
+        </Columns>
+        <Dictionary isRef="1"/>
+        <Name>CandorDs</Name>
+        <NameInSource>CandorConn.Auto</NameInSource>
+      </CandorDs>
+    </DataSources>
+    <Relations isList="true" count="0"/>
+    <Report isRef="0"/>
+    <Variables isList="true" count="0"/>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0"/>
+  <MetaTags isList="true" count="0"/>
+  <Pages isList="true" count="1">
+    <Page1 isKey="true" Ref="4" type="Page">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="5">
+        <ReportTitleBand1 isKey="true" Ref="5" type="ReportTitleBand">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,19,5.2</ClientRectangle>
+          <Components isList="true" count="13">
+            <rpttitle isKey="true" Ref="6" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,19,1.2</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,28</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>rpttitle</Name>
+              <Page isRef="4"/>
+              <Parent isRef="5"/>
+              <Text>住房保障申请人基本信息</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </rpttitle>
+            <guarentno isKey="true" Ref="7" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,1.2,2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>guarentno</Name>
+              <Page isRef="4"/>
+              <Parent isRef="5"/>
+              <Text>保障编号：</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </guarentno>
+            <Text1 isKey="true" Ref="8" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2,1.2,4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="4"/>
+              <Parent isRef="5"/>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+            </Text1>
+            <inman isKey="true" Ref="9" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.8,1.2,2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10</Font>
+              <Guid>63a18bff9df9cb28d56a137445b26835</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>inman</Name>
+              <Page isRef="4"/>
+              <Parent isRef="5"/>
+              <Text>申请人：</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </inman>
+            <Text3 isKey="true" Ref="10" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.8,1.2,4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10</Font>
+              <Guid>35ead5d9a6fadd14c1631374cab1da7f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="4"/>
+              <Parent isRef="5"/>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+            </Text3>
+            <city isKey="true" Ref="11" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,2,2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10</Font>
+              <Guid>355941aeaf9f94eadbda13754fa1b95c</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>city</Name>
+              <Page isRef="4"/>
+              <Parent isRef="5"/>
+              <Text>市县：</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </city>
+            <cityval isKey="true" Ref="12" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2,2,2.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10</Font>
+              <Guid>ee6928d03788b7bdcdd8137598fe36ae</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>cityval</Name>
+              <Page isRef="4"/>
+              <Parent isRef="5"/>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+            </cityval>
+            <region isKey="true" Ref="13" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.4,2,2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10</Font>
+              <Guid>e666f1a5a8f5df5afa501375ce085edb</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>region</Name>
+              <Page isRef="4"/>
+              <Parent isRef="5"/>
+              <Text>区名：</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </region>
+            <regionval isKey="true" Ref="14" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.4,2,2.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10</Font>
+              <Guid>410320dd38e675106ef113761ddd6dd6</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>regionval</Name>
+              <Page isRef="4"/>
+              <Parent isRef="5"/>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+            </regionval>
+            <street isKey="true" Ref="15" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.8,2,2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10</Font>
+              <Guid>5809bc23069329f01a5613769ec56e8e</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>street</Name>
+              <Page isRef="4"/>
+              <Parent isRef="5"/>
+              <Text>街道：</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </street>
+            <streetval isKey="true" Ref="16" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.8,2,2.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10</Font>
+              <Guid>299dcc296535c9cf67701376f755cf0e</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>streetval</Name>
+              <Page isRef="4"/>
+              <Parent isRef="5"/>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+            </streetval>
+            <sq isKey="true" Ref="17" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>13.2,2,2.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10</Font>
+              <Guid>71b249cb0bba3b77f5b0137750efd210</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>sq</Name>
+              <Page isRef="4"/>
+              <Parent isRef="5"/>
+              <Text>社区：</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </sq>
+            <sqval isKey="true" Ref="18" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15.6,2,3,0.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10</Font>
+              <Guid>e250b1d096cded9f17ad137750efdbf2</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>sqval</Name>
+              <Page isRef="4"/>
+              <Parent isRef="5"/>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+            </sqval>
+          </Components>
+          <Conditions isList="true" count="0"/>
+          <Name>ReportTitleBand1</Name>
+          <Page isRef="4"/>
+          <Parent isRef="4"/>
+        </ReportTitleBand1>
+        <HeaderBand1 isKey="true" Ref="19" type="HeaderBand">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,6.4,19,0.8</ClientRectangle>
+          <Components isList="true" count="6">
+            <Text2 isKey="true" Ref="20" type="Text">
+              <Brush>White</Brush>
+              <ClientRectangle>0,0,2.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10,Bold</Font>
+              <Guid>6b378f47a3a5fcc1f685137e57b3ecd1</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="4"/>
+              <Parent isRef="19"/>
+              <Text>姓名</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text2>
+            <Text7 isKey="true" Ref="21" type="Text">
+              <Brush>White</Brush>
+              <ClientRectangle>2.4,0,1.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10,Bold</Font>
+              <Guid>4ce641485feca2b98b30137e57b34252</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="4"/>
+              <Parent isRef="19"/>
+              <Text>性别</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text7>
+            <Text5 isKey="true" Ref="22" type="Text">
+              <Brush>White</Brush>
+              <ClientRectangle>3.8,0,2.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10,Bold</Font>
+              <Guid>3f6c93346195a2f16319137e57b3d265</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="4"/>
+              <Parent isRef="19"/>
+              <Text>与申请人关系</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text5>
+            <Text8 isKey="true" Ref="23" type="Text">
+              <Brush>White</Brush>
+              <ClientRectangle>6.6,0,3.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10,Bold</Font>
+              <Guid>a4c8cf5f2e45b27df465137e57b39aac</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="4"/>
+              <Parent isRef="19"/>
+              <Text>证件类型</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text8>
+            <Text9 isKey="true" Ref="24" type="Text">
+              <Brush>White</Brush>
+              <ClientRectangle>10.2,0,6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10,Bold</Font>
+              <Guid>9e5af7a21219b6b63073137e57b3a9e6</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="4"/>
+              <Parent isRef="19"/>
+              <Text>证件号码</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text9>
+            <Text10 isKey="true" Ref="25" type="Text">
+              <Brush>White</Brush>
+              <ClientRectangle>16.2,0,2.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10,Bold</Font>
+              <Guid>319833128ac4ecca7392137e57b3674e</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="4"/>
+              <Parent isRef="19"/>
+              <Text>状态</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text10>
+          </Components>
+          <Conditions isList="true" count="0"/>
+          <Name>HeaderBand1</Name>
+          <Page isRef="4"/>
+          <Parent isRef="4"/>
+        </HeaderBand1>
+        <DataBand1 isKey="true" Ref="26" type="DataBand">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,8,19,1.6</ClientRectangle>
+          <Components isList="true" count="6">
+            <Text17 isKey="true" Ref="27" type="Text">
+              <Brush>White</Brush>
+              <ClientRectangle>0,0,2.4,1.4</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10,Bold</Font>
+              <Guid>4cc523f2b3eaba6d7e4e138140b20e58</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="4"/>
+              <Parent isRef="26"/>
+              <Text>姓名</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text17>
+            <Text11 isKey="true" Ref="28" type="Text">
+              <Brush>White</Brush>
+              <ClientRectangle>2.4,0,1.4,1.4</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10,Bold</Font>
+              <Guid>c598b520f24de0745b60138140b2140e</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="4"/>
+              <Parent isRef="26"/>
+              <Text>性别</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text11>
+            <Text12 isKey="true" Ref="29" type="Text">
+              <Brush>White</Brush>
+              <ClientRectangle>3.8,0,2.8,1.4</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10,Bold</Font>
+              <Guid>c339498a70a4ca5490a3138140b257cf</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="4"/>
+              <Parent isRef="26"/>
+              <Text>与申请人关系</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text12>
+            <Text13 isKey="true" Ref="30" type="Text">
+              <Brush>White</Brush>
+              <ClientRectangle>6.6,0,3.6,1.4</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10,Bold</Font>
+              <Guid>6e5b2615b69875380063138140b27fe4</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="4"/>
+              <Parent isRef="26"/>
+              <Text>证件类型</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text13>
+            <Text14 isKey="true" Ref="31" type="Text">
+              <Brush>White</Brush>
+              <ClientRectangle>10.2,0,6,1.4</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10,Bold</Font>
+              <Guid>7913883fd9b0c9166a1c138140b2fa45</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="4"/>
+              <Parent isRef="26"/>
+              <Text>证件号码</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text14>
+            <Text15 isKey="true" Ref="32" type="Text">
+              <Brush>White</Brush>
+              <ClientRectangle>16.2,0,2.8,1.4</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,10,Bold</Font>
+              <Guid>57abba14e05895f36b2d138140b2cda4</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="4"/>
+              <Parent isRef="26"/>
+              <Text>状态</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text15>
+          </Components>
+          <Conditions isList="true" count="0"/>
+          <Filters isList="true" count="0"/>
+          <Name>DataBand1</Name>
+          <Page isRef="4"/>
+          <Parent isRef="4"/>
+          <Sort isList="true" count="0"/>
+        </DataBand1>
+        <FooterBand1 isKey="true" Ref="33" type="FooterBand">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,10.4,19,5</ClientRectangle>
+          <Components isList="true" count="0"/>
+          <Conditions isList="true" count="0"/>
+          <Name>FooterBand1</Name>
+          <Page isRef="4"/>
+          <Parent isRef="4"/>
+        </FooterBand1>
+        <ReportSummaryBand1 isKey="true" Ref="34" type="ReportSummaryBand">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,16.2,19,9.4</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text16 isKey="true" Ref="35" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,19,0.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial Black,12,Bold</Font>
+              <Guid>abafe810f708b330f7061387643afc85</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="4"/>
+              <Parent isRef="34"/>
+              <Text>备注</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text16>
+            <Text18 isKey="true" Ref="36" type="Text">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.8,19,7.8</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <Font>Arial,11</Font>
+              <Guid>b6a8218d61af793fc63b1387eff0aba7</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="4"/>
+              <Parent isRef="34"/>
+              <Text>我市住房保障信息网设置了项目公示、项目分布、最新公告、办事指南、资格公示、工作动态、保障政策、保障机构、申请条件评估、场景式服务、表格下载、问卷调查、保障视频等版块，涉及社会公众广泛关心的内容。项目公示版块对我市所辖区（市）县已建、在建、拟建的保障性住房项目进行了详细公示，包括项目名称、项目简介、批准时间、建设地址、所在行政区、保障房类别、建设方式、占地面积、建设套数、建筑面积、项目状态、开工时间、竣工时间、已开工套数、已竣工套数、户型面积区间、建设单位、施工单位、监理单位、形象进度、租（售）情况等重要信息；项目分布版块实现在全域成都地图上对各区（市）县保障性住房项目数量及分布位置的展示，通过点击项目名称可进一步了解项目的详细信息。办事指南版块公示了我市各类保障性住房申请指南，包括申请条件、申请材料、资格申请审核流程、租售规则和程序等。住房保障资格公示版块对经审核符合我市住房保障条件的情况进行公示，以接受相关部门、单位和广大群众监督。最新公告、工作动态、保障政策版块，让广大群众及时了解最新公示公告、工作动态和政策制度。保障性住房申请条件评估通过群众自行选择和输入预设的个人及家庭相关信息，系统根据输入的信息自动判别其是否符合保障房申请条件以及可以申请哪种类别的保障性住房，为群众预先了解保障资格提供更加便捷的参考判定方式，免去了群众以往需深入解读和理解保障政策的麻烦。网站还提供了在线表格下载、问卷调查以及场景式服务、住房保障机构和咨询电话等便民服务和信息，切实满足群众在保障性住房申请、意向与需求反馈、问题咨询等方面的需求。</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text18>
+          </Components>
+          <Conditions isList="true" count="0"/>
+          <Name>ReportSummaryBand1</Name>
+          <Page isRef="4"/>
+          <Parent isRef="4"/>
+        </ReportSummaryBand1>
+      </Components>
+      <Conditions isList="true" count="0"/>
+      <Guid>a961e13c270b4af0b3d5134a6abb928b</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <Report isRef="0"/>
+      <Watermark isKey="true" Ref="37" type="Stimulsoft.Report.Components.StiWatermark">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings isKey="true" Ref="38" type="Stimulsoft.Report.Print.StiPrinterSettings"/>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>06/09/2013 10:35:16 AM</ReportChanged>
+  <ReportCreated>06/05/2013 03:43:31 PM</ReportCreated>
+  <ReportFile>CandorDemoRpt.mrt</ReportFile>
+  <ReportGuid>3cf5b257482f5b0e38ff26c9a2a03bd4</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2012.3.1500</ReportVersion>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0"/>
+</StiSerializer>

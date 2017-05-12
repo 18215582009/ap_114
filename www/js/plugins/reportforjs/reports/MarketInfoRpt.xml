@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="gb2312"?>
+<root>
+	<REPORT_NAME>市场信息报表</REPORT_NAME>
+	<REPORT_TYPE>rtReport</REPORT_TYPE>
+	<CONDITIONS>
+		<COND  name="SDATE" type="DATE" label="开始时间" defaultvalue=''/>
+		<COND  name="EDATE" type="DATE" label="结束时间" defaultvalue=''/>
+	</CONDITIONS>
+	<SQL cds="Report1">
+		<![CDATA[
+			select round(float(sum(h.price))/sum(h.area+h.outarea),2) as price,p.licenceid,p.aliase,p.developer from estate.presell p,estate.contract c,estate.housetable h where  p.licenceid=c.licenceid and h.contractid=c.contractid  and p.licenceid not in(1023,1024,1992) and p.licenceid>2000 and (h.area+h.outarea)*1500<h.price and h.usage='住宅' group by p.licenceid,p.aliase,p.developer order by price fetch first 10 rows only
+		]]>
+		<PARAMS>
+			<QUALIFICATIONCODE><![CDATA[ '均价排名' ]]></QUALIFICATIONCODE>
+			<OWNERID><![CDATA[ AND (OWNERID ='%OWNERID' OR '%OWNERID'='') ]]></OWNERID>
+			<FULLNAME><![CDATA[ AND (CMP.FULLNAME LIKE '%%FULLNAME%' OR '%FULLNAME'='')  ]]></FULLNAME>	
+			<ID><![CDATA[ AND ID=%ID  ]]></ID>	
+		</PARAMS>		
+	</SQL>
+	<SQL cds="Report2"><![CDATA[
+		select count(h.tableid) as totnum,p.licenceid,p.aliase,p.developer from estate.presell p,estate.contract c,estate.housetable h where p.licenceid=c.licenceid and h.contractid=c.contractid and c.indate>current date-300000 days and p.licenceid not in(1023,1024,1992) and h.usage='住宅' and c.STATUS in('有效','抵押','查封','发证') group by p.licenceid,p.aliase,p.developer order by totnum desc fetch first 10 rows only
+	]]>
+		<PARAMS>
+			<TEST><![CDATA[ AND (QUALIFICATIONCODE ='%退房排行榜' OR '%QUALIFICATIONCODE'='') ]]></TEST>
+			<OWNERID><![CDATA[ AND (OWNERID ='%OWNERID' OR '%OWNERID'='') ]]></OWNERID>
+			<FULLNAME><![CDATA[ AND (CMP.FULLNAME LIKE '%%FULLNAME%' OR '%FULLNAME'='')  ]]></FULLNAME>	
+			<ID><![CDATA[ AND ID=%ID  ]]></ID>	
+		</PARAMS>	
+	</SQL>
+	<SQL cds="HTUSAGE"><![CDATA[
+		select  usage,count(1) as tot from estate.housetable where salestatus in ('','可售') or salestatus is null  and usage in  ('住宅','商业','车库','其他') group by usage
+	]]>
+		<PARAMS>
+			<TEST><![CDATA[ AND (QUALIFICATIONCODE ='%退房排行榜' OR '%QUALIFICATIONCODE'='') ]]></TEST>
+		</PARAMS>	
+	</SQL>
+	<SQL cds="CONTSIGN"><![CDATA[
+		SELECT MONTH(BUYDATE) as vmonth,COUNT(1) AS TOT FROM ESTATE.CONTRACT WHERE BUYDATE BETWEEN '2005-01-01' AND '2005-12-01' GROUP BY MONTH(BUYDATE)
+	]]>
+		<PARAMS>
+			<TEST><![CDATA[ AND (QUALIFICATIONCODE ='%退房排行榜' OR '%QUALIFICATIONCODE'='') ]]></TEST>
+		</PARAMS>	
+	</SQL>
+</root>

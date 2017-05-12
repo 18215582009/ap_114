@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer application="StiReport" version="1.02" type="Flex">
+  <Dictionary isKey="true" Ref="1" type="Dictionary">
+    <Databases isList="true" count="1">
+      <TestConn isKey="true" Ref="2" type="Stimulsoft.Report.Dictionary.StiXmlDatabase">
+        <Alias>TestConn</Alias>
+        <Name>TestConn</Name>
+        <PathData>test1.php?dsname=TestLeaseRpt</PathData>
+        <PathSchema/>
+      </TestConn>
+    </Databases>
+    <DataSources isList="true" count="2">
+      <Report1Ds isKey="true" Ref="3" type="DataTableSource">
+        <Alias>Report1Ds</Alias>
+        <Columns isList="true" count="125">
+          <value>ID,System.String</value>
+          <value>GUARANTCODE,System.String</value>
+          <value>REGIONCODE,System.String</value>
+          <value>REGION,System.String</value>
+          <value>STREET,System.String</value>
+          <value>COMMUNITY,System.String</value>
+          <value>GUANRANTTYPE,System.String</value>
+          <value>ISORIGIN,System.String</value>
+          <value>ISYEARCHECK,System.String</value>
+          <value>TOTMONTHS,System.String</value>
+          <value>YEARCHECK,System.String</value>
+          <value>IFPREREGI,System.String</value>
+          <value>CONTINUEPAY,System.String</value>
+          <value>OWNER,System.String</value>
+          <value>FAMILYTYPE,System.String</value>
+          <value>FAMILYMEMBERS,System.String</value>
+          <value>CERTIFIEDMEMBERS,System.String</value>
+          <value>SPECIALROLE,System.String</value>
+          <value>IFLOWEST,System.String</value>
+          <value>ISFSTSOO,System.String</value>
+          <value>IFUNHEALTHY,System.String</value>
+          <value>CENSUSMAN,System.String</value>
+          <value>CENSUSYEAR,System.String</value>
+          <value>PHONE,System.String</value>
+          <value>FAMILYINCOME,System.String</value>
+          <value>LICENSEID,System.String</value>
+          <value>LAWSTANDARD,System.String</value>
+          <value>LICENSEEXPIRE,System.String</value>
+          <value>BACKHOUSEID,System.String</value>
+          <value>BACKPACTCODE,System.String</value>
+          <value>RENTTYPE,System.String</value>
+          <value>CORRECTDATE,System.String</value>
+          <value>CORRECTOR,System.String</value>
+          <value>CORRECTNOTE,System.String</value>
+          <value>CORRECTRESULT,System.String</value>
+          <value>AREA,System.String</value>
+          <value>OUTDATE,System.String</value>
+          <value>EXTRAINFO,System.String</value>
+          <value>OUTFOR,System.String</value>
+          <value>NOTE,System.String</value>
+          <value>ISDONE,System.String</value>
+          <value>STATUS,System.String</value>
+          <value>S,System.String</value>
+          <value>REGITYPE,System.String</value>
+          <value>SELFPUBAREA,System.String</value>
+          <value>SELFREGIAREA,System.String</value>
+          <value>PERAREA,System.String</value>
+          <value>PUBAREA,System.String</value>
+          <value>PEROTHERAREA,System.String</value>
+          <value>NOWLIVEPROPERTY,System.String</value>
+          <value>LIVEADDRESS,System.String</value>
+          <value>INCOME,System.String</value>
+          <value>FIRSTGUARANTTYPE,System.String</value>
+          <value>DESIREDAREA,System.String</value>
+          <value>OWNERID,System.String</value>
+          <value>CANMONPAY,System.String</value>
+          <value>CANRENT,System.String</value>
+          <value>HASPAY,System.String</value>
+          <value>RESERVEINCOME,System.String</value>
+          <value>SUBURBANINCOME,System.String</value>
+          <value>ABANDON,System.String</value>
+          <value>QUITREASON,System.String</value>
+          <value>QRYABANDONNUM,System.String</value>
+          <value>HASGUARANT,System.String</value>
+          <value>HASGUARANT_LOWHOUSE,System.String</value>
+          <value>HASGUARANT_GUARANTPAY,System.String</value>
+          <value>CONTITION,System.String</value>
+          <value>IFPEASANT,System.String</value>
+          <value>TALKPOLICY,System.String</value>
+          <value>KNOWPOLICY,System.String</value>
+          <value>REALLOWEST,System.String</value>
+          <value>HASLOWGUARANT,System.String</value>
+          <value>HASRESEARCH2009,System.String</value>
+          <value>RESEARCHTYPE,System.String</value>
+          <value>AREAPASS,System.String</value>
+          <value>INCENSUSSIGN,System.String</value>
+          <value>IMPORTOLDID,System.String</value>
+          <value>RESONNOCONNECT,System.String</value>
+          <value>GUARANTOBJTYPE,System.String</value>
+          <value>DELFLAG,System.String</value>
+          <value>ZIPCODE,System.String</value>
+          <value>PROJECTNAME,System.String</value>
+          <value>WANTREGIDATE,System.String</value>
+          <value>WANTREGION,System.String</value>
+          <value>WANTTYPE,System.String</value>
+          <value>WANTAREA,System.String</value>
+          <value>WANTMINAREA,System.String</value>
+          <value>WANTMAXAREA,System.String</value>
+          <value>WANTMINPRICE,System.String</value>
+          <value>WANTMAXPRICE,System.String</value>
+          <value>CANBUY,System.String</value>
+          <value>WANTHSREGIDATE,System.String</value>
+          <value>WANTHSREGION,System.String</value>
+          <value>WANTHSTYPE,System.String</value>
+          <value>BASTAUS,System.String</value>
+          <value>STATE,System.String</value>
+          <value>CONTRACTDATE,System.String</value>
+          <value>FINALFGDATE,System.String</value>
+          <value>FGFAILREGION,System.String</value>
+          <value>RESEARCHADDRESS,System.String</value>
+          <value>NLP,System.String</value>
+          <value>CQFLAG,System.String</value>
+          <value>CQTYPE,System.String</value>
+          <value>BF_INCOME,System.String</value>
+          <value>HASHOUSE,System.String</value>
+          <value>HASRESEARCH,System.String</value>
+          <value>BALANCE,System.String</value>
+          <value>LASTAMOUNT,System.String</value>
+          <value>LASTBILLNO,System.String</value>
+          <value>PARENT_ID,System.String</value>
+          <value>STREETCOMMUNITY,System.String</value>
+          <value>WAITFORGUARANT,System.String</value>
+          <value>FLAG,System.String</value>
+          <value>GUARSTARTDATE,System.String</value>
+          <value>GUARENDDATE,System.String</value>
+          <value>ENJOYEDAREA,System.String</value>
+          <value>OLD_LICENSEID,System.String</value>
+          <value>REPAIRREC,System.String</value>
+          <value>SEALIDS,System.String</value>
+          <value>ISPHTYPE,System.String</value>
+          <value>SECURITYNUMBER,System.String</value>
+          <value>MINIMUMNUMBER,System.String</value>
+          <value>CARDNO,System.String</value>
+          <value>AUDITRESULT,System.String</value>
+          <value>AUDITNOTE,System.String</value>
+        </Columns>
+        <Dictionary isRef="1"/>
+        <Name>Report1Ds</Name>
+        <NameInSource>TestConn.REPORT1</NameInSource>
+      </Report1Ds>
+      <Report2Ds isKey="true" Ref="4" type="DataTableSource">
+        <Alias>Report2Ds</Alias>
+        <Columns isList="true" count="53">
+          <value>ID,System.String</value>
+          <value>OWNERID,System.String</value>
+          <value>GUARANTID,System.String</value>
+          <value>FAMILYROLE,System.String</value>
+          <value>IFUNHEALTHY,System.String</value>
+          <value>UNHEALTHYLEVEL,System.String</value>
+          <value>ISFSTSOO,System.String</value>
+          <value>TYPEFSTSOO,System.String</value>
+          <value>IFMARRIED,System.String</value>
+          <value>IFLOWEST,System.String</value>
+          <value>IFPEASANT,System.String</value>
+          <value>SPECIALROLE,System.String</value>
+          <value>VOCATION,System.String</value>
+          <value>COMPANY,System.String</value>
+          <value>COMPANYADDRESS,System.String</value>
+          <value>UNITINCOME,System.String</value>
+          <value>INCOME,System.String</value>
+          <value>COMPANYPHONE,System.String</value>
+          <value>NOTE,System.String</value>
+          <value>PESETOPEOP,System.String</value>
+          <value>STATUS,System.String</value>
+          <value>ISORIGIN,System.String</value>
+          <value>ADDRESS,System.String</value>
+          <value>NOWLIVE,System.String</value>
+          <value>NOWLIVEPROPERTY,System.String</value>
+          <value>LIVEADDRESS,System.String</value>
+          <value>NOWAREA,System.String</value>
+          <value>UNITHOUSEKIND,System.String</value>
+          <value>ISCERTIFIED,System.String</value>
+          <value>OUTFOR,System.String</value>
+          <value>OUTDATE,System.String</value>
+          <value>OUTMAN,System.String</value>
+          <value>DIPLOMA,System.String</value>
+          <value>GRADATE,System.String</value>
+          <value>TOWNTYPE,System.String</value>
+          <value>TOWNADDRESS,System.String</value>
+          <value>FIRSTINDATE,System.String</value>
+          <value>LOWESTNO,System.String</value>
+          <value>RESERVEFLAG,System.String</value>
+          <value>SUBURBANINCOME,System.String</value>
+          <value>FAMILYINCOME,System.String</value>
+          <value>WORKDISTRICT,System.String</value>
+          <value>IFINSURANCE,System.String</value>
+          <value>DELFLAG,System.String</value>
+          <value>UNHEALTHYNO,System.String</value>
+          <value>MARRIEDNO,System.String</value>
+          <value>FAMILYID,System.String</value>
+          <value>HOUSEOWNER,System.String</value>
+          <value>CNO,System.String</value>
+          <value>OLD_PEOPLE_LIST_ID,System.String</value>
+          <value>OLD_HOUSE_RESEARCH_ID,System.String</value>
+          <value>ISSHARED,System.String</value>
+          <value>ISPHTYPE,System.String</value>
+        </Columns>
+        <Dictionary isRef="1"/>
+        <Name>Report2Ds</Name>
+        <NameInSource>TestConn.REPORT2</NameInSource>
+      </Report2Ds>
+    </DataSources>
+    <Relations isList="true" count="0"/>
+    <Report isRef="0"/>
+    <Variables isList="true" count="0"/>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0"/>
+  <MetaTags isList="true" count="0"/>
+  <Pages isList="true" count="1">
+    <Page1 isKey="true" Ref="5" type="Page">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="1">
+        <ReportTitleBand1 isKey="true" Ref="6" type="ReportTitleBand">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,19,10.8</ClientRectangle>
+          <Components isList="true" count="1">
+            <Chart1 isKey="true" Ref="7" type="Stimulsoft.Report.Chart.StiChart">
+              <Area isKey="true" Ref="8" type="Stimulsoft.Report.Chart.StiClusteredColumnArea">
+                <BorderColor>95, 72, 29</BorderColor>
+                <Brush>GradientBrush,[255:255:255],[255:255:219],90</Brush>
+                <Chart isRef="7"/>
+                <GridLinesHor isKey="true" Ref="9" type="Stimulsoft.Report.Chart.StiGridLinesHor">
+                  <Area isRef="8"/>
+                  <Color>100, 95, 72, 29</Color>
+                  <MinorColor>100, 95, 72, 29</MinorColor>
+                </GridLinesHor>
+                <GridLinesHorRight isKey="true" Ref="10" type="Stimulsoft.Report.Chart.StiGridLinesHor">
+                  <Area isRef="8"/>
+                  <Color>Silver</Color>
+                  <MinorColor>Gainsboro</MinorColor>
+                  <Visible>False</Visible>
+                </GridLinesHorRight>
+                <GridLinesVert isKey="true" Ref="11" type="Stimulsoft.Report.Chart.StiGridLinesVert">
+                  <Area isRef="8"/>
+                  <Color>100, 95, 72, 29</Color>
+                  <MinorColor>100, 95, 72, 29</MinorColor>
+                </GridLinesVert>
+                <InterlacingHor isKey="true" Ref="12" type="Stimulsoft.Report.Chart.StiInterlacingHor">
+                  <Area isRef="8"/>
+                  <InterlacedBrush>[10:145:122:79]</InterlacedBrush>
+                </InterlacingHor>
+                <InterlacingVert isKey="true" Ref="13" type="Stimulsoft.Report.Chart.StiInterlacingVert">
+                  <Area isRef="8"/>
+                  <InterlacedBrush>[10:145:122:79]</InterlacedBrush>
+                </InterlacingVert>
+                <XAxis isKey="true" Ref="14" type="Stimulsoft.Report.Chart.StiXBottomAxis">
+                  <Area isRef="8"/>
+                  <Interaction isKey="true" Ref="15" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+                  <Labels isKey="true" Ref="16" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                    <Color>95, 72, 29</Color>
+                    <Font>Tahoma,8</Font>
+                  </Labels>
+                  <LineColor>95, 72, 29</LineColor>
+                  <Range isKey="true" Ref="17" type="Stimulsoft.Report.Chart.StiAxisRange"/>
+                  <Ticks isKey="true" Ref="18" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+                  <Title isKey="true" Ref="19" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                    <Color>95, 72, 29</Color>
+                    <Direction>LeftToRight</Direction>
+                    <Font>Tahoma,12,Bold</Font>
+                  </Title>
+                </XAxis>
+                <XTopAxis isKey="true" Ref="20" type="Stimulsoft.Report.Chart.StiXTopAxis">
+                  <Area isRef="8"/>
+                  <Interaction isKey="true" Ref="21" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+                  <Labels isKey="true" Ref="22" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                    <Color>95, 72, 29</Color>
+                    <Font>Tahoma,8</Font>
+                  </Labels>
+                  <LineColor>95, 72, 29</LineColor>
+                  <Ticks isKey="true" Ref="23" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+                  <Title isKey="true" Ref="24" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                    <Color>95, 72, 29</Color>
+                    <Direction>LeftToRight</Direction>
+                    <Font>Tahoma,12,Bold</Font>
+                  </Title>
+                </XTopAxis>
+                <YAxis isKey="true" Ref="25" type="Stimulsoft.Report.Chart.StiYLeftAxis">
+                  <Area isRef="8"/>
+                  <Interaction isKey="true" Ref="26" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+                  <Labels isKey="true" Ref="27" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                    <Color>95, 72, 29</Color>
+                    <Font>Tahoma,8</Font>
+                  </Labels>
+                  <LineColor>95, 72, 29</LineColor>
+                  <Range isKey="true" Ref="28" type="Stimulsoft.Report.Chart.StiAxisRange"/>
+                  <Ticks isKey="true" Ref="29" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+                  <Title isKey="true" Ref="30" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                    <Color>95, 72, 29</Color>
+                    <Direction>BottomToTop</Direction>
+                    <Font>Tahoma,12,Bold</Font>
+                  </Title>
+                </YAxis>
+                <YRightAxis isKey="true" Ref="31" type="Stimulsoft.Report.Chart.StiYRightAxis">
+                  <Area isRef="8"/>
+                  <Interaction isKey="true" Ref="32" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+                  <Labels isKey="true" Ref="33" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                    <Color>95, 72, 29</Color>
+                    <Font>Tahoma,8</Font>
+                    <TextAlignment>Left</TextAlignment>
+                  </Labels>
+                  <LineColor>95, 72, 29</LineColor>
+                  <Range isKey="true" Ref="34" type="Stimulsoft.Report.Chart.StiAxisRange"/>
+                  <Ticks isKey="true" Ref="35" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+                  <Title isKey="true" Ref="36" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                    <Color>95, 72, 29</Color>
+                    <Direction>TopToBottom</Direction>
+                    <Font>Tahoma,12,Bold</Font>
+                  </Title>
+                </YRightAxis>
+              </Area>
+              <Brush>[255:255:255]</Brush>
+              <ClientRectangle>0,0.8,19,9.4</ClientRectangle>
+              <Conditions isList="true" count="0"/>
+              <ConstantLines isList="true" count="0"/>
+              <CustomStyleName/>
+              <Filters isList="true" count="0"/>
+              <Legend isKey="true" Ref="37" type="Stimulsoft.Report.Chart.StiLegend">
+                <BorderColor>95, 72, 29</BorderColor>
+                <Brush>GradientBrush,[255:255:255],[255:242:199],90</Brush>
+                <Chart isRef="7"/>
+                <Font>Arial,8</Font>
+                <LabelsColor>95, 72, 29</LabelsColor>
+                <MarkerSize>10, 10</MarkerSize>
+                <TitleColor>95, 72, 29</TitleColor>
+                <TitleFont>Arial,14,Bold</TitleFont>
+              </Legend>
+              <Name>Chart1</Name>
+              <Page isRef="5"/>
+              <Parent isRef="6"/>
+              <Series isList="true" count="1">
+                <Item33 isKey="true" Ref="38" type="Stimulsoft.Report.Chart.StiClusteredColumnSeries">
+                  <ArgumentDataColumn>Report1Ds.NOWLIVEPROPERTY</ArgumentDataColumn>
+                  <BorderColor>94, 17, 0</BorderColor>
+                  <Brush>GlareBrush,[144:67:3],[194:117:53],0,0.5,1</Brush>
+                  <BrushNegative>Firebrick</BrushNegative>
+                  <Chart isRef="7"/>
+                  <Conditions isList="true" count="0"/>
+                  <Filters isList="true" count="0"/>
+                  <SeriesLabels isKey="true" Ref="39" type="Stimulsoft.Report.Chart.StiCenterAxisLabels">
+                    <BorderColor>95, 72, 29</BorderColor>
+                    <Brush>Wheat</Brush>
+                    <Chart isRef="7"/>
+                    <Font>Arial,7</Font>
+                    <LabelColor>95, 72, 29</LabelColor>
+                    <MarkerSize>8, 6</MarkerSize>
+                    <ValueTypeSeparator>-</ValueTypeSeparator>
+                  </SeriesLabels>
+                  <Title>Series 1</Title>
+                  <TopN isKey="true" Ref="40" type="Stimulsoft.Report.Chart.StiSeriesTopN"/>
+                  <ValueDataColumn>Report1Ds.ID</ValueDataColumn>
+                </Item33>
+              </Series>
+              <SeriesLabels isKey="true" Ref="42" type="Stimulsoft.Report.Chart.StiCenterAxisLabels">
+                <BorderColor>95, 72, 29</BorderColor>
+                <Brush>Wheat</Brush>
+                <Chart isRef="7"/>
+                <Font>Arial,7</Font>
+                <LabelColor>95, 72, 29</LabelColor>
+                <MarkerSize>8, 6</MarkerSize>
+                <ValueTypeSeparator>-</ValueTypeSeparator>
+              </SeriesLabels>
+              <SeriesLabelsConditions isList="true" count="0"/>
+              <Sort isList="true" count="0"/>
+              <Strips isList="true" count="0"/>
+              <Style isKey="true" Ref="43" type="Stimulsoft.Report.Chart.StiStyle01"/>
+              <Title isKey="true" Ref="44" type="Stimulsoft.Report.Chart.StiChartTitle">
+                <Brush>[95:72:29]</Brush>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </Chart1>
+          </Components>
+          <Conditions isList="true" count="0"/>
+          <Name>ReportTitleBand1</Name>
+          <Page isRef="5"/>
+          <Parent isRef="5"/>
+        </ReportTitleBand1>
+      </Components>
+      <Conditions isList="true" count="0"/>
+      <Guid>76ec892d9fc706f29d1c884ba19f02c4</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <Report isRef="0"/>
+      <Watermark isKey="true" Ref="45" type="Stimulsoft.Report.Components.StiWatermark">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings isKey="true" Ref="46" type="Stimulsoft.Report.Print.StiPrinterSettings"/>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>06/28/2013 10:36:29 AM</ReportChanged>
+  <ReportCreated>06/28/2013 09:00:25 AM</ReportCreated>
+  <ReportFile>TestLeaseRpt.mrt</ReportFile>
+  <ReportGuid>ff8d12a39732933700de88a394d1b89b</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2012.3.1500</ReportVersion>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0"/>
+</StiSerializer>

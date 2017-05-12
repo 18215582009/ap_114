@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="gb2312"?>
+<root>
+	<REPORT_NAME>房屋租赁登记证</REPORT_NAME>
+	<REPORT_TYPE>rtReport</REPORT_TYPE>
+	<CONDITIONS>
+		<COND  name="ID" type="VARCHAR" label="流水号" defaultvalue=''/>
+		<COND  name="LEASEID" type="VARCHAR" label="租赁编号"  defaultvalue=''/>	
+		<COND  name="REGION" type="COMBOX" label="区域"  defaultvalue='成都,510100;双流,510101;温江,510102'/>	
+		<COND  name="signdate" type="DATE" label="签约时间" defaultvalue=''/>
+		<COND  name="SALEMAN" type="VARCHAR" label="卖方"  defaultvalue=''/>	
+		<COND  name="CONTFILENO" type="VARCHAR" label="签约号"  defaultvalue=''/>		
+		<COND  name="HNO" type="VARCHAR" label="栋号"  defaultvalue=''/>			
+		<COND  name="GUARANTOBJTYPE" type="RADIO" label="收入方式"  defaultvalue='最低收入;中等收入;低收入'/>	
+	</CONDITIONS>
+	<SQL cds="Report1">
+		<![CDATA[
+			select * from LEASE.HOUSELEASEINFO WHERE ID>0 @Condition FETCH FIRST 10 ROWS ONLY
+		]]>
+		<PARAMS>
+			<ID><![CDATA[ AND ID=%ID  ]]></ID>	
+		</PARAMS>		
+	</SQL>
+	<SQL cds="Report2"><![CDATA[
+		SELECT * FROM LEASE.PERSONINFO WHERE ID>0 @Condition fetch first 10 rows only for read only
+	]]>
+		<PARAMS>
+			<LEASEID><![CDATA[ AND LEASEID=%LEASEID  ]]></LEASEID>	
+		</PARAMS>	
+	</SQL>
+	<SQL cds="Report3"><![CDATA[
+		SELECT * FROM LEASE.LEASEHT WHERE ID>0 @Condition fetch first 10 rows only for read only
+	]]>
+		<PARAMS>
+			<LEASEID><![CDATA[ AND LEASEID=%LEASEID  ]]></LEASEID>	
+		</PARAMS>	
+	</SQL>
+</root>

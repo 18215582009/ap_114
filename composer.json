@@ -1,0 +1,40 @@
+{
+    "require": {
+        "monolog/monolog": "^1.21",
+        "illuminate/database": "^5.2",
+        "illuminate/events": "^5.2",
+        "illuminate/http": "^5.2",
+        "nesbot/carbon": "^1.21",
+        "illuminate/auth": "^5.2",
+        "illuminate/contracts": "^5.2",
+        "illuminate/pipeline": "^5.2",
+        "illuminate/support": "^5.2",
+        "illuminate/bus": "^5.2",
+        "illuminate/pagination": "^5.2",
+        "caoym/phprs-restful": "^1.2",
+        "jv2222/ezsql_version": "^2.17",
+        "filp/whoops": "^2.1",
+	"noahbuscher/macaw": "dev-master",
+        "adodb/adodb-php": "^5.20",
+        "gregwar/image": "^2.0",
+	"qieangel2013/zys": "0.1.4"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    },
+    "autoload": {
+	  "files": ["framework/Router.php",
+		    "framework/Control.php",
+		    "framework/SecuredControl.php",
+		    "framework/WxControl.php",
+		    "framework/Model.php",
+		    "framework/OrmModel.php",
+		    "framework/Helper.php"],
+	  "psr-4": {
+		"lib\\":"lib"
+	   }
+     }
+}

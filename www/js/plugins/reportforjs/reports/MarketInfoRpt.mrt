@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer type="Flex" version="1.02" application="StiReport">
+  <Dictionary isKey="true" Ref="1" type="Dictionary">
+    <Databases count="1" isList="true">
+      <MarketConn isKey="true" Ref="2" type="Stimulsoft.Report.Dictionary.StiXmlDatabase">
+        <Alias>MarketConn</Alias>
+        <Name>MarketConn</Name>
+        <PathData>test1.php?dsname=MarketInfoRpt</PathData>
+        <PathSchema/>
+      </MarketConn>
+    </Databases>
+    <DataSources count="4" isList="true">
+      <jjphbDs isKey="true" Ref="3" type="DataTableSource">
+        <Alias>jjphbDs</Alias>
+        <Columns count="4" isList="true">
+          <value>PRICE,System.String</value>
+          <value>LICENCEID,System.String</value>
+          <value>ALIASE,System.String</value>
+          <value>DEVELOPER,System.String</value>
+        </Columns>
+        <Dictionary isRef="1"/>
+        <Name>jjphbDs</Name>
+        <NameInSource>MarketConn.REPORT1</NameInSource>
+      </jjphbDs>
+      <tfphbDs isKey="true" Ref="4" type="DataTableSource">
+        <Alias>tfphbDs</Alias>
+        <Columns count="4" isList="true">
+          <value>TOTNUM,System.String</value>
+          <value>LICENCEID,System.String</value>
+          <value>ALIASE,System.String</value>
+          <value>DEVELOPER,System.String</value>
+        </Columns>
+        <Dictionary isRef="1"/>
+        <Name>tfphbDs</Name>
+        <NameInSource>MarketConn.REPORT2</NameInSource>
+      </tfphbDs>
+      <contDs isKey="true" Ref="5" type="DataTableSource">
+        <Alias>contDs</Alias>
+        <Columns count="2" isList="true">
+          <value>VMONTH,System.String</value>
+          <value>TOT,System.String</value>
+        </Columns>
+        <Dictionary isRef="1"/>
+        <Name>contDs</Name>
+        <NameInSource>MarketConn.CONTSIGN</NameInSource>
+      </contDs>
+      <HTDs isKey="true" Ref="6" type="DataTableSource">
+        <Alias>HTDs</Alias>
+        <Columns count="2" isList="true">
+          <value>USAGE,System.String</value>
+          <value>TOT,System.String</value>
+        </Columns>
+        <Dictionary isRef="1"/>
+        <Name>HTDs</Name>
+        <NameInSource>MarketConn.HTUSAGE</NameInSource>
+      </HTDs>
+    </DataSources>
+    <Relations count="0" isList="true"/>
+    <Report isRef="0"/>
+    <Variables count="0" isList="true"/>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings count="0" isList="true"/>
+  <MetaTags count="0" isList="true"/>
+  <Pages count="1" isList="true">
+    <Page1 isKey="true" Ref="7" type="Page">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components count="8" isList="true">
+        <Text1 isKey="true" Ref="8" type="Text">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.2,9.4,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,16,Bold</Font>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text1</Name>
+          <Page isRef="7"/>
+          <Parent isRef="7"/>
+          <Text>均价排行榜</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+        </Text1>
+        <Text3 isKey="true" Ref="9" type="Text">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>9.6,0.2,9.4,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,16,Bold</Font>
+          <Guid>5f1b2d2fff472765b98484beba7cd5ed</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text3</Name>
+          <Page isRef="7"/>
+          <Parent isRef="7"/>
+          <Text>退房排行榜</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+        </Text3>
+        <Chart1 isKey="true" Ref="10" type="Stimulsoft.Report.Chart.StiChart">
+          <Area isKey="true" Ref="11" type="Stimulsoft.Report.Chart.StiClusteredColumnArea">
+            <BorderColor>95, 72, 29</BorderColor>
+            <Brush>GradientBrush,[255:255:255],[255:255:219],90</Brush>
+            <Chart isRef="10"/>
+            <GridLinesHor isKey="true" Ref="12" type="Stimulsoft.Report.Chart.StiGridLinesHor">
+              <Area isRef="11"/>
+              <Color>100, 95, 72, 29</Color>
+              <MinorColor>100, 95, 72, 29</MinorColor>
+            </GridLinesHor>
+            <GridLinesHorRight isKey="true" Ref="13" type="Stimulsoft.Report.Chart.StiGridLinesHor">
+              <Area isRef="11"/>
+              <Color>Silver</Color>
+              <MinorColor>Gainsboro</MinorColor>
+              <Visible>False</Visible>
+            </GridLinesHorRight>
+            <GridLinesVert isKey="true" Ref="14" type="Stimulsoft.Report.Chart.StiGridLinesVert">
+              <Area isRef="11"/>
+              <Color>100, 95, 72, 29</Color>
+              <MinorColor>100, 95, 72, 29</MinorColor>
+            </GridLinesVert>
+            <InterlacingHor isKey="true" Ref="15" type="Stimulsoft.Report.Chart.StiInterlacingHor">
+              <Area isRef="11"/>
+              <InterlacedBrush>[10:145:122:79]</InterlacedBrush>
+            </InterlacingHor>
+            <InterlacingVert isKey="true" Ref="16" type="Stimulsoft.Report.Chart.StiInterlacingVert">
+              <Area isRef="11"/>
+              <InterlacedBrush>[10:145:122:79]</InterlacedBrush>
+            </InterlacingVert>
+            <XAxis isKey="true" Ref="17" type="Stimulsoft.Report.Chart.StiXBottomAxis">
+              <Area isRef="11"/>
+              <Interaction isKey="true" Ref="18" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+              <Labels isKey="true" Ref="19" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                <Angle>50</Angle>
+                <Color>95, 72, 29</Color>
+                <Font>Tahoma,8</Font>
+              </Labels>
+              <LineColor>95, 72, 29</LineColor>
+              <Range isKey="true" Ref="20" type="Stimulsoft.Report.Chart.StiAxisRange"/>
+              <Ticks isKey="true" Ref="21" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+              <Title isKey="true" Ref="22" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                <Color>95, 72, 29</Color>
+                <Direction>LeftToRight</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </XAxis>
+            <XTopAxis isKey="true" Ref="23" type="Stimulsoft.Report.Chart.StiXTopAxis">
+              <Area isRef="11"/>
+              <Interaction isKey="true" Ref="24" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+              <Labels isKey="true" Ref="25" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                <Color>95, 72, 29</Color>
+                <Font>Tahoma,8</Font>
+              </Labels>
+              <LineColor>95, 72, 29</LineColor>
+              <Ticks isKey="true" Ref="26" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+              <Title isKey="true" Ref="27" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                <Color>95, 72, 29</Color>
+                <Direction>LeftToRight</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </XTopAxis>
+            <YAxis isKey="true" Ref="28" type="Stimulsoft.Report.Chart.StiYLeftAxis">
+              <Area isRef="11"/>
+              <Interaction isKey="true" Ref="29" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+              <Labels isKey="true" Ref="30" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                <Color>95, 72, 29</Color>
+                <Font>Tahoma,8</Font>
+              </Labels>
+              <LineColor>95, 72, 29</LineColor>
+              <Range isKey="true" Ref="31" type="Stimulsoft.Report.Chart.StiAxisRange"/>
+              <Ticks isKey="true" Ref="32" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+              <Title isKey="true" Ref="33" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                <Color>95, 72, 29</Color>
+                <Direction>BottomToTop</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </YAxis>
+            <YRightAxis isKey="true" Ref="34" type="Stimulsoft.Report.Chart.StiYRightAxis">
+              <Area isRef="11"/>
+              <Interaction isKey="true" Ref="35" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+              <Labels isKey="true" Ref="36" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                <Color>95, 72, 29</Color>
+                <Font>Tahoma,8</Font>
+                <TextAlignment>Left</TextAlignment>
+              </Labels>
+              <LineColor>95, 72, 29</LineColor>
+              <Range isKey="true" Ref="37" type="Stimulsoft.Report.Chart.StiAxisRange"/>
+              <Ticks isKey="true" Ref="38" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+              <Title isKey="true" Ref="39" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                <Color>95, 72, 29</Color>
+                <Direction>TopToBottom</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </YRightAxis>
+          </Area>
+          <Brush>[255:255:255]</Brush>
+          <ClientRectangle>0,1.2,9.4,10</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <ConstantLines count="0" isList="true"/>
+          <CustomStyleName/>
+          <Filters count="0" isList="true"/>
+          <Legend isKey="true" Ref="40" type="Stimulsoft.Report.Chart.StiLegend">
+            <BorderColor>95, 72, 29</BorderColor>
+            <Brush>GradientBrush,[255:255:255],[255:242:199],90</Brush>
+            <Chart isRef="10"/>
+            <Font>Arial,8</Font>
+            <LabelsColor>95, 72, 29</LabelsColor>
+            <MarkerSize>10, 10</MarkerSize>
+            <TitleColor>95, 72, 29</TitleColor>
+            <TitleFont>Arial,14,Bold</TitleFont>
+          </Legend>
+          <Name>Chart1</Name>
+          <Page isRef="7"/>
+          <Parent isRef="7"/>
+          <Series count="1" isList="true">
+            <Item33 isKey="true" Ref="41" type="Stimulsoft.Report.Chart.StiClusteredColumnSeries">
+              <ArgumentDataColumn>jjphbDs.ALIASE</ArgumentDataColumn>
+              <BorderColor>94, 17, 0</BorderColor>
+              <Brush>GlareBrush,[144:67:3],[194:117:53],0,0.5,1</Brush>
+              <BrushNegative>Firebrick</BrushNegative>
+              <Chart isRef="10"/>
+              <Conditions count="0" isList="true"/>
+              <Filters count="0" isList="true"/>
+              <SeriesLabels isKey="true" Ref="42" type="Stimulsoft.Report.Chart.StiCenterAxisLabels">
+                <BorderColor>95, 72, 29</BorderColor>
+                <Brush>Wheat</Brush>
+                <Chart isRef="10"/>
+                <Font>Arial,7,Italic</Font>
+                <LabelColor>95, 72, 29</LabelColor>
+                <MarkerSize>8, 6</MarkerSize>
+                <ValueTypeSeparator>-</ValueTypeSeparator>
+              </SeriesLabels>
+              <Title>均价(万元)</Title>
+              <TopN isKey="true" Ref="43" type="Stimulsoft.Report.Chart.StiSeriesTopN"/>
+              <ValueDataColumn>jjphbDs.PRICE</ValueDataColumn>
+            </Item33>
+          </Series>
+          <SeriesLabels isKey="true" Ref="45" type="Stimulsoft.Report.Chart.StiCenterAxisLabels">
+            <BorderColor>95, 72, 29</BorderColor>
+            <Brush>Wheat</Brush>
+            <Chart isRef="10"/>
+            <Font>Arial,7</Font>
+            <LabelColor>95, 72, 29</LabelColor>
+            <MarkerSize>8, 6</MarkerSize>
+            <ValueTypeSeparator>-</ValueTypeSeparator>
+          </SeriesLabels>
+          <SeriesLabelsConditions count="0" isList="true"/>
+          <Sort count="0" isList="true"/>
+          <Strips count="0" isList="true"/>
+          <Style isKey="true" Ref="46" type="Stimulsoft.Report.Chart.StiStyle01"/>
+          <Title isKey="true" Ref="47" type="Stimulsoft.Report.Chart.StiChartTitle">
+            <Brush>[95:72:29]</Brush>
+            <Font>Tahoma,12,Bold</Font>
+          </Title>
+        </Chart1>
+        <Chart2 isKey="true" Ref="48" type="Stimulsoft.Report.Chart.StiChart">
+          <Area isKey="true" Ref="49" type="Stimulsoft.Report.Chart.StiClusteredColumnArea">
+            <BorderColor>95, 72, 29</BorderColor>
+            <Brush>GradientBrush,[255:255:255],[255:255:219],90</Brush>
+            <Chart isRef="48"/>
+            <GridLinesHor isKey="true" Ref="50" type="Stimulsoft.Report.Chart.StiGridLinesHor">
+              <Area isRef="49"/>
+              <Color>100, 95, 72, 29</Color>
+              <MinorColor>100, 95, 72, 29</MinorColor>
+            </GridLinesHor>
+            <GridLinesHorRight isKey="true" Ref="51" type="Stimulsoft.Report.Chart.StiGridLinesHor">
+              <Area isRef="49"/>
+              <Color>Silver</Color>
+              <MinorColor>Gainsboro</MinorColor>
+              <Visible>False</Visible>
+            </GridLinesHorRight>
+            <GridLinesVert isKey="true" Ref="52" type="Stimulsoft.Report.Chart.StiGridLinesVert">
+              <Area isRef="49"/>
+              <Color>100, 95, 72, 29</Color>
+              <MinorColor>100, 95, 72, 29</MinorColor>
+            </GridLinesVert>
+            <InterlacingHor isKey="true" Ref="53" type="Stimulsoft.Report.Chart.StiInterlacingHor">
+              <Area isRef="49"/>
+              <InterlacedBrush>[10:145:122:79]</InterlacedBrush>
+            </InterlacingHor>
+            <InterlacingVert isKey="true" Ref="54" type="Stimulsoft.Report.Chart.StiInterlacingVert">
+              <Area isRef="49"/>
+              <InterlacedBrush>[10:145:122:79]</InterlacedBrush>
+            </InterlacingVert>
+            <XAxis isKey="true" Ref="55" type="Stimulsoft.Report.Chart.StiXBottomAxis">
+              <Area isRef="49"/>
+              <Interaction isKey="true" Ref="56" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+              <Labels isKey="true" Ref="57" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                <Angle>50</Angle>
+                <Color>95, 72, 29</Color>
+                <Font>Tahoma,8</Font>
+              </Labels>
+              <LineColor>95, 72, 29</LineColor>
+              <Range isKey="true" Ref="58" type="Stimulsoft.Report.Chart.StiAxisRange"/>
+              <Ticks isKey="true" Ref="59" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+              <Title isKey="true" Ref="60" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                <Color>95, 72, 29</Color>
+                <Direction>LeftToRight</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </XAxis>
+            <XTopAxis isKey="true" Ref="61" type="Stimulsoft.Report.Chart.StiXTopAxis">
+              <Area isRef="49"/>
+              <Interaction isKey="true" Ref="62" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+              <Labels isKey="true" Ref="63" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                <Color>95, 72, 29</Color>
+                <Font>Tahoma,8</Font>
+              </Labels>
+              <LineColor>95, 72, 29</LineColor>
+              <Ticks isKey="true" Ref="64" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+              <Title isKey="true" Ref="65" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                <Color>95, 72, 29</Color>
+                <Direction>LeftToRight</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </XTopAxis>
+            <YAxis isKey="true" Ref="66" type="Stimulsoft.Report.Chart.StiYLeftAxis">
+              <Area isRef="49"/>
+              <Interaction isKey="true" Ref="67" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+              <Labels isKey="true" Ref="68" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                <Color>95, 72, 29</Color>
+                <Font>Tahoma,8</Font>
+              </Labels>
+              <LineColor>95, 72, 29</LineColor>
+              <Range isKey="true" Ref="69" type="Stimulsoft.Report.Chart.StiAxisRange"/>
+              <Ticks isKey="true" Ref="70" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+              <Title isKey="true" Ref="71" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                <Color>95, 72, 29</Color>
+                <Direction>BottomToTop</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </YAxis>
+            <YRightAxis isKey="true" Ref="72" type="Stimulsoft.Report.Chart.StiYRightAxis">
+              <Area isRef="49"/>
+              <Interaction isKey="true" Ref="73" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+              <Labels isKey="true" Ref="74" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                <Color>95, 72, 29</Color>
+                <Font>Tahoma,8</Font>
+                <TextAlignment>Left</TextAlignment>
+              </Labels>
+              <LineColor>95, 72, 29</LineColor>
+              <Range isKey="true" Ref="75" type="Stimulsoft.Report.Chart.StiAxisRange"/>
+              <Ticks isKey="true" Ref="76" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+              <Title isKey="true" Ref="77" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                <Color>95, 72, 29</Color>
+                <Direction>TopToBottom</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </YRightAxis>
+          </Area>
+          <Brush>[255:255:255]</Brush>
+          <ClientRectangle>9.6,1.2,9.4,10</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <ConstantLines count="0" isList="true"/>
+          <CustomStyleName/>
+          <Filters count="0" isList="true"/>
+          <Legend isKey="true" Ref="78" type="Stimulsoft.Report.Chart.StiLegend">
+            <BorderColor>95, 72, 29</BorderColor>
+            <Brush>GradientBrush,[255:255:255],[255:242:199],90</Brush>
+            <Chart isRef="48"/>
+            <Font>Arial,8</Font>
+            <LabelsColor>95, 72, 29</LabelsColor>
+            <MarkerSize>10, 10</MarkerSize>
+            <TitleColor>95, 72, 29</TitleColor>
+            <TitleFont>Arial,14,Bold</TitleFont>
+          </Legend>
+          <Name>Chart2</Name>
+          <Page isRef="7"/>
+          <Parent isRef="7"/>
+          <Series count="1" isList="true">
+            <Item69 isKey="true" Ref="79" type="Stimulsoft.Report.Chart.StiClusteredColumnSeries">
+              <ArgumentDataColumn>tfphbDs.DEVELOPER</ArgumentDataColumn>
+              <BorderColor>94, 17, 0</BorderColor>
+              <Brush>GlareBrush,[144:67:3],[194:117:53],0,0.5,1</Brush>
+              <BrushNegative>Firebrick</BrushNegative>
+              <Chart isRef="48"/>
+              <Conditions count="0" isList="true"/>
+              <Filters count="0" isList="true"/>
+              <SeriesLabels isKey="true" Ref="80" type="Stimulsoft.Report.Chart.StiCenterAxisLabels">
+                <BorderColor>95, 72, 29</BorderColor>
+                <Brush>Wheat</Brush>
+                <Chart isRef="48"/>
+                <Font>Arial,7</Font>
+                <LabelColor>95, 72, 29</LabelColor>
+                <MarkerSize>8, 6</MarkerSize>
+                <ValueTypeSeparator>-</ValueTypeSeparator>
+              </SeriesLabels>
+              <Title>退房总数（套）</Title>
+              <TopN isKey="true" Ref="81" type="Stimulsoft.Report.Chart.StiSeriesTopN"/>
+              <ValueDataColumn>tfphbDs.TOTNUM</ValueDataColumn>
+            </Item69>
+          </Series>
+          <SeriesLabels isKey="true" Ref="83" type="Stimulsoft.Report.Chart.StiCenterAxisLabels">
+            <BorderColor>95, 72, 29</BorderColor>
+            <Brush>Wheat</Brush>
+            <Chart isRef="48"/>
+            <Font>Arial,7</Font>
+            <LabelColor>95, 72, 29</LabelColor>
+            <MarkerSize>8, 6</MarkerSize>
+            <ValueTypeSeparator>-</ValueTypeSeparator>
+          </SeriesLabels>
+          <SeriesLabelsConditions count="0" isList="true"/>
+          <Sort count="0" isList="true"/>
+          <Strips count="0" isList="true"/>
+          <Style isKey="true" Ref="84" type="Stimulsoft.Report.Chart.StiStyle01"/>
+          <Title isKey="true" Ref="85" type="Stimulsoft.Report.Chart.StiChartTitle">
+            <Brush>[95:72:29]</Brush>
+            <Font>Tahoma,12,Bold</Font>
+          </Title>
+        </Chart2>
+        <Text4 isKey="true" Ref="86" type="Text">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,11.8,9.4,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,16,Bold</Font>
+          <Guid>cfbcee15b02cd9044c09850126d18c86</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text4</Name>
+          <Page isRef="7"/>
+          <Parent isRef="7"/>
+          <Text>可售房屋用途分布</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+        </Text4>
+        <Chart3 isKey="true" Ref="87" type="Stimulsoft.Report.Chart.StiChart">
+          <Area isKey="true" Ref="88" type="Stimulsoft.Report.Chart.StiPieArea">
+            <BorderColor>95, 72, 29</BorderColor>
+            <Brush>GradientBrush,[255:255:255],[255:255:219],90</Brush>
+            <Chart isRef="87"/>
+          </Area>
+          <Brush>[255:255:255]</Brush>
+          <ClientRectangle>0,12.8,9.4,10</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <ConstantLines count="0" isList="true"/>
+          <CustomStyleName/>
+          <Filters count="0" isList="true"/>
+          <Legend isKey="true" Ref="89" type="Stimulsoft.Report.Chart.StiLegend">
+            <BorderColor>95, 72, 29</BorderColor>
+            <Brush>GradientBrush,[255:255:255],[255:242:199],90</Brush>
+            <Chart isRef="87"/>
+            <Font>Arial,8</Font>
+            <LabelsColor>95, 72, 29</LabelsColor>
+            <MarkerSize>10, 10</MarkerSize>
+            <TitleColor>95, 72, 29</TitleColor>
+            <TitleFont>Arial,14,Bold</TitleFont>
+          </Legend>
+          <Name>Chart3</Name>
+          <Page isRef="7"/>
+          <Parent isRef="7"/>
+          <Series count="1" isList="true">
+            <Item77 isKey="true" Ref="90" type="Stimulsoft.Report.Chart.StiPieSeries">
+              <ArgumentDataColumn>HTDs.USAGE</ArgumentDataColumn>
+              <BorderColor>94, 17, 0</BorderColor>
+              <Brush>GlareBrush,[144:67:3],[194:117:53],0,0.5,1</Brush>
+              <Chart isRef="87"/>
+              <Conditions count="0" isList="true"/>
+              <Filters count="0" isList="true"/>
+              <SeriesLabels isKey="true" Ref="91" type="Stimulsoft.Report.Chart.StiCenterAxisLabels">
+                <BorderColor>95, 72, 29</BorderColor>
+                <Brush>Wheat</Brush>
+                <Chart isRef="87"/>
+                <Font>Arial,7</Font>
+                <LabelColor>95, 72, 29</LabelColor>
+                <MarkerSize>8, 6</MarkerSize>
+                <ValueTypeSeparator>-</ValueTypeSeparator>
+              </SeriesLabels>
+              <Title>用途</Title>
+              <TopN isKey="true" Ref="92" type="Stimulsoft.Report.Chart.StiSeriesTopN"/>
+              <ValueDataColumn>HTDs.TOT</ValueDataColumn>
+            </Item77>
+          </Series>
+          <SeriesLabels isKey="true" Ref="94" type="Stimulsoft.Report.Chart.StiCenterPieLabels">
+            <BorderColor>95, 72, 29</BorderColor>
+            <Brush>Wheat</Brush>
+            <Chart isRef="87"/>
+            <Font>Arial,7</Font>
+            <LabelColor>95, 72, 29</LabelColor>
+            <MarkerSize>8, 6</MarkerSize>
+            <ValueTypeSeparator>-</ValueTypeSeparator>
+          </SeriesLabels>
+          <SeriesLabelsConditions count="0" isList="true"/>
+          <Sort count="0" isList="true"/>
+          <Strips count="0" isList="true"/>
+          <Style isKey="true" Ref="95" type="Stimulsoft.Report.Chart.StiStyle01"/>
+          <Title isKey="true" Ref="96" type="Stimulsoft.Report.Chart.StiChartTitle">
+            <Brush>[95:72:29]</Brush>
+            <Font>Tahoma,12,Bold</Font>
+          </Title>
+        </Chart3>
+        <Text5 isKey="true" Ref="97" type="Text">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>9.6,11.8,9.4,0.8</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <Font>Arial,16,Bold</Font>
+          <Guid>682e75d406888c6926b28502dd6b921c</Guid>
+          <HorAlignment>Center</HorAlignment>
+          <Margins>0,0,0,0</Margins>
+          <Name>Text5</Name>
+          <Page isRef="7"/>
+          <Parent isRef="7"/>
+          <Text>市场合同签订2012年趋势图</Text>
+          <TextBrush>Black</TextBrush>
+          <Type>Expression</Type>
+        </Text5>
+        <Chart4 isKey="true" Ref="98" type="Stimulsoft.Report.Chart.StiChart">
+          <Area isKey="true" Ref="99" type="Stimulsoft.Report.Chart.StiClusteredColumnArea">
+            <BorderColor>95, 72, 29</BorderColor>
+            <Brush>GradientBrush,[255:255:255],[255:255:219],90</Brush>
+            <Chart isRef="98"/>
+            <GridLinesHor isKey="true" Ref="100" type="Stimulsoft.Report.Chart.StiGridLinesHor">
+              <Area isRef="99"/>
+              <Color>100, 95, 72, 29</Color>
+              <MinorColor>100, 95, 72, 29</MinorColor>
+            </GridLinesHor>
+            <GridLinesHorRight isKey="true" Ref="101" type="Stimulsoft.Report.Chart.StiGridLinesHor">
+              <Area isRef="99"/>
+              <Color>Silver</Color>
+              <MinorColor>Gainsboro</MinorColor>
+              <Visible>False</Visible>
+            </GridLinesHorRight>
+            <GridLinesVert isKey="true" Ref="102" type="Stimulsoft.Report.Chart.StiGridLinesVert">
+              <Area isRef="99"/>
+              <Color>100, 95, 72, 29</Color>
+              <MinorColor>100, 95, 72, 29</MinorColor>
+            </GridLinesVert>
+            <InterlacingHor isKey="true" Ref="103" type="Stimulsoft.Report.Chart.StiInterlacingHor">
+              <Area isRef="99"/>
+              <InterlacedBrush>[10:145:122:79]</InterlacedBrush>
+            </InterlacingHor>
+            <InterlacingVert isKey="true" Ref="104" type="Stimulsoft.Report.Chart.StiInterlacingVert">
+              <Area isRef="99"/>
+              <InterlacedBrush>[10:145:122:79]</InterlacedBrush>
+            </InterlacingVert>
+            <XAxis isKey="true" Ref="105" type="Stimulsoft.Report.Chart.StiXBottomAxis">
+              <Area isRef="99"/>
+              <Interaction isKey="true" Ref="106" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+              <Labels isKey="true" Ref="107" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                <Color>95, 72, 29</Color>
+                <Font>Tahoma,8</Font>
+              </Labels>
+              <LineColor>95, 72, 29</LineColor>
+              <Range isKey="true" Ref="108" type="Stimulsoft.Report.Chart.StiAxisRange"/>
+              <Ticks isKey="true" Ref="109" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+              <Title isKey="true" Ref="110" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                <Color>95, 72, 29</Color>
+                <Direction>LeftToRight</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </XAxis>
+            <XTopAxis isKey="true" Ref="111" type="Stimulsoft.Report.Chart.StiXTopAxis">
+              <Area isRef="99"/>
+              <Interaction isKey="true" Ref="112" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+              <Labels isKey="true" Ref="113" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                <Color>95, 72, 29</Color>
+                <Font>Tahoma,8</Font>
+              </Labels>
+              <LineColor>95, 72, 29</LineColor>
+              <Ticks isKey="true" Ref="114" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+              <Title isKey="true" Ref="115" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                <Color>95, 72, 29</Color>
+                <Direction>LeftToRight</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </XTopAxis>
+            <YAxis isKey="true" Ref="116" type="Stimulsoft.Report.Chart.StiYLeftAxis">
+              <Area isRef="99"/>
+              <Interaction isKey="true" Ref="117" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+              <Labels isKey="true" Ref="118" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                <Color>95, 72, 29</Color>
+                <Font>Tahoma,8</Font>
+              </Labels>
+              <LineColor>95, 72, 29</LineColor>
+              <Range isKey="true" Ref="119" type="Stimulsoft.Report.Chart.StiAxisRange"/>
+              <Ticks isKey="true" Ref="120" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+              <Title isKey="true" Ref="121" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                <Color>95, 72, 29</Color>
+                <Direction>BottomToTop</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </YAxis>
+            <YRightAxis isKey="true" Ref="122" type="Stimulsoft.Report.Chart.StiYRightAxis">
+              <Area isRef="99"/>
+              <Interaction isKey="true" Ref="123" type="Stimulsoft.Report.Chart.StiAxisInteraction"/>
+              <Labels isKey="true" Ref="124" type="Stimulsoft.Report.Chart.StiAxisLabels">
+                <Color>95, 72, 29</Color>
+                <Font>Tahoma,8</Font>
+                <TextAlignment>Left</TextAlignment>
+              </Labels>
+              <LineColor>95, 72, 29</LineColor>
+              <Range isKey="true" Ref="125" type="Stimulsoft.Report.Chart.StiAxisRange"/>
+              <Ticks isKey="true" Ref="126" type="Stimulsoft.Report.Chart.StiAxisTicks"/>
+              <Title isKey="true" Ref="127" type="Stimulsoft.Report.Chart.StiAxisTitle">
+                <Color>95, 72, 29</Color>
+                <Direction>TopToBottom</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </YRightAxis>
+          </Area>
+          <Brush>[255:255:255]</Brush>
+          <ClientRectangle>9.6,12.8,9.4,10</ClientRectangle>
+          <Conditions count="0" isList="true"/>
+          <ConstantLines count="0" isList="true"/>
+          <CustomStyleName/>
+          <Filters count="0" isList="true"/>
+          <Legend isKey="true" Ref="128" type="Stimulsoft.Report.Chart.StiLegend">
+            <BorderColor>95, 72, 29</BorderColor>
+            <Brush>GradientBrush,[255:255:255],[255:242:199],90</Brush>
+            <Chart isRef="98"/>
+            <Font>Arial,8</Font>
+            <LabelsColor>95, 72, 29</LabelsColor>
+            <MarkerSize>10, 10</MarkerSize>
+            <TitleColor>95, 72, 29</TitleColor>
+            <TitleFont>Arial,14,Bold</TitleFont>
+          </Legend>
+          <Name>Chart4</Name>
+          <Page isRef="7"/>
+          <Parent isRef="7"/>
+          <Series count="1" isList="true">
+            <Item113 isKey="true" Ref="129" type="Stimulsoft.Report.Chart.StiLineSeries">
+              <ArgumentDataColumn>contDs.VMONTH</ArgumentDataColumn>
+              <Chart isRef="98"/>
+              <Filters count="0" isList="true"/>
+              <LineColor>194, 117, 53</LineColor>
+              <LineColorNegative>Firebrick</LineColorNegative>
+              <LineMarker isKey="true" Ref="130" type="Stimulsoft.Report.Chart.StiLineMarker">
+                <BorderColor>44, 0, 0</BorderColor>
+                <Brush>[244:167:103]</Brush>
+              </LineMarker>
+              <Marker isKey="true" Ref="131" type="Stimulsoft.Report.Chart.StiMarker">
+                <BorderColor>94, 17, 0</BorderColor>
+                <Brush>[255:217:153]</Brush>
+              </Marker>
+              <SeriesLabels isKey="true" Ref="132" type="Stimulsoft.Report.Chart.StiCenterAxisLabels">
+                <BorderColor>95, 72, 29</BorderColor>
+                <Brush>Wheat</Brush>
+                <Chart isRef="98"/>
+                <Font>Arial,7</Font>
+                <LabelColor>95, 72, 29</LabelColor>
+                <MarkerSize>8, 6</MarkerSize>
+                <ValueTypeSeparator>-</ValueTypeSeparator>
+              </SeriesLabels>
+              <Title>销售套数</Title>
+              <TopN isKey="true" Ref="133" type="Stimulsoft.Report.Chart.StiSeriesTopN"/>
+              <ValueDataColumn>contDs.TOT</ValueDataColumn>
+            </Item113>
+          </Series>
+          <SeriesLabels isKey="true" Ref="135" type="Stimulsoft.Report.Chart.StiCenterAxisLabels">
+            <BorderColor>95, 72, 29</BorderColor>
+            <Brush>Wheat</Brush>
+            <Chart isRef="98"/>
+            <Font>Arial,7</Font>
+            <LabelColor>95, 72, 29</LabelColor>
+            <MarkerSize>8, 6</MarkerSize>
+            <ValueTypeSeparator>-</ValueTypeSeparator>
+          </SeriesLabels>
+          <SeriesLabelsConditions count="0" isList="true"/>
+          <Sort count="0" isList="true"/>
+          <Strips count="0" isList="true"/>
+          <Style isKey="true" Ref="136" type="Stimulsoft.Report.Chart.StiStyle01"/>
+          <Title isKey="true" Ref="137" type="Stimulsoft.Report.Chart.StiChartTitle">
+            <Brush>[95:72:29]</Brush>
+            <Font>Tahoma,12,Bold</Font>
+          </Title>
+        </Chart4>
+      </Components>
+      <Conditions count="0" isList="true"/>
+      <Guid>761cced10075b203860284abea3383dd</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <Report isRef="0"/>
+      <Watermark isKey="true" Ref="138" type="Stimulsoft.Report.Components.StiWatermark">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings isKey="true" Ref="139" type="Stimulsoft.Report.Print.StiPrinterSettings"/>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>08/16/2013 11:02:25 AM</ReportChanged>
+  <ReportCreated>08/16/2013 09:09:53 AM</ReportCreated>
+  <ReportFile>MarketInfoRpt.mrt</ReportFile>
+  <ReportGuid>a509323be5bf52990d038512effb6b2d</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2012.3.1500</ReportVersion>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles count="0" isList="true"/>
+</StiSerializer>

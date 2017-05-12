@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="gb2312"?>
+<root>
+	<REPORT_NAME>房屋租赁登记证</REPORT_NAME>
+	<REPORT_TYPE>rtReport</REPORT_TYPE>
+	<CONDITIONS>
+	</CONDITIONS>
+	<SQL cds="Report1">
+		<![CDATA[
+			select * from LEASE.HOUSELEASEINFO WHERE ID>0 
+		]]>
+		<PARAMS>
+			<ID><![CDATA[ AND ID=%ID  ]]></ID>	
+		</PARAMS>		
+	</SQL>
+	<SQL cds="Report2"><![CDATA[
+		SELECT * FROM LEASE.PERSONINFO WHERE ID>0 @Condition 
+	]]>
+		<PARAMS>
+			<LEASEID><![CDATA[ AND LEASEID=%LEASEID  ]]></LEASEID>	
+		</PARAMS>	
+	</SQL>
+	<SQL cds="Report3"><![CDATA[
+		SELECT * FROM LEASE.LEASEHT WHERE ID>0 @Condition 
+	]]>
+		<PARAMS>
+			<LEASEID><![CDATA[ AND LEASEID=%LEASEID  ]]></LEASEID>	
+		</PARAMS>	
+	</SQL>
+</root>

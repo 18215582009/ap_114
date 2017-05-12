@@ -1,0 +1,35 @@
+/* CSS Document */
+body { font-size: 12px; background: #fff; margin:0; padding:0;}
+* { font-family: Tahoma; padding: 0;margin:0 }
+td,th,div{ WORD-BREAK: break-all;word-wrap:break-word}
+table{ empty-cells: show;}
+/*table */
+.t { border: 1px solid #d2eefb; width:99%; margin: 0px auto 8px;}
+.t table{ border:1px solid #fff ; margin:0 auto; width:99.98%;}
+.t2 { border-top:#C1E7F0 1px solid ;margin: 0px auto 5px;}
+.t3 { margin: auto}
+.t4{ padding:1px 0 1px 1px }
+/*table head*/
+.head td { border-bottom:0px solid #c2e9f9;border-right:0px solid #c2e9f9;border-left:0px solid #e6f5ff;background: #e6f5ff; text-align: left;color:#004c7d ;padding: 6px 7px 5px 7px; }
+/* table tr1 */
+.tr1 th{ padding: 5px 10px; text-align: left; vertical-align: top; font-weight: normal; }
+.tr1 td.td1{ border:1px solid #E4F5F9; border-spacing:3px; border-top:1px solid #E4F5F9 }
+/*table tr2*/
+.tr2 {background:#f3f8ef}
+.tr2 td,.tr2 th{text-align:left; color: #659b28; line-height:21px; border-bottom:1px solid #daebcd; border-top:1px solid #c4d2dB; padding:0 6px 2px }
+.tr2 th { font-weight: normal}
+.tr2 a { color:#5F7937; margin-left:5px }
+/*table tr3*/
+.tr3 td,.tr3 th { border-bottom: 1px solid #D4EFF7 ; padding: 5px 8px}
+.tr3 th { text-align: left; font-weight: normal;}
+.tr4 td { background: #DCECF4; padding: 4px 10px; color: #002F79;}
+.tr td, .tr th{ padding: 2px }
+
+/*form*/
+textarea,input,select{ font:12px Arial; padding: 1px 3px 0 3px ; vertical-align:middle ; margin-bottom:1px }
+select { border: solid 1px #C3DFEA;}
+.btn { border:3px double #86B9D6; background:#8aBfDa; height:21px ;  }
+.input {border: solid 1px #82C5D8; padding: 2px 0px 2px 1px ;font-size:1.0em;background:#fff; vertical-align:middle}
+.file{ padding: 2px 3px 0 3px ; height: 21px}
+form{ display:inline;margin:0 ; padding:0}
+textarea { border: solid 1px #388EB0; }

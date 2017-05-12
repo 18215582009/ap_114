@@ -1,0 +1,38 @@
+{
+    "require": {
+        "monolog/monolog": "^1.21",
+        "illuminate/database": "^5.2",
+        "illuminate/events": "^5.2",
+        "illuminate/http": "^5.2",
+        "nesbot/carbon": "^1.21",
+        "illuminate/auth": "^5.2",
+        "illuminate/contracts": "^5.2",
+        "illuminate/pipeline": "^5.2",
+        "illuminate/support": "^5.2",
+        "illuminate/bus": "^5.2",
+        "illuminate/pagination": "^5.2",
+        "caoym/phprs-restful": "^1.2"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    },
+    "autoload": {
+	  "files": ["framework/src/Router.php",
+		    "framework/src/Control.php",
+		    "framework/src/SecuredControl.php",
+		    "framework/src/WxControl.php",
+		    "framework/src/Mode.php",
+		    "framework/src/Helper"],
+	  "psr-4": {
+	   "framework\\": "libs/framework/src/",
+	   "util\\": "lib/util/",
+		"form\\": "lib/form/",
+		"ezsql\\": "lib/ezsql/",
+		"error\\": "lib/error/",
+		"pager\\": "lib/pager/"
+	   }
+     }
+}

@@ -1,0 +1,16 @@
+/****************bigimg******************/
+#bigimg_show { width:600px; height:450px; overflow:hidden; position:relative;background:rgba(0,0,0,0.5);}
+
+#iviewer_ui { width:100%; height:32px; filter:alpha(opacity=70);  -moz-opacity:0.7;  -khtml-opacity: 0.7;  opacity: 0.7; position:absolute; left:0; top:0;  background: #000000;}
+#iviewer_ui_title { width:100%; height:28px; position:absolute; left:0; top:32px; line-height:28px; text-align:center; font-size:12px; color:#ececec; }
+.iviewer_common { position:absolute; bottom:0; height:32px; z-index:5000; cursor:pointer; }
+.iviewer_button { width:32px; background-repeat:no-repeat; background-image:url(../images/icon_2.png); }
+.iviewer_zoom_in { left:84px; background-position:5px -20px; }
+.iviewer_zoom_out { left:118px; background-position:-30px -20px; }
+.iviewer_zoom_zero { left:152px; background-position:-63px -20px; }
+.iviewer_zoom_fit { left: 188px; background-position:-98px -20px; }
+.iviewer_zoom_status { left:5px; bottom:5px; height:22px; font-size:12px; color:#47252d; background:#ececec; text-align:center; width:40px; line-height:22px; }
+.iviewer_rotate_left {left:220px; background-position:-131px -20px; }
+.iviewer_rotate_right { left:255px; background-position:-166px -20px; }
+.iviewer_loading{background: #050505 ; filter:alpha(opacity=70);  -moz-opacity:0.7;  -khtml-opacity: 0.7;  opacity: 0.7;}
+.iviewer_loadbox{background:url('../images/loading.gif')  no-repeat center center;width:24px;height:24px;top:200px;left:300px;position: absolute;display: none;}
