@@ -26,6 +26,8 @@ use lib\form\Form;
     <link rel="stylesheet" href="/css/mtek_system-responsive.css" type="text/css">
     <link rel="stylesheet" href="/css/mtek_self.css" type="text/css">
     <link rel='stylesheet' href='/theme/client/css/user_center.css' type='text/css' media='screen' />
+    <!-- Theme CSS -->
+    <link href="/theme/agency/css/agency.css" rel="stylesheet">
 </head>
 <body class="font-source-sans-pro sidebar-color-white">
 <div class="fluid">
@@ -82,8 +84,8 @@ use lib\form\Form;
                                         <? $url=""; if($info['house_type'] == 1){$url="/rent/detail?id=".$info['id'];}else{$url="/sale/detail?id=".$info['id'];} ?>
                                         <td><?=$info['esf_id'] ?></td>
                                         <td>
-                                            <p><a href="<?=$url ?>" target="_blank"><?=$info['title'] ?></a> <span class="text-warning">[图]</span></p>
-                                            <p><?=$info['shi'] ?>室<?=$info['ting'] ?>厅<?=$info['wei'] ?>卫 <?=$info['total_area'] ?>m² <span class="text-danger">90</span><?=$info['house_type']==1?"元/月":"万元"?></p>
+                                            <p><a href="<?=$url ?>" target="_blank"><?if($info['title']==''){$this->loadModel('sale'); $title = $this->sale->title($info);echo $title['title'];}else{ echo $info['title'];} ?></a><? if(!empty($info['img_path'])){echo "<font color='#FF6600'>[图]</font>";} ?></p>
+                                            <p><?=$info['shi'] ?>室<?=$info['ting'] ?>厅<?=$info['wei'] ?>卫 <?=$info['total_area'] ?>m² <span class="text-danger"><?=round($info['price']) ?></span><?=$info['house_type']==1?"元/月":"万元"?></p>
                                         </td>
                                         <td>
                                             <?
@@ -105,6 +107,9 @@ use lib\form\Form;
 
                                 </tbody>
                             </table>
+                            <div id="pagination">
+                                <?=$splitPageStr ?>
+                            </div>
 
                             </div>
                         </div>

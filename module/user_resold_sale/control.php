@@ -143,7 +143,44 @@ class user_resold_sale extends SecuredControl
          $this->assign('house_type',$house_type);
          $this->assign('region_option',$region_option);
          $this->assign('info',$rtl); 
+
+
+         //print_r($rtl);exit;
          $this->display('user_resold_sale','edit'); 
+    }
+
+
+//删除
+    public function del(){
+    if($_SERVER['REQUEST_METHOD']=="POST"){
+        $param = $_POST;
+        $user_res = $this->pdo->getRow("select create_uid from fc_esf where id = ".$param['houseid']);
+        if(false!==$user_res && $user_res['create_uid'] == $this->session->userid){
+            $rlt = $this->pdo->remove("fc_esf","id=".$param['houseid']);
+             if($rlt && false!==$rlt){
+                $result = array(
+                    'status'=>1,
+                    'info'=>"删除操作",
+                    'msg'=>"删除成功"
+                    );
+               echo json_encode($result);exit;
+             }else{
+                $result =array(
+                    'status'=>0,
+                    'info'=>"删除操作",
+                    'msg'=>"删除失败"
+                    );
+                echo json_encode($result);exit;
+             }
+        }else{
+
+             Util::alert_msg("参数错误!","warning",$_SERVER['HTTP_REFERER'],1);
+        }
+    }else{
+
+        Util::alert_msg("参数错误!","warning",$_SERVER['HTTP_REFERER'],1);
+    }
+
     }
 
 
@@ -174,6 +211,10 @@ class user_resold_sale extends SecuredControl
                 $rtl['hotel'] = $dis['hotel'];
                 $rtl['attris'] = $dis['attris'];
                 $rtl['facilities'] = explode(',',  $rtl['facilities']);
+
+                //print_r( $rtl['facilities']);exit;
+
+                $rtl['rent_live_date'] = date("Y-m-d",$rtl['rent_live_date']);
                 $pic = $this->pdo->getAll("select esf_id,code,attach_id from fc_esf_pic where esf_id=".$esf_id);
                 $arr = array();
                 if($pic){
@@ -195,15 +236,16 @@ class user_resold_sale extends SecuredControl
         $this->assign('house_type',$house_type);
         $this->assign('region_option',$region_option);
         $this->assign('info',$rtl); 
+
+        //print_r($rtl);exit;
         $this->display('user_resold_sale','edit');
     }
     
-//保存信息
+        //保存信息
         public function save(){
              $house_type = isset($_POST['house_type'])?$_POST['house_type']:1;
               $action = isset($_GET['action'])?$_GET['action']:'';
               $uid=$this->session->userid;
-
               //增加
               if( $action=="add" ){
                 if($_SERVER['REQUEST_METHOD']=="POST"){
@@ -214,8 +256,16 @@ class user_resold_sale extends SecuredControl
                         }else{
                            $param['facilities'] = '';
                         }
-                        $param['create_uid'] = $this->session->userid;
-                        $param['create_date'] = time();
+                        if(!empty($param['rent_live_date'])){
+                         $param['rent_live_date'] =  strtotime($param['rent_live_date']);
+                       }
+                        $reside = trim($param['reside']);
+                         $district_id = $this->pdo->getRow("select id from fc_esf_district where reside = '$reside' ");
+                         if($district_id){
+                            $param['district_id'] = $district_id['id'];
+                         }else{
+                            Util::alert_msg("不存在的小区!","warning",$_SERVER['HTTP_REFERER'],1);
+                         }
                         $param['house_type'] = $house_type;
                         $pic1=isset($param['pic1'])?$param['pic1']:'';
                         $pic2=isset($param['pic2'])?$param['pic2']:'';
@@ -268,7 +318,7 @@ class user_resold_sale extends SecuredControl
                  $pic_data['create_date']=time();
                  $pic_data['title']=$param['title'];
                  $pic_data['is_show']=1;
-                 $param['facilities']=implode(',',$param['facilities']);
+                 //$param['facilities']=implode(',',$param['facilities']);
                  //由于在上传图片的时候attach就已经存在  因此在保存的时候插入新加入的图片即可
                  if(!empty($pic1)){
                    foreach ($pic1 as $key => $value) {

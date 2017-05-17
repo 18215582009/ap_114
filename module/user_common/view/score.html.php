@@ -155,8 +155,8 @@ use lib\form\Form;
                                                 <tr class="jf_head">
                                                     <td style="width:315px;">查看房东信息</td>
                                                     <td style="width:96px">40分/套</td>
-                                                    <td style="width:96px"><? $a=0; foreach($consumption as $info){if($info['score_use']==1){$a++;}}echo $a; ?></td>
-                                                    <td style="width:96px">-<?=$a*40?></td>
+                                                    <td style="width:96px"><?=count($consumption)?></td>
+                                                    <td style="width:96px"><?=count($consumption)==0?'0':('-'.(count($consumption)*40))?></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -293,8 +293,8 @@ use lib\form\Form;
                                             <tbody>
                                             <? foreach($consumption as $info){ ?>
                                                 <tr>
-                                                    <td><?=$info['des'] ?></td>
-                                                    <td><?=$info['product'] ?>(<span style="font-size: 20px">40</span>积分)</td>
+                                                    <td><?=$info['esf_id'] ?></td>
+                                                    <td><?=$info['score'] ?></td>
                                                     <td><?=$info['score'] ?></td>
                                                     <td><?=date("Y-m-d H:i:s",$info['create_date'])?></td>
                                                 </tr>

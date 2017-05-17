@@ -53,7 +53,7 @@
                     </div>
                     <label>
                     <input type="checkbox" validatename="FC114用户使用协议" validate="isChecked" class="check-agreed">
-                    下次自动登录<a target="_blank" href="#" class="right">找回密码</a>
+                    下次自动登录<a target="_blank" href="/userlogin/forgetPassWord" class="right">找回密码</a>
                     </label>
                     <input type="button" class="btn btn-success" value="马上登录" onclick="login()" style="width:100%">
                     </div>

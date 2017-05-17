@@ -299,20 +299,20 @@
             <h4 class="highLight">乐山12月新房均价<em class="up">8560</em> 元/m²</h4>
             <h4>乐山11月新房均价 <em class="up">8524</em> 元/m²</h4>
             <h4>环比上月上涨 <i class="up">0.43% ↑</i>，同比去年同期上涨 <i class="up">4.23% ↑</i></h4>
-            <h4>查看乐山更多<a href="#" target="_blank">新房房源</a>，更多<a href="href="#" rel="nofollow" target="_blank">二手房房源</a></h4>
+            <h4>查看乐山更多<a href="/newhouse/" target="_blank">新房房源</a>，更多<a href="/sale/" rel="nofollow" target="_blank">二手房房源</a></h4>
           </div>
           <div class="a_h pdm mtl">
             <h4 class="highLight price">价格找房</h4>
-            <a href="#" rel="nofollow" target="_blank">30万以下</a>
-            <a href="#" rel="nofollow" target="_blank">30-40万</a>
-            <a href="#" rel="nofollow" target="_blank">40-50万</a>
-            <a href="#" rel="nofollow" target="_blank">50-60万</a>
-            <a href="#" rel="nofollow" target="_blank">60-80万</a>
-            <a href="#" rel="nofollow" target="_blank">80-100万</a>
-            <a href="#" rel="nofollow" target="_blank">100-120万</a>
-            <a href="#" rel="nofollow" target="_blank">120-150万</a>
-            <a href="#" rel="nofollow" target="_blank">150-200万</a>
-            <a href="#" rel="nofollow" target="_blank">200万以上</a>
+            <a href="/sale?price=0-30" rel="nofollow" target="_blank">30万以下</a>
+            <a href="/sale?price=30-40" rel="nofollow" target="_blank">30-40万</a>
+            <a href="/sale?price=40-50" rel="nofollow" target="_blank">40-50万</a>
+            <a href="/sale?price=50-60" rel="nofollow" target="_blank">50-60万</a>
+            <a href="/sale?price=60-80" rel="nofollow" target="_blank">60-80万</a>
+            <a href="/sale?price=80-100" rel="nofollow" target="_blank">80-100万</a>
+            <a href="/sale?price=100-120" rel="nofollow" target="_blank">100-120万</a>
+            <a href="/sale?price=120-150" rel="nofollow" target="_blank">120-150万</a>
+            <a href="/sale?price=150-200" rel="nofollow" target="_blank">150-200万</a>
+            <a href="/sale?price=200-0" rel="nofollow" target="_blank">200万以上</a>
           </div>
         </div>
       </div>
@@ -394,22 +394,10 @@
                   </div>
               </div>
           <? } ?>
-
 <!--        <div class="row">-->
 <!--        	<div class="preview-panel clearfix">-->
 <!--                <a href="" class="col-md-4" style="padding-left:0">-->
 <!--                <img src="/upload/avatar1.jpg" class="img-responsive" alt="">-->
-<!--                </a>-->
-<!--                <div class="col-md-8" style="padding-top:20px">-->
-<!--                <a href="/"><h4>传统居住区展现新魅力 桐梓林精选改善房源推荐</h4></a>-->
-<!--                <a href="/"><p>改善需求选哪里？作为传统的改善板块，桐梓林现如今发展已十分成熟，居住生活都十分方便。</p></a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--        	<div class="preview-panel clearfix">-->
-<!--                <a href="" class="col-md-4" style="padding-left:0">-->
-<!--                <img src="http://c.pic1.ajkimg.com/display/xinfang/f30062512a7e76ebc59c945d306cd1fb/190x130n.jpg" class="img-responsive" alt="">-->
 <!--                </a>-->
 <!--                <div class="col-md-8" style="padding-top:20px">-->
 <!--                <a href="/"><h4>传统居住区展现新魅力 桐梓林精选改善房源推荐</h4></a>-->

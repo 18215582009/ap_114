@@ -35,7 +35,7 @@ class resold_sale extends SecuredControl
     {
 
 		$name = trim(isset($_GET["name"])?$_GET["name"]:"");
-		$house_type =  trim(isset($_GET["house_type"])?$_GET["house_type"]:exit);
+		$house_type =  trim(isset($_GET["house_type"])?$_GET["house_type"]:'');
 		$page_info ="house_type=".$house_type."&";
 		$orderField = isset($_GET['sort']) ? $_GET['sort'] : 'id';
 		$orderValue = isset($_GET['flag']) ? $_GET['flag'] : 'desc';
@@ -87,16 +87,22 @@ class resold_sale extends SecuredControl
 
     public function add(){
     	$this->assign('handle',"add");
+		$house_type =  trim(isset($_GET["house_type"])?$_GET["house_type"]:'');
 		$this->assign('header',  '新增项目');
 		$code = new BaseCode();
         $region_option=$code->getPairBaseCodeByType(224);//新房片区
         $this->assign('region_option',$region_option);
         if($_SERVER['REQUEST_METHOD']=="POST"){
         	$param = $_POST;
+        	if(isset($param["pm_type"]))$param["pm_type"]=implode(',',$param["pm_type"]);
+
+			if(isset($param["facilities"]))$param["facilities"]=implode(',',$param["facilities"]);
+			if(isset($param['rent_live_date']))$param['rent_live_date'] = strtotime($param['rent_live_date']);
+
  			if($param){
  				$rlt = $this->pdo->add($param,'fc_esf');
 				if($rlt){
-				    Util::alert_msg("添加成功!","succeed","/resold_sale/index.html",3);
+				    Util::alert_msg("添加成功!","succeed","/resold_sale/index.html?house_type=".$house_type,3);
 				}else{
 					Util::alert_msg("添加失败!","warning",$_SERVER['HTTP_REFERER'],3);
 				}
@@ -107,6 +113,7 @@ class resold_sale extends SecuredControl
         $id = intval(isset($_GET['resold_sale'])?$_GET['resold_sale']:0);
         $sql = "select * from fc_esf where id=".$id;
 		$Info = $this->pdo->getRow($sql);
+		$this->assign('house_type',$house_type);
 		$this->assign('Info',$Info);
 		$this->assign('tab',$this->resold_sale->tabbar('base',$id));
 		$this->display('resold_sale','edit');
@@ -127,13 +134,20 @@ class resold_sale extends SecuredControl
 			if(isset($param["pm_type"]))$param["pm_type"]=implode(',',$param["pm_type"]);
 
 			if(isset($param["facilities"]))$param["facilities"]=implode(',',$param["facilities"]);
-			
-			if(isset($param['live_date']))$param['live_date'] = strtotime($param['live_date']);
+			if(isset($param['rent_live_date']))$param['rent_live_date'] = strtotime($param['rent_live_date']);
+
+
+
+			//print_r($param['live_date']);exit;
+
+
+
+
 			$id = isset($param['id'])?$param['id']:0;
 			if($id>0){
 				$rlt = $this->pdo->update($param,'fc_esf','id='.$id);
 				if($rlt){
-					Util::alert_msg('编辑成功!',"succeed","/resold_sale/index.html",3);
+					Util::alert_msg('编辑成功!',"succeed","/resold_sale/index.html?house_type=".$house_type,3);
 				}else{
 					Util::alert_msg("编辑失败!","warning",$_SERVER['HTTP_REFERER'],3);
 				}

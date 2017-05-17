@@ -43,7 +43,7 @@ class newhouseModel extends Model
         if(!empty($keyword))
         {//关键字
             $keyword = htmlspecialchars(urldecode($keyword));
-            $where .= " and (e.name like '%$keyword%') ";
+            $where .= " and (e.name like '%$keyword%') or (e.address like '%$keyword%')";
             $pageInfo .= "keyword=".urlencode($keyword)."&";
             $condition=1;
         }else{
@@ -235,13 +235,6 @@ class newhouseModel extends Model
             $sql = "select shi,sum(total_apa) as total from fc_project_mode where project_id=".$item['id']." group by shi";
             $res[$key]['modeInfo'] = $this->pdo->getAll($sql);
         }
-        //获取推荐楼盘
-        $sql = "select fp.*,count(fpr.project_id) as sum from fc_project as fp LEFT JOIN
-        fc_project_reserve as fpr on fp.id=fpr.project_id AND fpr.type=2 AND fpr.flag=1 GROUP BY fp.id ORDER BY fp.live_date DESC limit 3";
-        $houseListInfo['recommend'] = $this->pdo->getAll($sql);
-        //猜你喜欢
-        $sql = "select id,name,red_house_price_average,pm_type,img_url from fc_project where borough = '510104' and flag = 1 limit 6";
-        $houseListInfo['youlike'] = $this->pdo->getAll($sql);
         $count = $this->pdo->getRow($sqlcount);
         $recordCount = $count['count'];
         $page=new pager_page($pageSize,$recordCount,$currentPage,$subPages,$pageInfo,5);
@@ -257,18 +250,11 @@ class newhouseModel extends Model
         return $houseListInfo;
     }
 
+    //新房详情
     public function HouseDetail($project_id){
         $sql = "select * from fc_project where id=".$project_id;
         $Info = $this->pdo->getRow($sql);
-        //获取推荐楼盘   同一个区的楼盘
-        $area = $Info['borough'];
-        if($area == 0){
-            $areas = "";
-        }else{
-            $areas = "borough = '$area' and";
-        }
-        $sql = "select id,name,red_house_price_average,pm_type,img_url from fc_project where ".$areas." flag = 1 limit 6";
-        $Info['recommend'] = $this->pdo->getAll($sql);
+
         //获取楼盘图库
         $sql = "select fpa.url from fc_project_pic as fpp LEFT JOIN fc_project_attach as fpa on fpp.attach_id = fpa.id WHERE fpp.project_id = '$project_id'
               AND fpp.flag = 1";

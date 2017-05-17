@@ -115,8 +115,9 @@ public function edit(){
         $this->assign('region_option',$region_option);
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 			$param = $_POST;
-			$pm_type = '';
 			if(isset($param["pm_type"]))$param["pm_type"]=implode(',',$param["pm_type"]);
+
+			//print_r($param);exit;
 			$id = isset($param['id'])?$param['id']:0;
 			if($id>0){
 				$rlt = $this->pdo->update($param,'fc_esf_district','id='.$id);
@@ -136,6 +137,9 @@ public function edit(){
 				$Info = $this->pdo->getRow($sql);
 				$Info['pm_type'] = explode(",", $Info['pm_type']); 
 				$this->assign('Info',$Info);
+
+
+				//print_r($Info);exit;
 				$this->assign('tab',$this->resold_district->tabbar('base',$id));
 				$this->display('resold_district','edit');
 

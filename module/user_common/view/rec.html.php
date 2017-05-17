@@ -83,11 +83,11 @@ use lib\form\Form;
                                         <tr>
                                             <td><?=$info['id']?></td>
                                             <td>
-                                                <p><a href="<?=$url?>" target="_blank"><?=$info['title']?></a> <font color="#FF6600">[图]</font> <?=$info['shi']?>室<?=$info['ting']?>厅<?=$info['wei']?>卫
+                                                <p><a href="<?=$url?>" target="_blank"><?=$info['title']?></a> <? if(!empty($info['img_path'])){echo "<font color='#FF6600'>[图]</font>";} ?><? if($info['shi'] == 0){}else{ ?> <?=$info['shi']?>室<?=$info['ting']?>厅<?=$info['wei']?>卫<?}?>
                                                     <?=$info['total_area']?>m² <font color="#FF0000"><?=round($info['price'])?></font><?=$info['house_type']==1?"元/月":"万元"?></p>
                                             </td>
                                             <td>
-                                                <? if(isset($this->config->borough_option[$info['borough']])){echo $this->config->borough_option[$info['borough']];}?> <?=$this->config->circle_option[$info['circle']]?>
+                                                <? if(isset($this->config->borough_option[$info['borough']])){echo $this->config->borough_option[$info['borough']];}?> <?=$info['address']?>
                                             </td>
                                             <td><span class="label label-sm label-success"><?=$info['flag']==0?"无效":"有效"?></span></td>
                                             <td>

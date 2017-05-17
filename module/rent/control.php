@@ -32,6 +32,13 @@ class rent extends Control
         $this->loadModel('sale');
         $_GET['house_type'] = 1;
         $houseListInfo = $this->sale->secondoHouseList($_GET);
+        if(isset($_SESSION['userid'])){
+            $obtained = $this->sale->obtained();
+            $this->assign('collection',$obtained['collection']);//已收藏的房源
+            $this->assign('landlordphone',$obtained['landlordphone']);//已获得的房源电话
+        }
+        $this->assign('interlocution',$this->interlocution());
+        $this->assign('guessyoulike',$this->youlike());
         $this->assign('borough',$houseListInfo['borough']);//区域
         $this->assign('price',$houseListInfo['price']);//价格
         $this->assign('area',$houseListInfo['area']);//面积
@@ -47,18 +54,27 @@ class rent extends Control
         $this->assign('keyword',$houseListInfo['keyword']);//关键字
         $this->assign('list',$houseListInfo['list']);//租房信息
         $this->assign('total',$houseListInfo['total']);//租房数量
-
         $this->assign('pageNation',$houseListInfo['pageNation']);//分页
-        $this->assign('guessyoulike',$houseListInfo['guessyoulike']);//猜你喜欢
-        $this->assign('information',$houseListInfo['information']);//购房问答
         $this->assign('condition',$houseListInfo['condition']);//是否有筛选条件
-        if(isset($_SESSION['userid'])){
-            $this->assign('collection',$houseListInfo['collection']);//已收藏
-            $this->assign('landlordphone',$houseListInfo['landlordphone']);//以获取的房东信息
-        }
 
         $this->display('rent','rent_list');
     }
+
+    /* 猜你喜欢 */
+    public function youlike(){
+        $sql = "select * from fc_esf where house_type = 1 AND flag=1 ORDER BY create_date DESC limit 6";
+        $youlike = $this->pdo->getAll($sql);
+        return $youlike;
+    }
+
+    /* 购房问答 */
+    public function interlocution(){
+        $cidstr=implode(",",$this->sale->getChildCids());
+        $sql = "SELECT * from web_contentindex where cid in ($cidstr) ORDER BY digest DESC limit 6";
+        $interlocution = $this->pdo->getAll($sql);
+        return $interlocution;
+    }
+
 
 	/* 租房详细 */
     public function detail()
@@ -68,16 +84,18 @@ class rent extends Control
         if(isset($_SESSION['userid'])){
             $this->sale->house_record();
         }
+        $_GET['house_type'] = 1;
+        if(isset($_SESSION['userid'])){
+            $obtained = $this->sale->obtained();
+            $this->assign('collection',$obtained['collection']);//已收藏的房源
+            $this->assign('landlordphone',$obtained['landlordphone']);//已获得的房源电话
+        }
         $sale_detail = $this->sale->secondhousedetail();
         $this->assign('sale_detail',$sale_detail['detail']);
         $this->assign('district',$sale_detail['district']);
         $this->assign('img',$sale_detail['img']);
         $this->assign('guessyoulike',$sale_detail['guessyoulike']);
 
-        if(isset($_SESSION['userid'])){
-            $this->assign('collection',$sale_detail['collection']);
-            $this->assign('landlordphone',$sale_detail['landlordphone']);
-        }
         $this->display('rent','rent_detail');
 
     }

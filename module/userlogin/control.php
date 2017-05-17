@@ -136,6 +136,11 @@ class userlogin extends Control
         }
     }
 
+    /* 找回密码 */
+    public function forgetPassWord(){
+        $this->display('userlogin','forget_password');
+    }
+
     public function apiCheckMobile(){
         $mobile = isset($_POST['mobile'])?$_POST['mobile']:'';
         if($this->userlogin->CheckMobile($mobile)){
@@ -219,6 +224,7 @@ class userlogin extends Control
         $data['user_type'] = $user_type;//10=普通用户(市民)
         $data['pwd'] = md5(trim($pwd).$this->userlogin->key);
         $data['password']=Util::encrypt($data['pwd']);
+        $data['score'] = $this->config->module->score;
         //普通用户表存入fc_user表
         if($user_type==10) {
             $insertRlt = $this->pdo->add($data, 'fc_user');

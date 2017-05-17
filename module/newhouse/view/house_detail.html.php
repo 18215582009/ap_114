@@ -260,7 +260,12 @@ h2,h3 {
 #landlord{width: 500px;border-radius: 0;margin-left: 70px;margin-top: 140px;}
 #userlogin>.modal-dialog{width: 500px;border-radius: 0;margin-left: 470px;margin-top: 140px;}
 .licon{float: left;font-size: 17px;position:relative;top:32px;left:13px;color: #828282;}
-
+.guess-like {
+    border: 1px solid #ddd;
+    font-size: 14px;
+    margin: 20px 0;
+    padding-bottom:15px;
+}
 </style>
 <body>
 <!-- Navigation -->
@@ -421,7 +426,7 @@ h2,h3 {
                     </div>
                     <div class="col-md-7">
                         <label>交房时间：</label><span><?=date('Y-m-d',$OtherInfo['live_date'])?></span>&nbsp;&nbsp;
-                        <a class="showlink not_logged" id="opening_notice " data-toggle="modal" data-target="#subscribe"><i class="lp-icons lp-icons-open"></i>开盘通知我</a><br>
+                        <a class="showlink not_logged" id="opening_notice" data-toggle="modal" data-target="#subscribe"><i class="lp-icons lp-icons-open"></i>开盘通知我</a><br>
                         <!--div class="house_openinfo">户型区间：<span>{$info.area_min}-{$info.area_max}平米</span></div-->
                         <?
                         $paramStr = "";
@@ -570,11 +575,11 @@ h2,h3 {
             </div>
             <div class="act-item mtm pdb clearfix">
             	<ul class="sub-list left">
-                    <li class="static"><input id="bjtz" type="checkbox" name="notice" class="notice" value="1"><span>变价通知</span></li>
-                    <li class="static"><input id="yhtz" type="checkbox" name="notice" class="notice" value="2"><span>优惠通知</span></li>
-                    <li><input id="kptz" type="checkbox" name="notice" class="notice" value="3"><span>开盘通知</span></li>
-                    <li class="static"><input id="zxdt" type="checkbox" checked name="notice" class="notice" value="4"><span>最新动态</span></li>
-                    <li><input id="kfttz" type="checkbox" name="notice" class="notice" value="5"><span>看房团通知</span></li><!--subscribe-->
+                    <li class="static"><input id="bjtz" type="checkbox" name="notice" class="notice" value="1"><label for="bjtz">变价通知</label></li>
+                    <li class="static"><input id="yhtz" type="checkbox" name="notice" class="notice" value="2"><label for="yhtz">优惠通知</label></li>
+                    <li><input id="kptz" type="checkbox" name="notice" class="notice" value="3"><label>开盘通知</label for="kptz"></li>
+                    <li class="static"><input id="zxdt" type="checkbox" checked name="notice" class="notice" value="4"><label for="zxdt">最新动态</label></li>
+                    <li><input id="kfttz" type="checkbox" name="notice" class="notice" value="5"><label for="kfttz">看房团通知</label></li><!--subscribe-->
                 </ul>
                 <div class="cell-info left pdn navbar-form navbar-left">
                     <input id="dyphone" type="text"  data-subscribe="open" maxlength="11" placeholder="请输入您的手机号码" class="form-control">
@@ -981,15 +986,15 @@ h2,h3 {
         </div>
     </div>
     <!-- house map end -->
-    
-    <div class="row guess-like">  
+
+    <div class="row guess-like">
         <h3 class="col-md-12">猜你喜欢</h3>
-        <? foreach($info['recommend'] as $key=>$mend){ ?>
+        <? foreach($youlike as $key=>$like){ ?>
             <div class="col-md-2 guess-item clearfix">
-                <a target="_blank" rel="nofollow" href="/newhouse/detail?id=<?=$mend['id']?>&pm_type=<?=$mend['pm_type']?>">
-                    <img onerror="javascript:this.src='/images/pic_default.jpg'" width="170" height="125" src="<?=$mend['img_url']?>" alt="<?=$mend['img_url']?>">
-                    <p class="g-name"><?=$mend['name']?></p>
-                    <p class="g-price"><?=$info['red_house_price_average']==''?'价格待定':$info['red_house_price_average']."元/m²"?></p>
+                <a target="_blank" rel="nofollow" href="/newhouse/detail?id=<?=$like['id']?>&pm_type=0">
+                    <img width="170" height="125" src="<?=$like['img_url'] ?>" alt="<?=$like['img_url'] ?>">
+                    <p class="g-name"><?=$like['name'] ?></p>
+                    <p class="g-price"><em><?=$like['red_house_price_average'] ?></em>元/㎡</p>
                 </a>
             </div>
         <? } ?>
@@ -1215,11 +1220,11 @@ h2,h3 {
             <div class="modal-body aneirong">
                 <p class="sxuan">
                         <span class="sfuxuan">
-                            <span><input id="checkbox1" type="checkbox" name="box" class="check" value="1" />变价通知</span>
-                            <span><input id="checkbox2" type="checkbox" name="box" class="check" value="2" />优惠通知</span>
-                            <span><input id="checkbox3" type="checkbox" name="box" class="check" value="3" />开盘通知</span>
-                            <span><input id="checkbox4" type="checkbox" name="box" class="check" checked value="4"/>最新动态</span>
-                            <span><input id="checkbox5" type="checkbox" name="box" class="check" value="5" />看房团通知</span>
+                            <span><input id="checkbox1" type="checkbox" name="box" class="check" value="1" /><label for="checkbox1">变价通知</label></span>
+                            <span><input id="checkbox2" type="checkbox" name="box" class="check" value="2" /><label for="checkbox2">优惠通知</label></span>
+                            <span><input id="checkbox3" type="checkbox" name="box" class="check" value="3" /><label for="checkbox3">开盘通知</label></span>
+                            <span><input id="checkbox4" type="checkbox" name="box" class="check" checked value="4"/><label for="checkbox4">最新动态</label></span>
+                            <span><input id="checkbox5" type="checkbox" name="box" class="check" value="5" /><label for="checkbox5">看房团通知</label></span>
                         </span>
                     <input id="sfuxuan" type="hidden" value=""/>
                 </p>
@@ -1648,7 +1653,6 @@ $("#daicheck").click(function(){
         $("#loan_application").css("background","#dbdbdb");
     }
 });
-
 function loan(){
     phone('dphone');
     if($('#dphone').val() != ''){

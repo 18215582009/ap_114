@@ -37,33 +37,88 @@ class sale extends Control
     {
         $_GET['house_type'] = 2;
         $houseListInfo = $this->sale->secondoHouseList($_GET);
-        $this->assign('borough',$houseListInfo['borough']);
-        $this->assign('price',$houseListInfo['price']);
-        $this->assign('area',$houseListInfo['area']);
-        $this->assign('room',$houseListInfo['room']);
-        $this->assign('price_sort',$houseListInfo['price_sort']);
-        $this->assign('time_sort',$houseListInfo['time_sort']);
-        $this->assign('list',$houseListInfo['list']);
-        $this->assign('total',$houseListInfo['total']);
-        $this->assign('struct',$houseListInfo['struct']);
-        $this->assign('keyword',$houseListInfo['keyword']);
-        $this->assign('pageInfo',$houseListInfo['pageInfo']);
-        $this->assign('build_year',$houseListInfo['build_year']);
-        $this->assign('pm_type',$houseListInfo['pm_type']);
-        $this->assign('toward',$houseListInfo['toward']);
-        $this->assign('total_floor',$houseListInfo['total_floor']);
-        $this->assign('fitmen_type',$houseListInfo['fitmen_type']);
-        $this->assign('pageNation',$houseListInfo['pageNation']);
-        $this->assign('information',$houseListInfo['information']);
-        $this->assign('guessyoulike',$houseListInfo['guessyoulike']);
-        $this->assign('condition',$houseListInfo['condition']);
         if(isset($_SESSION['userid'])){
-            $this->assign('collection',$houseListInfo['collection']);
-            $this->assign('landlordphone',$houseListInfo['landlordphone']);
+            $obtained = $this->sale->obtained();
+            $this->assign('collection',$obtained['collection']);//已收藏的房源
+            $this->assign('landlordphone',$obtained['landlordphone']);//已获得的房源电话
         }
+        $this->assign('interlocution',$this->interlocution());
+        $this->assign('guessyoulike',$this->youlike());
+        $this->assign('borough',$houseListInfo['borough']);//区域
+        $this->assign('price',$houseListInfo['price']);//价格
+        $this->assign('area',$houseListInfo['area']);//面积
+        $this->assign('room',$houseListInfo['room']);//户型
+        $this->assign('price_sort',$houseListInfo['price_sort']);//价格排序
+        $this->assign('time_sort',$houseListInfo['time_sort']);//时间排序
+        $this->assign('list',$houseListInfo['list']);//二手房信息
+        $this->assign('total',$houseListInfo['total']);//二手房数量
+//        $this->assign('struct',$houseListInfo['struct']);//房屋结构
+        $this->assign('keyword',$houseListInfo['keyword']);//关键字
+        $this->assign('pageInfo',$houseListInfo['pageInfo']);
+        $this->assign('build_year',$houseListInfo['build_year']);//年代
+        $this->assign('pm_type',$houseListInfo['pm_type']);//房屋类型
+        $this->assign('toward',$houseListInfo['toward']);//房屋朝向
+        $this->assign('total_floor',$houseListInfo['total_floor']);//建筑楼层
+        $this->assign('fitmen_type',$houseListInfo['fitmen_type']);//装修类型
+        $this->assign('pageNation',$houseListInfo['pageNation']);//分页显示
+        $this->assign('condition',$houseListInfo['condition']);//是否存在筛选类型
 
         $this->display('sale','sale_list');
     }
+
+        public function tools(){
+
+
+          $this->display('sale','sale_tools');
+
+        }
+
+
+
+
+    /* 猜你喜欢 */
+    public function youlike(){
+        $sql = "select * from fc_esf where house_type = 2 AND flag=1 ORDER BY create_date DESC limit 6";
+        $youlike = $this->pdo->getAll($sql);
+        return $youlike;
+    }
+
+    /* 购房问答 */
+    public function interlocution(){
+        $cidstr=implode(",",$this->sale->getChildCids());
+        $sql = "SELECT * from web_contentindex where cid in ($cidstr) ORDER BY digest DESC limit 6";
+        $interlocution = $this->pdo->getAll($sql);
+        return $interlocution;
+    }
+
+    /* 举报房源 */
+    public function report(){
+        $houseid = $_POST['houseid'];
+        $userid = $_SESSION['userid'];
+        $sql = "select * from fc_rei_report where create_uid='$userid' and esf_id = '$houseid' ORDER BY create_date DESC ";
+        $report = $this->pdo->getAll($sql);
+        $sql = "select * from fc_esf where id = '$houseid'";
+        $house = $this->pdo->getAll($sql);
+        $rei_uid = $house[0]['create_uid'];
+        $rei['esf_id'] = $houseid;
+        $rei['type'] = $_POST['type'];
+        $rei['reason'] = $_POST['reason'];
+        $rei['page_url'] = $_POST['page_url'];
+        $rei['rei_uid'] = $rei_uid;
+
+        if(count($report) == 0){
+            $result = $this->pdo->add($rei,'fc_rei_report');
+            if(!empty($result)){
+                $text = "提交成功";
+            }
+        }else{
+            $text = "你已提交过申请，请等待申请结果";
+        }
+        if(isset($text)){
+            echo json_encode($text);
+        }
+    }
+
     //收藏房源
     public function collection(){
         $esf['esf_id'] = $_POST['esf_id'];
@@ -73,6 +128,7 @@ class sale extends Control
             echo 1;
         }
     }
+
     //查看房东电话扣除积分
     public function consumption(){
         $userid = $_SESSION['userid'];
@@ -86,7 +142,6 @@ class sale extends Control
             $sql = "update fc_user SET score='$score' WHERE id='$userid' AND active=1";
             $this->pdo->getAll($sql);
         }
-
         $esf['esf_id'] = $_POST['esf_id'];
         $esf['score'] = $_POST['sum'];
         $this->pdo->add($esf,'fc_esf_user_cons');
@@ -96,11 +151,8 @@ class sale extends Control
         $rlt = array('linkman'=>$phone[0]['linkman']==""?"未提供":$phone[0]['linkman'], 'telphone'=> $phone[0]['telphone']);
         echo json_encode($rlt);
 
-        $log['des'] = $_POST['esf_name'];
-        $log['product'] = '查看房源联系方式';
-        $log['score_use'] = 1;
-        $log['score'] = $_POST['sum'];
-        $log['trade_status'] = 1;
+        $log['note'] = "消耗40积分查看房东电话";
+        $log['ip'] = Util::getClientIp();
         $this->Add_log($log);
     }
     //添加用户操作日志
@@ -113,25 +165,22 @@ class sale extends Control
     public function detail()
     {
         $id = isset($_GET['id'])?$_GET['id']:'0';
+        $_GET['house_type'] = 2;
         //用户已登录，添加看房记录
         if(isset($_SESSION['userid'])){
             $this->sale->house_record();
         }
-        if($id) {
-            $_GET['house_type'] = 2;
-            $sale_detail = $this->sale->secondhousedetail();
-            if(isset($_SESSION['userid'])){
-                $this->assign('collection',$sale_detail['collection']);
-                $this->assign('landlordphone',$sale_detail['landlordphone']);
-            }
-            $this->assign('sale_detail',$sale_detail['detail']);
-            $this->assign('district',$sale_detail['district']);
-            $this->assign('img',$sale_detail['img']);
-//            if(isset($sale_detail['collection']))($this->assign('collection',$sale_detail['collection']));
-            $this->display('sale', 'sale_detail');
-        }else{
-            Util::prompt('没有该房源信息','404','/sale');
+        if(isset($_SESSION['userid'])){
+            $obtained = $this->sale->obtained();
+            $this->assign('collection',$obtained['collection']);//已收藏的房源
+            $this->assign('landlordphone',$obtained['landlordphone']);//已获得的房源电话
         }
+        $sale_detail = $this->sale->secondhousedetail();
+        $this->assign('sale_detail',$sale_detail['detail']);
+        $this->assign('district',$sale_detail['district']);
+        $this->assign('img',$sale_detail['img']);
+        $this->display('sale', 'sale_detail');
+
     }
 
 
@@ -228,6 +277,7 @@ class sale extends Control
             $key = trim(isset($_GET['query'])?$_GET['query']:'');
         }
         $xqlist = $this->sale->getXqNameList($key);
+
         echo json_encode($xqlist);
     }
 

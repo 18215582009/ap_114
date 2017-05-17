@@ -49,7 +49,7 @@
 							<div class="panel-body">
 								<div class="row">
 									<div class="col-lg-12">
-										<?=lib\form\Form::toolbar_list('add.html',array('name'=>''));?>
+										<?=lib\form\Form::toolbar_list('add.html?house_type='.$house_type,array('name'=>''));?>
 									</div>
 									<form name="form1" id="opform1" method="POST" action="operate">
                                     <input type="hidden" name="action" id="action" value="" />
@@ -101,13 +101,13 @@
 									</td>
 									
 
-                                    <td>
+                                    <td style="width: 100px">
                                     	<?
 									if(!empty($v['pm_type'])){
 										$_pm_type = explode(',',$v['pm_type']);
 										$cnt = count($_pm_type);
 										foreach($_pm_type as $k=>$_v){
-											if(!empty($_v))echo $this->config->pm_type_option[$_v];
+											if(!empty($_v))echo "<span style='display: inline-block'>".$this->config->pm_type_option[$_v]."</span>";
 											if($cnt>($k+1))echo ', ';
 										}
 									}else{

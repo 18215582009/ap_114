@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title><?=$sale_detail[0]['title']==''?$district[0]['reside']:$sale_detail[0]['title']?>_租房_<?=$this->config->siteName?></title>
+    <title><? if(!empty($sale_detail[0]['title'])){echo $sale_detail[0]['title'];}else{$this->loadModel('sale');$title = $this->sale->title($sale_detail[0]);echo $title['title'].$title['price'];
+        }?>_<?=$district[0]['reside'] ?>_租房_<?=$this->config->siteName?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/js/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -166,7 +167,16 @@
                 <li><a href="/">FC114乐山站</a></li>
 <!--                <li><a href="/">--><?//=$this->config->shortName?><!--</a></li>-->
                 <li><a href="/sale">租房列表</a></li>
-                <li class="active"><?=$sale_detail[0]['title']==''?$district[0]['reside']:$sale_detail[0]['title']?></li>
+                <li><a href="/sale?borough=<?=$district[0]['borough'] ?>"><?=$this->config->borough_option[$district[0]['borough']] ?></a></li>
+                <li>
+                    <? if(!empty($sale_detail[0]['title'])){
+                        echo $sale_detail[0]['title'];
+                    }else{
+                        $this->loadModel('sale');
+                        $title = $this->sale->title($sale_detail[0]);
+                        echo $title['title'].$title['price'];
+                    }?>
+                </li>
             </ul>
 <!--            <input type="hidden" id="layout_id" name="layout_id" value="{$info.id}" />-->
 <!--            <input type="hidden" id="project_name" name="project_name" value="{$info.project_name}" />-->
@@ -180,14 +190,23 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h3 class="tit-name" id="j-triggerlayer"><?=$sale_detail[0]['title']==''?$district[0]['reside']:$sale_detail[0]['title']?></h3>
+            <h3 class="tit-name" id="j-triggerlayer">
+                <?=$sale_detail[0]['reside']?> 】
+                <? if(!empty($sale_detail[0]['title'])){
+                    echo $sale_detail[0]['title'];
+                }else{
+                    $this->loadModel('sale');
+                    $title = $this->sale->title($sale_detail[0]);
+                    echo $title['title'].$title['price'];
+                }?>
+            </h3>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="tit-sub">
                 <p class="gray9">
-                    <span class="mr10">房源编号：173941903</span>
+                    <span class="mr10">房源编号：<?=$sale_detail[0]['id'] ?></span>
                     <span class="mr10"></span>发布时间：<?=date("Y-m-d H:i:s",$sale_detail[0]['create_date']);?>
 
                     <a class="collection_report report" style="float: right" data-toggle="modal" data-target="#report"><span class="glyphicon glyphicon-exclamation-sign"></span><span>举报</span></a>
@@ -236,7 +255,7 @@
                         </dl>
                         <dl style=" clear:both;">
                             <dd><span class="gray6">租赁方式：</span><?if($sale_detail[0]['rent_way']!='' && $sale_detail[0]['rent_way']!=0){ echo $sale_detail[0]['rent_way']==2?'合租':'整租';}else{echo "未知";}?></dd>
-                            <dd><span class="gray6">朝向：</span><? if(isset($this->config->direction_option[$sale_detail[0]['toward']]) && $sale_detail[0]['toward']!=0){ ?><?=$this->config->direction_option[$sale_detail[0]['toward']]?><? }else{echo "未知";} ?></dd>
+                            <dd><span class="gray6">朝向：</span><? if(isset($this->config->orientation_option[$sale_detail[0]['toward']]) && $sale_detail[0]['toward']!=0){ ?><?=$this->config->orientation_option[$sale_detail[0]['toward']]?><? }else{echo "未知";} ?></dd>
                             <dd><span class="gray6">所在楼层：</span><? if($sale_detail[0]['current_floor']!= '' && $sale_detail[0]['current_floor']!= 0){ ?><?=$sale_detail[0]['current_floor']?>/<?=$sale_detail[0]['total_floor']?>层<?}else{echo "未知";}?></dd>
 
                         </dl>
@@ -254,12 +273,12 @@
                 <div class="col-md-12">
                     <div class="houseInfo">
                         <? $time = explode('-',date("Y-m-d",$sale_detail[0]['create_date']))?>
-                        <h4 class="block-title houseInfo-title">房屋信息<span class="house-encode">房屋编码： 796777681，发布时间：<?=$time[0]?>年<?=$time[1]?>月<?=$time[2]?>日</span></h4>
+                        <h4 class="block-title houseInfo-title">房屋信息<span class="house-encode">房屋编码： <?=$sale_detail[0]['id'] ?>，发布时间：<?=$time[0]?>年<?=$time[1]?>月<?=$time[2]?>日</span></h4>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="first-col left">
                                     <dl><dt>小区：</dt>
-                                        <dd><a href="http://chengdu.anjuke.com/community/view/208230" target="_blank" _soj="propview"><?=$district[0]['reside']==''?'未提供小区名称':$district[0]['reside']?></a>
+                                        <dd><a href="http://chengdu.anjuke.com/community/view/208230" target="_blank" _soj="propview"><?=$district[0]['reside']==''?'未提供小区名称':($district[0]['reside'])?></a>
                                         </dd>
                                     </dl>
                                     <dl><dt>位置：</dt>
@@ -275,13 +294,13 @@
                                     </dl>
                                     <dl><dt>年代：</dt><dd><?=$sale_detail[0]['build_year']==''?'未知':$sale_detail[0]['build_year'].'年'?></dd></dl>
                                     <dl><dt>类型：</dt><dd>
-                                            <? if(isset($this->config->property_option[$sale_detail[0]['pm_type']]) && $sale_detail[0]['pm_type']!=0){echo $this->config->property_option[$sale_detail[0]['pm_type']];}else{echo "未知";} ?>
+                                            <? if(isset($this->config->pm_type_option[$sale_detail[0]['pm_type']]) && $sale_detail[0]['pm_type']!=0){echo $this->config->pm_type_option[$sale_detail[0]['pm_type']];}else{echo "未知";} ?>
                                     </dd></dl>
                                 </div>
                                 <div class="second-col left">
                                     <dl><dt>房型：</dt><dd><? if($sale_detail[0]['shi']!='' || $sale_detail[0]['ting']!='' || $sale_detail[0]['wei']!=''){ ?><?=$sale_detail[0]['shi']?>室<?=$sale_detail[0]['ting']?>厅<?=$sale_detail[0]['wei']?>卫<? }else{echo "未知";} ?></dd></dl>
                                     <dl><dt>面积：</dt><dd><?=$sale_detail[0]['total_area']==''?'未知':round($sale_detail[0]['total_area']).'平米'?></dd></dl>
-                                    <dl><dt>朝向：</dt><dd><?if(isset($this->config->direction_option[$sale_detail[0]['toward']]) && $sale_detail[0]['toward']!=0 ){echo $this->config->direction_option[$sale_detail[0]['toward']];}else{echo "未知";} ?></dd></dl>
+                                    <dl><dt>朝向：</dt><dd><?if(isset($this->config->orientation_option[$sale_detail[0]['toward']]) && $sale_detail[0]['toward']!=0 ){echo $this->config->orientation_option[$sale_detail[0]['toward']];}else{echo "未知";} ?></dd></dl>
                                     <dl><dt>楼层：</dt><dd>
                                             <? if($sale_detail[0]['current_floor']!= '' && $sale_detail[0]['current_floor']!= 0){ ?><?=$sale_detail[0]['current_floor']?>/<?=$sale_detail[0]['total_floor']?>层<?}else{echo "未知";}?>
                                     </dd></dl>
@@ -419,14 +438,15 @@
                         <p>您举报房源的原因是 (必填,可多选):</p>
                         <input id="esf_id" type="hidden" value=""/>
                         <ul>
-                            <li><input class="checkbox" id="check1" type="checkbox"/>&nbsp;<label for="check1">房子不存在或已经卖了</label></li>
-                            <li><input class="checkbox" id="check2" type="checkbox"/>&nbsp;<label for="check2">图文与实际不符</label></li>
-                            <li><input class="checkbox" id="check3" type="checkbox"/>&nbsp;<label for="check3">价格与实际不符</label></li>
-                            <li><input class="checkbox" id="check4" type="checkbox"/>&nbsp;<label for="check4">其他</label></li>
+                            <li><input class="checkbox" id="check1" name="check" type="checkbox" value="1"/>&nbsp;<label for="check1">房子不存在或已经卖了</label></li>
+                            <li><input class="checkbox" id="check2" name="check" type="checkbox" value="2"/>&nbsp;<label for="check2">图文与实际不符</label></li>
+                            <li><input class="checkbox" id="check3" name="check" type="checkbox" value="3"/>&nbsp;<label for="check3">价格与实际不符</label></li>
+                            <li><input class="checkbox" id="check4" name="check" type="checkbox" value="4"/>&nbsp;<label for="check4">其他</label></li>
                         </ul>
-                        <textarea id="textarea" placeholder="您可在此写下具体描述,请至少输入10个汉字"></textarea>
+                        <input id="type" name="type" type="hidden" value=""/>
+                        <textarea id="textarea" name="textarea" placeholder="您可在此写下具体描述,请至少输入10个汉字"></textarea>
                         <span style="float:right;position:relative;top: -25px;left: -4px"><span id="textsum">0</span>/<span>100</span></span>
-                        <input id="submit" disabled type="button" value="提交"/>
+                        <input id="submit" disabled type="button" data-dismiss="" value="提交"/>
                     </form>
                 </div>
 
@@ -624,7 +644,7 @@
                 dataType:'JSON',
                 data:{
                     esf_id:'<?=$sale_detail[0]['id'] ?>',
-                    house_type:2
+                    house_type:1
                 },
                 success:function(result){
                     $("#prompt").css("display","block");
@@ -657,7 +677,7 @@
                 }else{
                     $("#mobilecode").html(result.telphone);
                     $("#mobilecode").attr("data-target","");
-                    $('#integral_cue').html("房东："+result.linkman+"&nbsp;&nbsp;电话："+result.telphone+result.integral);
+                    $('#integral_cue').html("房东："+result.linkman+"&nbsp;&nbsp;电话："+result.telphone);
                     $(".phoneyse").css("display","none");
                 }
 
@@ -665,6 +685,7 @@
             error:function(result){alert('no');}
         });
     });
+    //关闭获取到的房东信息
     $(".closes").click(function(){
         setTimeout("integral_cue()",1000);
     });
@@ -672,6 +693,52 @@
         $('#integral_cue').html("是否使用<span style='font-size: 25px;font-weight: bold'> 40 </span>积分获得房东电话");
         $(".phoneyse").css("display","inline-block")
     }
+
+    //举报
+    $("#textarea").keyup(function(){
+        var text = $("#textarea").val();
+        if(text.length >= 10){
+            $("#submit").attr("disabled",false);
+            $("#submit").css("background","#62ab00");
+        }else{
+            $("#submit").attr("disabled",true);
+            $("#submit").css("background","#e0e0e0");
+        }
+        $("#textsum").html(text.length);
+    });
+    $("#submit").click(function(){
+        var aa = document.getElementsByName("check");
+        var ss = "";
+        for (var i = 0; i < aa.length; i++) {
+            if (aa[i].checked) {
+                ss += aa[i].value+",";
+            }
+        }
+        if(ss==""){
+            alert("请选择举报原因");
+        }else{
+            ss =  ss.substr(0, ss.length - 1);
+            $.ajax({
+                type:"post",
+                url:"/sale/report",
+                dataType:"JSON",
+                data:{
+                    houseid:<?=$sale_detail[0]['id'] ?>,
+                    type:ss,
+                    reason:$("#textarea").val(),
+                    page_url:"sale_detail"
+                },
+                success:function(result){
+                    alert(result);
+                    $("#report").modal("hide");
+                    $("#textarea").val("");
+                    $(".checkbox").prop("checked",false);
+                },
+                error:function(result){alert("数据错误,请修改后从新提交");}
+            });
+        }
+
+    });
 
 
 //

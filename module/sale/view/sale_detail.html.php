@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title><?=$sale_detail[0]['title']==''?$district[0]['reside']:$sale_detail[0]['title']?>_二手房列表_<?=$this->config->siteName?></title>
+    <title><? if(!empty($sale_detail[0]['title'])){echo $sale_detail[0]['title'];}else{$this->loadModel('sale');$title = $this->sale->title($sale_detail[0]);echo $title['title'].$title['price'];
+        }?>_<?=$sale_detail[0]['reside'] ?>_二手房列表_<?=$this->config->siteName?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/js/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -166,7 +167,16 @@
                 <li><a href="/">FC114乐山站</a></li>
 <!--                <li><a href="/">--><?//=$this->config->shortName?><!--</a></li>-->
                 <li><a href="/sale">二手房列表</a></li>
-                <li class="active"><?=$sale_detail[0]['title']==''?$district[0]['reside']:$sale_detail[0]['title']?></li>
+                <li><a href="/sale?borough=<?=$district[0]['borough'] ?>"><?=$this->config->borough_option[$district[0]['borough']] ?></a></li>
+                <li>
+                    <? if(!empty($sale_detail[0]['title'])){
+                        echo $sale_detail[0]['title'];
+                    }else{
+                        $this->loadModel('sale');
+                        $title = $this->sale->title($sale_detail[0]);
+                        echo $title['title'].$title['price'];
+                    }?>
+                </li>
             </ul>
 <!--            <input type="hidden" id="layout_id" name="layout_id" value="{$info.id}" />-->
 <!--            <input type="hidden" id="project_name" name="project_name" value="{$info.project_name}" />-->
@@ -179,15 +189,24 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <h3 class="tit-name" id="j-triggerlayer"><?=$sale_detail[0]['title']==''?$district[0]['reside']:$sale_detail[0]['title']?></h3>
+        <div class="col-md-12"><?  ?>
+            <h3 class="tit-name" id="j-triggerlayer">
+                <?=$sale_detail[0]['reside']?> 】
+                <? if(!empty($sale_detail[0]['title'])){
+                    echo $sale_detail[0]['title'];
+                }else{
+                    $this->loadModel('sale');
+                    $title = $this->sale->title($sale_detail[0]);
+                    echo $title['title'].$title['price'];
+                }?>
+            </h3>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="tit-sub">
                 <p class="gray9">
-                    <span class="mr10">房源编号：173941903</span>
+                    <span class="mr10">房源编号：<?=$sale_detail[0]['id'] ?></span>
                     <span class="mr10"></span>发布时间：<?=date("Y-m-d H:i:s",$sale_detail[0]['create_date']);?>
 
                     <a class="collection_report report" style="float: right" data-toggle="modal" data-target="#report"><span class="glyphicon glyphicon-exclamation-sign"></span><span>举报</span></a>
@@ -229,7 +248,12 @@
                                 <? $price = round($sale_detail[0]['price']);$total_area = explode('.',$sale_detail[0]['total_area']); ?>
                                 <span class="gray6">总<span class="plxl"></span>价：</span>
                                 <span class="red28b"><?=round($price)==0?'待定':round($sale_detail[0]['price']).'万'?></span><span class="black"></span>(<?=$price==0?'暂无':round(($price."0000") / $total_area[0]).'元/㎡' ?>)
-                                <a class="mor_cal" href="?do=tools">房贷计算器</a>
+                               
+
+                               <a class="mor_cal" href="tools">房贷计算器</a>
+
+
+
                             </dt>
                             <dd class="gray6">参考首付：<span class="black "><? if($price!=0){ ?><?=$down_payments = round($price * 0.3,0)?>万<?}else{echo "暂无";}?></span></dd>
                             <? $sum = (($price - $down_payments)."0000")/180; ?>
@@ -248,20 +272,24 @@
                                     echo "中区(共".$sale_detail[0]['total_floor']."层)";
                                 }}else{echo "未知";} ?>
                             </dd>
-                            <dd><span class="gray6">结<span class="padl27"></span>构：</span>
-                                <?if(isset($this->config->apa_type_option[$sale_detail[0]['house_struct']])){
-                                    echo $this->config->apa_type_option[$sale_detail[0]['house_struct']];
-                                }else{echo "未知";} ?>
-                            </dd>
+<!--                            <dd><span class="gray6">结<span class="padl27"></span>构：</span>-->
+<!--                                --><?//if(isset($this->config->apa_type_option[$sale_detail[0]['house_struct']])){
+//                                    echo $this->config->apa_type_option[$sale_detail[0]['house_struct']];
+//                                }else{echo "未知";} ?>
+<!--                            </dd>-->
                             <dd><span class="gray6">装<span class="padl27"></span>修：</span>
                                 <?if(isset($this->config->fitment_option[$sale_detail[0]['fitmen_type']])){
                                     echo $this->config->fitment_option[$sale_detail[0]['fitmen_type']];
                                 }else{echo "未知";} ?>
                             </dd>
                             <dd><span class="gray6">住宅类别：</span>
-                                <?if(isset($this->config->property_option[$sale_detail[0]['pm_type']])){
-                                    echo $this->config->property_option[$sale_detail[0]['pm_type']];
+                                <?if(isset($this->config->pm_type_option[$sale_detail[0]['pm_type']])){
+                                    echo $this->config->pm_type_option[$sale_detail[0]['pm_type']];
                                 }else{echo "未知";} ?>
+                            </dd>
+                            <dd>
+                                <span class="gray6">楼盘名称：</span>
+                                <a class="bule" href="#" target="_blank" title="查看此楼盘的更多写字楼房源" id="A1"><?=$district[0]['reside']==''?'未提供楼盘名称':($district[0]['reside'])?></a>
                             </dd>
                             <dd><span class="gray6">产权性质：</span>
                                 <? if(isset($this->config->pright_option[$sale_detail[0]['pright']])){
@@ -270,10 +298,7 @@
                             </dd>
                         </dl>
                         <dl style=" clear:both;">
-                            <dt>
-                                <span class="gray6">楼盘名称：</span>
-                                <a class="bule" href="#" target="_blank" title="查看此楼盘的更多写字楼房源" id="A1"><?=$district[0]['reside']==''?'未提供楼盘名称':$district[0]['reside']?></a>
-                            </dt>
+
                             <dt><span class="gray6">楼盘地址：</span><?=$district[0]['address']==''?'未提供地址':$district[0]['address']?></dt>
                         </dl>
 
@@ -286,12 +311,12 @@
                 <div class="col-md-12">
                     <div class="houseInfo">
                         <? $time = explode('-',date("Y-m-d",$sale_detail[0]['create_date']))?>
-                        <h4 class="block-title houseInfo-title">房屋信息<span class="house-encode">房屋编码： 796777681，发布时间：<?=$time[0]?>年<?=$time[1]?>月<?=$time[2]?>日</span></h4>
+                        <h4 class="block-title houseInfo-title">房屋信息<span class="house-encode">房屋编码： <?=$sale_detail[0]['id'] ?>，发布时间：<?=$time[0]?>年<?=$time[1]?>月<?=$time[2]?>日</span></h4>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="first-col left">
                                     <dl><dt>小区：</dt>
-                                        <dd><a href="http://chengdu.anjuke.com/community/view/208230" target="_blank" _soj="propview"><?=$district[0]['reside']==''?'未提供小区名称':$district[0]['reside']?></a>
+                                        <dd><a href="http://chengdu.anjuke.com/community/view/208230" target="_blank" _soj="propview"><?=$district[0]['reside']==''?'未提供小区名称':($district[0]['reside'])?></a>
                                         </dd>
                                     </dl>
                                     <dl><dt>位置：</dt>
@@ -307,7 +332,7 @@
                                     </dl>
                                     <dl><dt>年代：</dt><dd><?=$sale_detail[0]['build_year']==''?'未知':$sale_detail[0]['build_year'].'年'?></dd></dl>
                                     <dl><dt>类型：</dt><dd>
-                                            <? if(isset($this->config->property_option[$sale_detail[0]['pm_type']])){echo $this->config->property_option[$sale_detail[0]['pm_type']];}else{echo "未知";} ?>
+                                            <? if(isset($this->config->pm_type_option[$sale_detail[0]['pm_type']])){echo $this->config->pm_type_option[$sale_detail[0]['pm_type']];}else{echo "未知";} ?>
                                         </dd></dl>
                                 </div>
                                 <div class="second-col left">
@@ -462,14 +487,15 @@
                         <p>您举报房源的原因是 (必填,可多选):</p>
                         <input id="esf_id" type="hidden" value=""/>
                         <ul>
-                            <li><input class="checkbox" id="check1" type="checkbox"/>&nbsp;<label for="check1">房子不存在或已经卖了</label></li>
-                            <li><input class="checkbox" id="check2" type="checkbox"/>&nbsp;<label for="check2">图文与实际不符</label></li>
-                            <li><input class="checkbox" id="check3" type="checkbox"/>&nbsp;<label for="check3">价格与实际不符</label></li>
-                            <li><input class="checkbox" id="check4" type="checkbox"/>&nbsp;<label for="check4">其他</label></li>
+                            <li><input class="checkbox" id="check1" name="check" type="checkbox" value="1"/>&nbsp;<label for="check1">房子不存在或已经卖了</label></li>
+                            <li><input class="checkbox" id="check2" name="check" type="checkbox" value="2"/>&nbsp;<label for="check2">图文与实际不符</label></li>
+                            <li><input class="checkbox" id="check3" name="check" type="checkbox" value="3"/>&nbsp;<label for="check3">价格与实际不符</label></li>
+                            <li><input class="checkbox" id="check4" name="check" type="checkbox" value="4"/>&nbsp;<label for="check4">其他</label></li>
                         </ul>
-                        <textarea id="textarea" placeholder="您可在此写下具体描述,请至少输入10个汉字"></textarea>
+                        <input id="type" name="type" type="hidden" value=""/>
+                        <textarea id="textarea" name="textarea" placeholder="您可在此写下具体描述,请至少输入10个汉字"></textarea>
                         <span style="float:right;position:relative;top: -25px;left: -4px"><span id="textsum">0</span>/<span>100</span></span>
-                        <input id="submit" disabled type="button" value="提交"/>
+                        <input id="submit" disabled type="button" data-dismiss="" value="提交"/>
                     </form>
                 </div>
 
@@ -571,11 +597,11 @@
             // 初始化地图，设置中心点坐标和地图级别
             var map = new BMap.Map("map");          // 创建地图实例
             var houseid = 3327;
-            var _point_x = <?=$district[0]['map_x']==''?'104.07261':$district[0]['map_x']?>;
-            var _point_y = <?=$district[0]['map_y']==''?'30.663708':$district[0]['map_y']?>;
+            var _point_x = <?=$district[0]['map_x']==''?'103.77193':$district[0]['map_x']?>;
+            var _point_y = <?=$district[0]['map_y']==''?'29.558141':$district[0]['map_y']?>;
             var title = "<?=$district[0]['reside']?>";
-            _point_x = <?=$district[0]['map_x']==''?'104.07261':$district[0]['map_x']?>;
-            _point_y = <?=$district[0]['map_y']==''?'30.663708':$district[0]['map_y']?>;
+            _point_x = <?=$district[0]['map_x']==''?'103.77193':$district[0]['map_x']?>;
+            _point_y = <?=$district[0]['map_y']==''?'29.558141':$district[0]['map_y']?>;
 
             var point = new BMap.Point(_point_x, _point_y);  // 创建点坐标   //根据给定的坐标点设置
             var Icon = new BMap.Icon( "http://map.baidu.com/image/markers_new.png",new BMap.Size(22, 30),{
@@ -583,7 +609,7 @@
             });
             <? if($district[0]['map_x']!='' && $district[0]['map_y'] != ''){ ?>
             var marker = new ComplexCustomOverlay(new BMap.Point(_point_x,_point_y), title,title,'');
-            map.centerAndZoom(point, 18);map.addControl(new BMap.NavigationControl());
+            map.centerAndZoom(point, 17);map.addControl(new BMap.NavigationControl());
             map.addOverlay(marker);
             <? }else{ ?>
             map.centerAndZoom(point, 12);map.addControl(new BMap.NavigationControl());
@@ -656,6 +682,51 @@
             }
         });
     }
+    //举报
+    $("#textarea").keyup(function(){
+        var text = $("#textarea").val();
+        if(text.length >= 10){
+            $("#submit").attr("disabled",false);
+            $("#submit").css("background","#62ab00");
+        }else{
+            $("#submit").attr("disabled",true);
+            $("#submit").css("background","#e0e0e0");
+        }
+        $("#textsum").html(text.length);
+    });
+    $("#submit").click(function(){
+        var aa = document.getElementsByName("check");
+        var ss = "";
+        for (var i = 0; i < aa.length; i++) {
+            if (aa[i].checked) {
+                ss += aa[i].value+",";
+            }
+        }
+        if(ss==""){
+            alert("请选择举报原因");
+        }else{
+            ss =  ss.substr(0, ss.length - 1);
+            $.ajax({
+                type:"post",
+                url:"/sale/report",
+                dataType:"JSON",
+                data:{
+                    houseid:<?=$sale_detail[0]['id'] ?>,
+                    type:ss,
+                    reason:$("#textarea").val(),
+                    page_url:"sale_detail"
+                },
+                success:function(result){
+                    alert(result);
+                    $("#report").modal("hide");
+                    $("#textarea").val("");
+                    $(".checkbox").prop("checked",false);
+                },
+                error:function(result){alert("数据错误,请修改后从新提交");}
+            });
+        }
+
+    });
 
     //收藏
     function collection(){
@@ -700,10 +771,9 @@
                 }else{
                     $("#mobilecode").html(result.telphone);
                     $("#mobilecode").attr("data-target","");
-                    $('#integral_cue').html("房东："+result.linkman+"&nbsp;&nbsp;电话："+result.telphone+result.integral);
+                    $('#integral_cue').html("房东："+result.linkman+"&nbsp;&nbsp;电话："+result.telphone);
                     $(".phoneyse").css("display","none");
                 }
-
             },
             error:function(result){alert('no');}
         });

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title></title>
+<title>写字楼出售_<?=$this->config->siteName;?></title>
 
 <!-- Bootstrap Core CSS -->
 <link href="/js/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

@@ -179,7 +179,7 @@
 
                 <input type="hidden" name="build_year" id="build_year" value="<?=$build_year?>">
                 <input type="hidden" name="pm_type" id="pm_type" value="<?=$pm_type?>">
-                <input type="hidden" name="struct" id="struct" value="<?=$struct?>">
+<!--                <input type="hidden" name="struct" id="struct" value="--><?//=$struct?><!--">-->
                 <input type="hidden" name="toward" id="toward" value="<?=$toward?>">
                 <input type="hidden" name="total_floor" id="total_floor" value="<?=$total_floor?>"/>
                 <input type="hidden" name="fitmen_type" id="fitmen_type" value="<?=$fitmen_type?>">
@@ -221,7 +221,7 @@
 <!--                <a target="_self" href="javascript:searchhouse('510184','borough')"><span>崇州</span></a>-->
                 </div>
             </div>
-
+            <?  ?>
             <div class="filter-item dashed">
                 <label class="item-title">价格：</label>
                 <div class="item-mod">
@@ -309,7 +309,7 @@
 
                 <select data-width="100px" onchange="select('pm_type')" class="pm_type housetype selectpicker form-control mbn">
                     <option value="0">房屋类型</option>
-                    <? foreach($this->config->property_option as $key=>$item){
+                    <? foreach($this->config->pm_type_option as $key=>$item){
                         if($key > 0){
                             $seleted = '';
                             if($key == $pm_type)$seleted = " selected";
@@ -317,16 +317,16 @@
                         }
                     } ?>
                 </select>
-                <select data-width="100px" onchange="select('struct')" class="struct housetype selectpicker form-control mbn">
-                    <option value="0">房屋结构</option>
-                    <? foreach($this->config->apa_type_option as $key=>$item){
-                        if($key > 0){
-                            $seleted = '';
-                            if($key == $struct)$seleted = " selected";
-                            echo "<option ".$seleted." value=".$key.">$item</option>";
-                        }
-                    } ?>
-                </select>
+<!--                <select data-width="100px" onchange="select('struct')" class="struct housetype selectpicker form-control mbn">-->
+<!--                    <option value="0">房屋结构</option>-->
+<!--                    --><?// foreach($this->config->apa_type_option as $key=>$item){
+//                        if($key > 0){
+//                            $seleted = '';
+//                            if($key == $struct)$seleted = " selected";
+//                            echo "<option ".$seleted." value=".$key.">$item</option>";
+//                        }
+//                    } ?>
+<!--                </select>-->
 
                 <select data-width="100px" onchange="select('toward')" class="toward selectpicker form-control mbn">
                     <option value="0">朝向</option>
@@ -370,8 +370,8 @@
 
                         <?if($keyword != ''){?><a href="javascript:closesearch('search')"><span class="selecteds">关键字：<?=$keyword ?><span style="left: 5px;top:2px" class="glyphicon glyphicon-remove"></span></span></a><?}?>
                         <?if(strlen($build_year) != 1){?><a href="javascript:closesearch('build_year')"><span class="selecteds">年代：<?=$this->config->year_option[$build_year] ?><span style="left: 5px;top:2px" class="glyphicon glyphicon-remove"></span></span></a><?}?>
-                        <?if(strlen($pm_type) != 1){?><a href="javascript:closesearch('pm_type')"><span class="selecteds">类型：<?=$this->config->property_option[$pm_type] ?><span style="left: 5px;top:2px" class="glyphicon glyphicon-remove"></span></span></a><?}?>
-                        <?if($struct != 1){?><a href="javascript:closesearch('struct')"><span class="selecteds">结构：<?=$this->config->apa_type_option[$struct] ?><span style="left: 5px;top:2px" class="glyphicon glyphicon-remove"></span></span></a><?}?>
+                        <?if(strlen($pm_type) != 1){?><a href="javascript:closesearch('pm_type')"><span class="selecteds">类型：<?=$this->config->pm_type_option[$pm_type] ?><span style="left: 5px;top:2px" class="glyphicon glyphicon-remove"></span></span></a><?}?>
+<!--                        --><?//if($struct != 0){?><!--<a href="javascript:closesearch('struct')"><span class="selecteds">结构：--><?//=$this->config->apa_type_option[$struct] ?><!--<span style="left: 5px;top:2px" class="glyphicon glyphicon-remove"></span></span></a>--><?//}?>
                         <?if($toward != 0){?><a href="javascript:closesearch('toward')"><span class="selecteds">朝向：<?=$this->config->orientation_option[$toward] ?><span style="left: 5px;top:2px" class="glyphicon glyphicon-remove"></span></span></a><?}?>
                         <?if(strlen($total_floor) != 1){?><a href="javascript:closesearch('total_floor')"><span class="selecteds">楼层：<? $total_floors=explode('-',$total_floor);if($total_floors[0]==0){echo"6层以下";}elseif($total_floors[1]==0){echo"12层以上";}else{echo $total_floor.'层';}  ?><span style="left: 5px;top:2px" class="glyphicon glyphicon-remove"></span></span></a><?}?>
                         <?if($fitmen_type != 0){?><a href="javascript:closesearch('fitmen_type')"><span class="selecteds">装修：<?=$this->config->fitment_option[$fitmen_type] ?><span style="left: 5px;top:2px" class="glyphicon glyphicon-remove"></span></span></a><?}?>
@@ -423,7 +423,15 @@
                         </a>
                         <div class="col-md-6">
                             <div class="tilte">
-                                <h3 class="title"><a target="_blank" href="/sale/detail?id=<?=$info['id'] ?>" class="items-name esf_name"><?=$info['title']==''?$info['reside']:$info['title']?></a></h3>
+                                <h3 class="title"><a target="_blank" href="/sale/detail?id=<?=$info['id'] ?>" class="items-name esf_name">
+                                        <? if(!empty($info['title'])){
+                                            echo $info['title'];
+                                        }else{
+                                            $this->loadModel('sale');
+                                            $title = $this->sale->title($info);
+                                            echo $title['title'].$title['price'];
+                                        }?>
+                                </a></h3>
                             </div>
                             <div class="info">
                                 <p class="where">
@@ -449,18 +457,11 @@
                                         } ?>
                                         <?=$info['address'] ?>]</span>
                                 </p>
-                                <p>推荐理由：<a>
-                                    <? foreach($this->config->property_option as $keyp=>$item){
-                                        if($info['pm_type'] == $keyp && $keyp != 0){
-                                            echo $item;
-                                        }
-                                    } ?>
-                                    <?=$info['elevator']==1?",电梯":"" ?>
-                                    <? foreach($this->config->circle_option as $keyc=>$item) {
-                                        if($info['circle'] == $keyc){
-                                            echo $item;
-                                        }
-                                    }?>
+                                <p>推荐理由：<a id="reason">
+                                    <? if($info['pm_type']!='' && $info['pm_type']!=0 && $info['pm_type']!=22310 && isset($this->config->pm_type_option[$info['pm_type']])){echo $this->config->pm_type_option[$info['pm_type']]."，";}
+                                        if($info['fitmen_type']!=0 && $info['fitmen_type']!=21901 && isset($this->config->fitment_option[$info['fitmen_type']])){echo $this->config->fitment_option[$info['fitmen_type']]."，";}
+                                    ?>
+                                    配套设施健全，衣食住行方便
                                 </a></p>
                             </div>
 
@@ -471,10 +472,10 @@
                             <p class="price">总价<span><?=round($info['price'])==0?'待定':round($info['price']).'万'?></span></p>
                             <div class="discount-item">
                                 <p class="favor-tag"><em title="高层全款优惠6％，按揭优惠5％" class="discount-txt"><?=$info['hits']==0?"0":$info['hits'] ?>人看过此房</em></p>
-                                <div class="btn landlord" data-toggle="modal" onclick="landlord('<?=$info['id']?>')" data-target="#viewphone">联系房东</div>
+                                <div class="btn landlord" data-toggle="modal" onclick="landlord('<?=$info['id']?>','viewphone')" data-target="#viewphone">联系房东</div>
                                 <div id="landlordphone" style="display:none" class="tel"></div>
                             </div>
-                            <a class="collection_report report" style="float: right" data-toggle="modal" data-target="#report"><span class="glyphicon glyphicon-exclamation-sign"></span><span>举报</span></a>
+                            <a class="collection_report report" style="float: right" onclick="landlord('<?=$info['id']?>','report')" data-toggle="modal" data-target="#report"><span class="glyphicon glyphicon-exclamation-sign"></span><span>举报</span></a>
                             <a class="collection_report collection" title="" onclick="collection('<?=$info['id']?>')" style="float: right"><span class="glyphicon glyphicon-star"></span><span>收藏&nbsp;&nbsp;</span></a>
 
                         </div>
@@ -538,7 +539,7 @@
             <div class="row list-advs">
         	<h1 class="h-5">购房问答</h1>
             <ul>
-                <? foreach($information as $key=>$info){ ?>
+                <? foreach($interlocution as $key=>$info){ ?>
                     <li class="title"><a href="/news/detail?type=info&id=<?=$info['id']?>"><?=$info['title']?></a></li>
                 <? } ?>
             </ul>
@@ -552,7 +553,7 @@
             <div class="col-md-2 guess-item clearfix">
                 <a target="_blank" rel="nofollow" href="/sale/detail?id=<?=$info['id']?>">
                     <img onerror="javascript:this.src='/images/pic_default.jpg'" width="170" height="125" src="<?=$info['img_path']?>">
-                    <p class="g-name"><?=$info['title']?></p>
+                    <p class="g-name"><?=$info['title']==''?$info['reside']:$info['title']?></p>
                     <p class="g-price"><em><?=round($info['price'])==0?'</em>待定':round($info['price']).'</em>万'?></p>
                 </a>
             </div>
@@ -659,14 +660,15 @@
                     <p>您举报房源的原因是 (必填,可多选):</p>
                     <input id="esf_id" type="hidden" value=""/>
                     <ul>
-                        <li><input class="checkbox" id="check1" type="checkbox"/>&nbsp;<label for="check1">房子不存在或已经卖了</label></li>
-                        <li><input class="checkbox" id="check2" type="checkbox"/>&nbsp;<label for="check2">图文与实际不符</label></li>
-                        <li><input class="checkbox" id="check3" type="checkbox"/>&nbsp;<label for="check3">价格与实际不符</label></li>
-                        <li><input class="checkbox" id="check4" type="checkbox"/>&nbsp;<label for="check4">其他</label></li>
+                        <li><input class="checkbox" id="check1" name="check" type="checkbox" value="1"/>&nbsp;<label for="check1">房子不存在或已经卖了</label></li>
+                        <li><input class="checkbox" id="check2" name="check" type="checkbox" value="2"/>&nbsp;<label for="check2">图文与实际不符</label></li>
+                        <li><input class="checkbox" id="check3" name="check" type="checkbox" value="3"/>&nbsp;<label for="check3">价格与实际不符</label></li>
+                        <li><input class="checkbox" id="check4" name="check" type="checkbox" value="4"/>&nbsp;<label for="check4">其他</label></li>
                     </ul>
-                    <textarea id="textarea" placeholder="您可在此写下具体描述,请至少输入10个汉字"></textarea>
+                    <input id="type" name="type" type="hidden" value=""/>
+                    <textarea id="textarea" name="textarea" placeholder="您可在此写下具体描述,请至少输入10个汉字"></textarea>
                     <span style="float:right;position:relative;top: -25px;left: -4px"><span id="textsum">0</span>/<span>100</span></span>
-                    <input id="submit" disabled type="button" value="提交"/>
+                    <input id="submit" disabled type="button" data-dismiss="" value="提交"/>
                 </form>
             </div>
 
@@ -691,12 +693,6 @@
 <!--BEGIN JAVASCRIPT-->
 <script>
     $(document).ready(function(){
-        //判断用户是否登录
-        <? if(!isset($_SESSION['login'])){ ?>
-        $(".landlord").attr("data-target","#userlogin");
-        $(".report").attr("data-target","#userlogin");
-        $(".collection").attr({"data-toggle":"modal","data-target":"#userlogin"});
-        <? } ?>
         //登录后显示已经收藏的房源和已查看的房东电话
         <? if(isset($_SESSION['userid'])){ ?>
         <? foreach($collection as $info){ ?>
@@ -708,7 +704,6 @@
         $("#m<?=$info['esf_id']?>>.favor-pos>.discount-item>.landlord").css("display","none");
         <? } ?>
         <? } ?>
-
 
     });
     //价格选择
@@ -754,14 +749,16 @@
         });
     }
 
-
-    function landlord(id){
+    function landlord(id,type){
         $("#houseid").val(id);
+        event.stopPropagation();
+        <? if(isset($_SESSION['userid'])){ ?>
+        $("#"+type).modal("show");
+        <? }else{ ?>
+        $("#userlogin").modal("show");
+        <? } ?>
     }
-    //联系房东
-    $('div.list-item').on('click', '.landlord', function(){
-    },'click','.close',function(){
-    });
+
     //消费积分查看房东电话
     $(".phoneyse").click(function(){
         var esf_id = $("#houseid").val();
@@ -785,7 +782,7 @@
                     $("#m"+id+">.favor-pos>.discount-item>#landlordphone").html("<i class='fa fa-phone'> </i>&nbsp; "+result.telphone);
                     $("#m"+id+">.favor-pos>.discount-item>#landlordphone").css("display","block");
                     $("#m"+id+">.favor-pos>.discount-item>.landlord").css("display","none");
-                    $('#integral_cue').html("房东："+result.linkman+"&nbsp;&nbsp;电话："+result.telphone+result.integral);
+                    $('#integral_cue').html("房东："+result.linkman+"&nbsp;&nbsp;电话："+result.telphone);
                     $(".phoneyse").css("display","none");
                 }
             },
@@ -793,6 +790,7 @@
         });
     });
 
+    //关闭获取到的房东信息
     $(".closes").click(function(){
         setTimeout("integral_cue()",1000);
     });
@@ -823,15 +821,13 @@
             });
         }
         event.stopPropagation();
+        <? }else{ ?>
+        event.stopPropagation();
+        $("#userlogin").modal("show");
         <? } ?>
     }
-    $('div.list-item').on('click', '.collection', function(){
-    },'click','.close',function(){
-    });
+
     //举报
-    $('div.list-item').on('click', '.report', function(){
-    },'click','.close',function(){
-    });
     $("#textarea").keyup(function(){
         var text = $("#textarea").val();
         if(text.length >= 10){
@@ -843,6 +839,41 @@
         }
         $("#textsum").html(text.length);
     });
+
+    $("#submit").click(function(){
+        var aa = document.getElementsByName("check");
+        var ss = "";
+        for (var i = 0; i < aa.length; i++) {
+            if (aa[i].checked) {
+                ss += aa[i].value+",";
+            }
+        }
+        if(ss==""){
+            alert("请选择举报原因");
+        }else{
+            ss =  ss.substr(0, ss.length - 1);
+            $.ajax({
+                type:"post",
+                url:"/sale/report",
+                dataType:"JSON",
+                data:{
+                    houseid:$("#houseid").val(),
+                    type:ss,
+                    reason:$("#textarea").val(),
+                    page_url:"sale_list"
+                },
+                success:function(result){
+                    alert(result);
+                    $("#report").modal('hide');
+                    $("#textarea").val("");
+                    $(".checkbox").prop("checked",false);
+                },
+                error:function(result){alert("数据错误,请修改后从新提交");}
+            });
+        }
+
+    });
+
 
     //自定义内容验证
     $(".custom").keyup(function(){
@@ -952,11 +983,10 @@
     }
 
     //更多类型选择
-    var Moretype = ['build_year','pm_type','struct','toward','total_floor','fitmen_type'];
-    var Moretypevalue = ['<?=$build_year?>','<?=$pm_type?>',<?=$struct ?>,'<?=$toward?>','<?=$total_floor?>','<?=$fitmen_type?>'];
+    var Moretype = ['build_year','pm_type','toward','total_floor','fitmen_type'];
+    var Moretypevalue = ['<?=$build_year?>','<?=$pm_type?>','<?=$toward?>','<?=$total_floor?>','<?=$fitmen_type?>'];
     var Moretypesum = [<?=count($this->config->year_option)?>,<?=count($this->config->property_option)?>,
-                        <?=count($this->config->apa_type_option)?>,<?=count($this->config->direction_option)?>,4,
-                        <?=count($this->config->fitmen_type_option)?>];
+                        <?=count($this->config->direction_option)?>,4,<?=count($this->config->fitmen_type_option)?>];
     for(var n=0;n<Moretype.length;n++){
         if(Moretypevalue[n] != 0){
             $("."+Moretype[n]+" .pull-left").css("color","#f60");

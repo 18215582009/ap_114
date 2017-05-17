@@ -134,8 +134,11 @@
 
                                 <div class="col-md-4">
                                 	    <?=Form::input('reside',empty($Info['reside'])? '':$Info['reside'],$handle,'房源小区');?>
-                                	    <?=Form::select('house_type',$this->config->house_type_option,empty($Info['house_type'])? 1 :$Info['house_type'],$handle,'房子类型');?>
-                                	    <?=Form::select_multiple('circle',$this->config->circle_option,empty($Info['circle'])? '':$Info['circle'],$handle,'环线');?>
+
+                                	    <?=Form::select('house_type',$this->config->house_type_option,empty($Info['house_type'])? $house_type :$Info['house_type'],$handle,'房子类型');?>
+
+
+                                	    <?=Form::select('circle',$this->config->circle_option,empty($Info['circle'])? '':$Info['circle'],$handle,'环线');?>
 
                                 	    <?=Form::select('toward[]',$this->config->orientation_option,empty($Info['toward'])? '':$Info['toward'],$handle,'房屋朝向');?>
 
@@ -184,12 +187,7 @@
 								</div>
                 
 
-          
-
-         
-
       
-
 
 								 <div class="col-md-11" >
 								        <?=Form::textarea('selling_point',empty($Info['selling_point'])? '':$Info['selling_point'],$handle,'房屋卖点信息');?>
@@ -200,6 +198,8 @@
   								 <div class="col-md-11">
 								          <?=Form::textarea('note',empty($Info['note'])? '':$Info['note'],$handle,'房屋描述信息');?>
 								</div>
+
+
                             </div>
                         </div>
                       </div>

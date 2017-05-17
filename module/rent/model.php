@@ -35,6 +35,7 @@ class rentModel extends Model
         $distInfo = $this->pdo->getAll($sql);
         if(count($distInfo)>0) {
             $data['pm_type'] = $distInfo[0]['pm_type'];
+            $data['address'] = $distInfo[0]['address'];
             $data['direction'] = $distInfo[0]['direction'];
             $data['region'] = $distInfo[0]['region'];
             $data['borough'] = $distInfo[0]['borough'];

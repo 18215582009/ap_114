@@ -165,15 +165,15 @@ class saleModel extends Model
         }
         $houseListInfo['fitmen_type'] = $fitmen_type;
 
-        if(!empty($struct) && $struct!=0)
-        {//房屋结构
-            $where .= " and e.house_struct = '$struct'";
-            $pageInfo .= "struct=$struct&";
-            $condition=1;
-        }else{
-            $struct = 0;
-        }
-        $houseListInfo['struct'] = $struct;
+//        if(!empty($struct) && $struct!=0)
+//        {//房屋结构
+//            $where .= " and e.house_struct = '$struct'";
+//            $pageInfo .= "struct=$struct&";
+//            $condition=1;
+//        }else{
+//            $struct = 0;
+//        }
+//        $houseListInfo['struct'] = $struct;
 
         if(!empty($deposit) && $deposit!=0)
         {//押金方式
@@ -283,7 +283,7 @@ class saleModel extends Model
         }
         $houseListInfo['time_sort'] = $time_sort;
 
-        //房屋类型
+        //出售，出租
         if(isset($house_type)){
             $where .= " and e.house_type=".$house_type;
         }
@@ -300,34 +300,30 @@ class saleModel extends Model
         $page=new pager_page($pageSize,$recordCount,$currentPage,$subPages,$pageInfo,5);
         $splitPageStr=$page->get_page_html();
 
-
-        if(isset($_SESSION['userid'])){
-            //获取收藏信息
-            $userid = $_SESSION['userid'];
-            $sql = "select * from fc_esf_user_favorites where create_uid = '$userid'";
-            $houseListInfo['collection'] = $this->pdo->getAll($sql);
-            //获取已得到的房东电话
-            $sql = "select c.*,e.linkman,e.telphone from fc_esf_user_cons as c LEFT JOIN fc_esf as e on c.esf_id=e.id where c.create_uid='$userid' and e.house_type='$house_type' and  c.score=40";
-            $houseListInfo['landlordphone'] = $this->pdo->getAll($sql);
-        }
-
-
-        //购房问答
-        $cidstr=implode(",",$this->getChildCids());
-        $sql = "SELECT * from web_contentindex where cid in ($cidstr) ORDER BY digest DESC limit 6";
-        $houseListInfo['information'] = $this->pdo->getAll($sql);
-        //猜你喜欢
-        $sql = "select * from fc_esf where house_type = '$house_type' AND flag=1 ORDER BY create_date DESC limit 6";
-        $houseListInfo['guessyoulike'] = $this->pdo->getAll($sql);
-
         $houseListInfo['list'] = $res;
         $houseListInfo['pageInfo'] = $pageInfo;
         $houseListInfo['total'] = $recordCount;
         $houseListInfo['pageNation'] = $splitPageStr;
         $houseListInfo['condition'] = $condition;
 
-
         return $houseListInfo;
+    }
+
+    //登陆后获取已收藏的房源、已获得的房东电话
+    public function obtained(){
+        //已收藏的房源
+        $userid = $_SESSION['userid'];
+        $obtained = array();
+        if(isset($_GET['house_type'])){
+            $house_type = $_GET['house_type'];
+        }
+        $sql = "select * from fc_esf_user_favorites where create_uid = '$userid'";
+        $obtained['collection'] = $this->pdo->getAll($sql);
+        //已获得的房源电话
+        $sql = "select c.*,e.linkman,e.telphone from fc_esf_user_cons as c LEFT JOIN fc_esf as e on c.esf_id=e.id
+                where c.create_uid='$userid' and e.house_type='$house_type' and c.score=40";
+        $obtained['landlordphone'] = $this->pdo->getAll($sql);
+        return $obtained;
     }
 
     //二手房详情
@@ -338,16 +334,6 @@ class saleModel extends Model
         $sql = "select * from fc_esf where id='$id'";
         $secondhousedetail['detail'] = $this->pdo->getAll($sql);
 
-        if(isset($_SESSION['userid'])){
-            //获取收藏信息
-            $userid = $_SESSION['userid'];
-            $sql = "select * from fc_esf_user_favorites where create_uid = '$userid'";
-            $secondhousedetail['collection'] = $this->pdo->getAll($sql);
-            //获取已得到的房东电话
-            $sql = "select c.*,e.linkman,e.telphone from fc_esf_user_cons as c LEFT JOIN fc_esf as e on c.esf_id=e.id where c.create_uid='$userid' and c.score=40";
-            $secondhousedetail['landlordphone'] = $this->pdo->getAll($sql);
-        }
-
         //获取楼房图片
         $sql = "select fep.*,fea.url from fc_esf_pic as fep LEFT JOIN fc_esf_attach as fea on fep.attach_id=fea.id where esf_id = '$id'";
         $secondhousedetail['img'] = $this->pdo->getAll($sql);
@@ -355,15 +341,10 @@ class saleModel extends Model
             $secondhousedetail['img'] = "";
         }
 
-
         $district = $secondhousedetail['detail'][0]['district_id'];
         //获取该楼房所在小区
         $sql = "select * from fc_esf_district where id = '$district'";
         $secondhousedetail['district'] = $this->pdo->getAll($sql);
-
-        //猜你喜欢
-        $sql = "select * from fc_esf where district_id = '$district' and flag=1";
-        $secondhousedetail['guessyoulike'] = $this->pdo->getAll($sql);
 
         return $secondhousedetail;
     }
@@ -399,17 +380,34 @@ class saleModel extends Model
         $sql = "select * from fc_esf_district where id=".$xq_id;
         $distInfo = $this->pdo->getAll($sql);
         if(count($distInfo)>0) {
-            $data['pm_type'] = $distInfo[0]['pm_type'];
+//            $data['pm_type'] = $distInfo[0]['pm_type'];
+            $data['address'] = $distInfo[0]['address'];
             $data['direction'] = $distInfo[0]['direction'];
             $data['region'] = $distInfo[0]['region'];
             $data['borough'] = $distInfo[0]['borough'];
             $data['circle'] = $distInfo[0]['circle'];
             $data['build_year'] = $distInfo[0]['build_year'];
+
             $insertRlt = $this->pdo->add($data, 'fc_esf');
             return $insertRlt;
         }else{
             return 0;
         }
+    }
+
+    /* 房源标题为空 */
+    public function title($title){
+        $sum = [1=>'一',2=>'二',3=>'三',4=>'四',5=>'五'];
+//        $reside = "[ ".$title['reside']." ] ";//小区
+        $room = $sum[$title['shi']]."室".$sum[$title['ting']]."厅".$sum[$title['wei']]."卫";//户型
+        $area = " 面积".round($title['total_area'])."平方"; //面积
+        $company = $title['house_type']==1?"元/月":"万";
+        $price = " 总价".round($title['price']).$company;
+        $titles = $room.$area;
+        $title = array();
+        $title['title'] = $titles;
+        $title['price'] = $price;
+        return $title;
     }
 
     public function getXqNameList($name=''){

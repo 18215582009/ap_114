@@ -58,6 +58,12 @@ use lib\form\Form;
     .form-control{border:1px solid #C8A680;}
     .input-small{width: 150px;display: inline;}
     .input-xsmall{display: inline;}
+    .traffic{
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .supporting{margin-top: 10px;}
+    .supporting_div{margin-left: 50px;margin-top: -20px;}
 </style>
 <body class="font-source-sans-pro sidebar-color-white">
 <div class="fluid">
@@ -201,8 +207,8 @@ use lib\form\Form;
                                                     <div class="col-md-5">
                                                         <select name="borough" id="borough1" class="int-text" style="width:120px;" width="100px;">
 
-                                                                <? foreach($this->config->borough_option as $key=>$item) { 
-                                                                   
+                                                                <? foreach($this->config->borough_option as $key=>$item) {
+
                                                                         $seleted = '';
                                                                     if($key==$info['borough'] && !empty($info['borough'])){
                                                                         $seleted='selected';
@@ -212,12 +218,12 @@ use lib\form\Form;
 
                                                                      }
 
-                                                                   
-                                                                   
+
+
                                                                 }
                                                                 ?>
 
- 
+
                                                         </select>
                                                     </div>
                                                 </div>
@@ -228,19 +234,19 @@ use lib\form\Form;
                                                         <select id="area" name="area" class="int-text" style="width:120px;" >
 
 
-                                                                <? foreach($region_option as $key=>$item) { 
+                                                                <? foreach($region_option as $key=>$item) {
                                                                         $seleted = '';
                                                                          if($key==$info['region'] && !empty($info['region'])){
                                                                             $seleted='selected';
                                                                             echo " <option label=".$item." value=".$info['region']." selected=".$seleted.">".$item."</option>";
                                                                          }else{
-                            
-                                                                            
+
+
                                                                             echo " <option label=".$item." value=".$key." >".$item." </option>";
 
                                                                      }
 
-   
+
                                                                 }
                                                                 ?>
 
@@ -268,9 +274,9 @@ use lib\form\Form;
 
                                                         <input type="text" name="map_y" value="<?=$info['map_y']?>" id="map_y" class="int-text" style="width:100px;" readonly="">
 
-                                                     
 
-                                                         
+
+
                                                         <?} else {?>
 
                                                           <input type="text" name="map_y" value="" id="map_y" class="int-text" style="width:100px;" readonly="">
@@ -305,7 +311,7 @@ use lib\form\Form;
                                                         <select id="circle" name="circle" class="int-text" style="width:120px;">
 
                                                                <? foreach($this->config->circle_option as $key=>$item) {
-                                                                
+
                                                                      $selected = '';
                                                                     if($key == $info['circle'] &&!empty($info['circle'])){
                                                                         $selected = "selected";
@@ -316,12 +322,12 @@ use lib\form\Form;
                                                                     echo " <option label=".$item." value=".$key." >".$item."</option>";
 
                                                                 }
-                                              
-                                                      
+
+
                                                             }
                                                             ?>
 
-                                                     
+
                                                         </select>
                                                     </div>
                                                 </div>
@@ -336,9 +342,9 @@ use lib\form\Form;
                                                     <div class="col-md-7">
                                                         <select id="tube" name="tube" class="int-text" style="width:120px;">
 
-                                                        
+
                                                                <? foreach($this->config->tube_option as $key=>$item) {
-                                                               
+
                                                                     $selected='';
                                                                     if($key == $info['tube'] &&!empty($info['tube'])){
                                                                         $selected = 'selected';
@@ -366,23 +372,99 @@ use lib\form\Form;
                                                     <div class="col-md-7">
 
                                                         <? if (!empty($info['school']) or !empty($info['market']) or !empty($info['hospital']) or !empty($info['postoffice']) or !empty($info['bank']) or !empty($info['college'])){?>
-
-                                                        <textarea name="trade_circle" id="trade_circle" class="int-text" style=" height:80px; margin-top:5px; ">
-学校：<?=$info['school']?>|商场：<?=$info['market']?>|医院：<?$info['hospital']?>|邮局：<?=$info['postoffice']?>|银行：<?=$info['bank']?>|其他：<?=$info['hotel']?>,<?=$info['college']?>
-
-                                                        </textarea>
-
+                                                            <div>
+                                                                <div class="supporting">
+                                                                    <span>学校：</span>
+                                                                    <div class="supporting_div">
+                                                                    <? $school = explode("，",$info['school']);
+                                                                        foreach($school as $item){
+                                                                            $strarr = explode("|",$item);
+                                                                            foreach($strarr as $newstr){
+                                                                                if(preg_match("/[\x7f-\xff]/",$newstr)){
+                                                                                    echo "<span class='traffic'>".$newstr."</span>";
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    echo $info['school']==''?'暂无':'';
+                                                                    ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="supporting">
+                                                                    <span>医院：</span>
+                                                                    <div class="supporting_div">
+                                                                    <? $hospital = explode("，",$info['hospital']);
+                                                                    foreach($hospital as $item){
+                                                                        $strarr = explode("|",$item);
+                                                                        foreach($strarr as $newstr){
+                                                                            if(preg_match("/[\x7f-\xff]/",$newstr)){
+                                                                                echo "<span class='traffic'>".$newstr."</span>";
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    echo $info['hospital']==''?'暂无':'';
+                                                                    ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="supporting">
+                                                                    <span>邮局：</span>
+                                                                    <div class="supporting_div" >
+                                                                    <? $postoffice = explode("，",$info['postoffice']);
+                                                                    foreach($postoffice as $item){
+                                                                        $strarr = explode("|",$item);
+                                                                        foreach($strarr as $newstr){
+                                                                            if(preg_match("/[\x7f-\xff]/",$newstr)){
+                                                                                echo "<span class='traffic'>".$newstr."</span>";
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    echo $info['postoffice']==''?'暂无':'';
+                                                                    ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="supporting">
+                                                                    <span>银行：</span>
+                                                                    <div class="supporting_div">
+                                                                        <? $bank = explode("，",$info['bank']);
+                                                                        foreach($bank as $item){
+                                                                            $strarr = explode("|",$item);
+                                                                            foreach($strarr as $newstr){
+                                                                                if(preg_match("/[\x7f-\xff]/",$newstr)){
+                                                                                    echo "<span class='traffic'>".$newstr."</span>";
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        echo $info['bank']==''?'暂无':'';
+                                                                        ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="supporting">
+                                                                    <span>其他：</span>
+                                                                    <div class="supporting_div">
+                                                                    <? $hotel = explode("，",$info['hotel']);
+                                                                    foreach($hotel as $item){
+                                                                        $strarr = explode("|",$item);
+                                                                        foreach($strarr as $newstr){
+                                                                            if(preg_match("/[\x7f-\xff]/",$newstr)){
+                                                                                echo "<span class='traffic'>".$newstr."</span>";
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    echo $info['hotel']==''?'暂无':'';
+                                                                    ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         <?} else {?>
 
                                                         <textarea name="trade_circle" id="trade_circle" class="int-text" style="width:300px; height:80px; margin-top:5px;">
 
-                                                        
+
                                                         </textarea>
 
 
                                                         <? } ?>
 
-                                                        
+
                                                     </div>
                                                 </div>
 
@@ -396,17 +478,17 @@ use lib\form\Form;
                                                     <div class="col-md-8">
 
 
-                                                        
+
 
                                                           <? foreach($this->config->pm_type_option as $key=>$item) {
-                                                          
+
                                                                 $checked = '';
                                                                 if($key == $info['pm_type'] && !empty($info['pm_type'])){
                                                                     $checked="checked";
-                                                                    echo "<label><input type='radio' name='pm_type' id ='pm_type' value=".$info['pm_type']." checked=".$checked." style='margin-left:5px;'>$item</label>";
+                                                                    echo "<label for="."pt".$key."><input type='radio' name='pm_type' id ="."pt".$key." value=".$info['pm_type']." checked=".$checked." style='margin-left:5px;'>$item</label>";
 
                                                                 }else{
-                                                                   echo "<label><input type='radio' name='pm_type' id ='pm_type' value=".$key." style='margin-left:5px;'>$item</label>";
+                                                                   echo "<label  for="."pt".$key."><input type='radio' name='pm_type' id ="."pt".$key." value=".$key." style='margin-left:5px;'>$item</label>";
 
                                                             }
 
@@ -427,44 +509,26 @@ use lib\form\Form;
 
                                                                <? foreach($this->config->rent_way_option as $key=>$item) {
 
-                                                               
+
                                                                  $selected='';
-                                                            
+
                                                             if($key==$info['rent_way'] && !empty($info['rent_way'])){
                                                                 $selected='selected';
                                                                   echo " <option label=".$item." value=".$info['rent_way']." selected=".$selected.">".$item."</option>";
-                                                               
+
                                                             }else{
                                                                  echo " <option label=".$item." value=".$key." >".$item."</option>";
-                                                               
+
                                                             }
- 
+
                                                             }
                                                             ?>
 
                                                         </select>
                                                     </div>
                                                 </div>
-                                               
-
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-2" for="name"><span class="require">*</span>押金:</label>
-                                                    <div class="col-md-5">
-                                                        <?if(!empty($info['deposit'])) {?>
-
-                                                             <input type="text" name="deposit"  class="int-text" value="<?=$info['deposit']?>" id="deposit" placeholder="请填写数字" >
-
-                                                             <?} else {?>
 
 
-                                                              <input type="text" name="deposit" class="int-text" value="" id="deposit"  placeholder="请填写数字">
-
-
-                                                             <? } ?>
-                                                              
-                                                      
-                                                    </div>
-                                                </div>
 
                                                   <div class="form-group">
                                                     <label class="control-label col-md-2" for="name"><span class="require">*</span>收费:</label>
@@ -480,8 +544,8 @@ use lib\form\Form;
 
 
                                                              <? } ?>
-                                                              
-                                                      
+
+
                                                     </div>
                                                 </div>
 
@@ -489,12 +553,12 @@ use lib\form\Form;
                                                 <div class="form-group">
                                                     <label class="control-label col-md-2" for="name"><span class="require">*</span>押金方式:</label>
                                                     <div class="col-md-5">
-                                                        <select id="pay_way" name="pay_way"  class="int-text" style="width:120px;">
+                                                        <select id="rent_deposit" name="rent_deposit"  class="int-text" style="width:120px;">
 
                                                                <? foreach($this->config->pay_way_option as $key=>$item) {
 
                                                                  echo " <option label=".$item." value=".$key." >".$item."</option>";
- 
+
                                                             }
                                                             ?>
 
@@ -502,7 +566,7 @@ use lib\form\Form;
                                                     </div>
                                                 </div>
 
-                                              
+
 
 
 
@@ -513,7 +577,7 @@ use lib\form\Form;
                                                     <div class="col-md-5">
                                                         <?if(!empty($info['rent_live_date'])) {?>
 
-                                                        <input type="text" name="rent_live_date" value="<?=$info['rent_live_date']?>" id="rent_live_date" class="int-text datepicker" realvalue="" format="dd-mm-yyyy"> 
+                                                        <input type="text" name="rent_live_date" value="<?=$info['rent_live_date']?>" id="rent_live_date" class="int-text datepicker" realvalue="" format="dd-mm-yyyy">
 
                                                         <?} else {?>
 
@@ -608,12 +672,12 @@ use lib\form\Form;
                                                 <div class="form-group">
                                                     <label class="control-label col-md-2" for="name"><span class="require">*</span>户&nbsp;&nbsp;&nbsp;&nbsp;型:</label>
                                                     <div class="col-md-5">
-                                                        <select name="shi" class="int-text min-text"  style="width:35px;display: inline" id="room_select">
+                                                        <select name="shi" class="int-text min-text"   id="room_select">
 
-                                                            
+
 
                                                             <? foreach($this->config->apa_room_option as $key=>$item) {
-                                                               
+
                                                                      $selected="";
                                                                     if($key ==$info['shi'] && !empty($info['shi'])){
                                                                         $selected="selected";
@@ -627,16 +691,16 @@ use lib\form\Form;
                                                             }
                                                             ?>
 
-                            
+
 
                                                         </select>室&nbsp;
-                                                        <select name="ting" class="int-text min-text"  style="width:35px;display: inline" id="ting_select">
+                                                        <select name="ting" class="int-text min-text"   id="ting_select">
 
 
 
 
                                                             <? foreach($this->config->ting_option as $key=>$item) {
-                                                             
+
                                                                     $selected="selected";
                                                                     if($key==$info['ting'] && !empty($info['ting'])){
                                                                         $selected="selected";
@@ -647,20 +711,20 @@ use lib\form\Form;
 
                                                                 }
 
-                                                                
-                                                                
-  
+
+
+
                                                             }
                                                             ?>
 
 
 
                                                         </select>厅&nbsp;
-                                                        <select name="wei" class="int-text min-text"  style="width:35px;display: inline" id="toilet_select">
-                                                           
-                                                          
+                                                        <select name="wei" class="int-text min-text"  id="toilet_select">
+
+
                                                             <? foreach($this->config->wei_option as $key=>$item) {
-                                                              
+
                                                                     $selected="";
                                                                     if($key==$info['wei'] &&!empty($info['wei'])){
                                                                         $selected="selected";
@@ -670,18 +734,18 @@ use lib\form\Form;
 
                                                                      echo " <option label=".$key." value=".$key." >".$key."</option>";
 
-                                                                }  
-  
+                                                                }
+
                                                             }
                                                             ?>
 
 
                                                         </select>卫&nbsp;
-                                                        <select name="porch" class="int-text min-text"  style="width:35px;display: inline" id="porch_select">
-                                                           
+                                                        <select name="porch" class="int-text min-text"  id="porch_select">
+
 
                                                            <? foreach($this->config->porch_option as $key=>$item) {
-                                                           
+
                                                                 $selected="";
                                                                 if($key ==$info['porch'] && !empty($info['porch'])){
                                                                 $selected="selected";
@@ -694,7 +758,7 @@ use lib\form\Form;
                                                                 echo " <option label=".$key." value=".$key." >".$key."</option>";
 
                                                                 }
-                                                                
+
                                                             }
                                                             ?>
 
@@ -707,11 +771,11 @@ use lib\form\Form;
                                                     <label class="control-label col-md-2" for="name"><span class="require">*</span>房屋朝向:</label>
                                                     <div class="col-md-5">
                                                         <select name="toward" id="toward1" class="int-text min-text"  style="width:120px;">
-                                                            
-                                                            
+
+
 
                                                               <? foreach($this->config->orientation_option as $key=>$item) {
-                                                             
+
                                                                     $selected="";
                                                                     if($key ==$info['toward'] &&!empty($info['toward'])){
                                                                     $selected="selected";
@@ -722,9 +786,9 @@ use lib\form\Form;
                                                                     echo " <option label=".$item." value=".$key." >".$key."</option>";
 
                                                                 }
-                                                                
-                                       
-                                              
+
+
+
                                                             }
                                                             ?>
 
@@ -748,15 +812,15 @@ use lib\form\Form;
                                                     </label>
                                                     <div class="col-md-7">
                                                         <? foreach($this->config->fitment_option as $key=>$item) {
-                                                           
+
                                                                 $checked="";
                                                                 if($key==$info['fitmen_type'] && !empty($info['fitmen_type'])){
                                                                     $checked="selected";
-                                                                    echo " <input type='radio' name='fitmen_type'   value=".$info['fitmen_type']." checked=".$checked."> ".$item." ";
+                                                                    echo " <input type='radio' name='fitmen_type' id="."ft".$key." value=".$info['fitmen_type']." checked=".$checked."> "."ft".$item." ";
 
                                                                 }else{
 
-                                                                 echo " <input type='radio' name='fitmen_type' value=".$key." > ".$item." ";
+                                                                 echo " <input type='radio' name='fitmen_type' id="."ft".$key." value=".$key." > "."<label for="."ft".$key.">".$item." </label>";
 
                                                             }
 
@@ -808,7 +872,7 @@ use lib\form\Form;
                                                         <?}?>
 
 
-                                                       
+
 
 
                                                     </div>
@@ -830,7 +894,7 @@ use lib\form\Form;
 
 
                                                             <? } ?>
-                                                        
+
                                                     </div>
                                                     <div class="col-md-5">
 
@@ -849,12 +913,12 @@ use lib\form\Form;
                                                                     $checked = '';
                                                                     if(in_array($key,$info['facilities'] )&&!empty($info['facilities'])){$checked = 'checked';
                                                                          echo " <div style='width:24.5%;text-align:left;float:left;' id='facilities'>";
-                                                                         echo  "<input type='checkbox' name='facilities[]' value=".$info['facilities']."  checked=".$checked.">".$item."";
+                                                                         echo  "<input type='checkbox' name='facilities[]' value=".$key."  checked=".$checked.">".$item."";
                                                                          echo "</div>";
 
                                                                     }else{
                                                                      echo " <div style='width:24.5%;text-align:left;float:left;' id='facilities'>";
-                                                                     echo  "<input type='checkbox' name='facilities[]' value=".$key.">".$item."";
+                                                                     echo  "<input type='checkbox' id=".$key." name='facilities[]' value=".$key.">"."<label for=".$key.">".$item."</label>";
                                                                      echo "</div>";
 
                                                                 }
@@ -867,7 +931,7 @@ use lib\form\Form;
 
                                                         <div style="width:24.5%;text-align:left;float:left;color:red;cursor:hand;">
                                                             <input type="checkbox" id="i_facilities" onclick="select_all(this);" style="padding:0;">
-                                                            <font color="#4A7911">配套设施-全选</font>
+                                                            <label for="i_facilities"><font color="#4A7911">配套设施-全选</font></label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -928,7 +992,7 @@ use lib\form\Form;
 
 
 
-
+<!--
                                                 <div class="form-group">
                                                     <label class="control-label col-md-2" for="name"><span class="require">*</span>卖(租)房要求:</label>
                                                     <div class="col-md-5">
@@ -936,7 +1000,7 @@ use lib\form\Form;
                                                     </div>
                                                     <div class="col-md-5">填写联系时间、看房时间等，如：看房时间下午6点后！</div>
                                                 </div>
-
+-->
 
 
 
@@ -953,29 +1017,29 @@ use lib\form\Form;
                                                         <div id="idPicFile1" class="btn btn-success fileinput-button mbm" data='1'>上传图片</div>
                                                         <table>
                                                             <tbody id="idPicList1" class="showpicfile">
-                                                             
+
                                                             </tbody>
                                                         </table>
                                                         <table>
                                                             <tbody class="showpicfile">
 
                                                                     <? if(!empty($info['on_pic']) ) {?>
-                                                                        <? foreach ($info['on_pic'] as $key => $value) { 
+                                                                        <? foreach ($info['on_pic'] as $key => $value) {
                                                                         echo "<tr>";
                                                                         echo "<td align='left'>";
                                                                         echo "<a onclick='delimg(".$value['attach_id'].",this);'>移除</a>";
                                                                         echo "<img src=".$value['url']." width='150' height='100' alt=''>";
                                                                         echo "</td>";
                                                                         echo "</tr>";
-                                                                          
+
                                                                        }?>
 
 
 
-                                                                   
+
                                                                     <?}?>
 
-                                                            
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -994,16 +1058,16 @@ use lib\form\Form;
                                                             <tbody class="showpicfile">
 
                                                                     <? if(!empty($info['in_pic']) ) {?>
-                                                                        <? foreach ($info['on_pic'] as $key => $value) { 
+                                                                        <? foreach ($info['on_pic'] as $key => $value) {
                                                                         echo "<tr>";
                                                                         echo "<td align='left'>";
                                                                         echo "<a onclick='delimg(".$value['attach_id'].",this);'>移除</a>";
                                                                         echo "<img src=".$value['url']." width='150' height='100' alt=''>";
                                                                         echo "</td>";
                                                                         echo "</tr>";
-                                                                          
+
                                                                        }?>
-                                                                   
+
                                                                     <?}?>
 
                                                             </tbody>
@@ -1043,8 +1107,8 @@ use lib\form\Form;
 
 <?
 $jsArr = array(
-    
-  
+
+
     "/js/vendor/AutoComplete/jquery.autocomplete-min.js",
     "/js/vendor/bootstrap-datepicker/bootstrap-datepicker.js",
     "/js/vendor/jUploader/jquery.jUploader-1.0.min.js",
@@ -1074,7 +1138,7 @@ $('.datepicker').datepicker();
                 success: function(msg){
                     $("#reside").val(msg.reside);
                     $("#address").val(msg.address);
-                    $("input[type=radio][name=pm_type][value="+msg.pm_type+"]").attr("checked",'checked');
+                //$("input[type=radio][name=pm_type][value="+msg.pm_type+"]").attr("checked",'checked');
                     $("select[name=borough] option[value="+msg.borough+"]").attr("selected",true) ;
                     $("#trade_circle").val("学校："+msg.school+"|商场："+msg.market+"|医院："+msg.hospital+"|邮局："+msg.postoffice+"|银行："+msg.bank+"|其他："+msg.other+"");
                     $("#traffic").val(msg.traffic);
@@ -1255,7 +1319,7 @@ $('.datepicker').datepicker();
         $('#'+LengthId).text(i);
     }
 
- 
+
 
     function again()
     {
@@ -1297,7 +1361,7 @@ $('.datepicker').datepicker();
         )
     }
 
-  
+
   function submitForm(){
 
     if($("#title").val().length==0){
@@ -1310,11 +1374,7 @@ $('.datepicker').datepicker();
         $("#reside").focus();
         return false;
     }
-    if($('#deposit').val().length==0){
-         alert("请填写押金!");
-        $("#deposit").focus();
-        return false;
-    }
+
     if($("#price").val().length==0){
         alert("请填写价格!");
         $("#price").focus();
@@ -1374,7 +1434,7 @@ if($('#link_require').val().length==0 ){
 
   }
 
-   
+
 </script>
 </body>
 </html>

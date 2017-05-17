@@ -77,6 +77,14 @@ $config->reserve_subtype_option = array(
 	'5' =>'看房团通知'
 );
 
+//举报类型
+$config->report_type_option = array(
+    '1' =>'房子不存在或已经卖了',
+    '2' =>'图文与实际不符',
+    '3' =>'价格与实际不符',
+    '4' =>'其他'
+);
+
 //问题类别
 $config->faq_type_option = array(
 	'1' =>'购房',
@@ -508,16 +516,15 @@ $config->pay_way_option=array(
 	0=>"面议",
 	1=>"押一付三",
 	2=>"押一付一",
-	3=>"押二付1",
+	3=>"押二付一",
 	4=>"半年付",
 	5=>"年付"
 );
 //房屋类别
 $config->house_type_option=array(
-	1=>"出售",
-	2=>"出租"
+	1=>"出租",
+	2=>"出售"
 );
-
 
 //配套设施 -- by xiewen
 
@@ -548,5 +555,36 @@ $config->facilities=array(
 	21725=>"茶几",
 	21726=>"其他家具",
 	);
+//- by xiewen
+$config->reserve_type=array(
+	0=>"无",
+	1 =>"预约看房",
+	2=>"组团看房",
+	3=>"订阅",
+	4=>"专家咨询",
+	);
+//- by xiewen
+$config->reserve_subtype=array(
+	0=>"无",
+	1 =>"变价通知",
+	2=>"优惠通知",
+	3=>"开盘通知",
+	4=>"最新动态",
+	5=>"看房团通知",
+	);
+$config->order_status_option=array(
+	0=>"未支付",
+	1=>"已支付",
+	);
+
+$config->pay_type_option=array(
+	1 =>"余额支付",
+	2=>"支付宝",
+	3=>"微信支付",
+	4=>"快钱支付",
+	5=>"paypal",
+	)
+
+
 
 ?>

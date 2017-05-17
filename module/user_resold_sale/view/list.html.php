@@ -54,13 +54,32 @@ use lib\form\Form;
                 <? } ?>
 
 
+                 <div id="prompt" style="display:none;box-shadow: 2px 4px 10px #000;z-index: 2;background-color: #fbfbfb;width:300px;height:180px;position: fixed;left: 40%;top:32%;text-align: center;font-size: 20px">
+                    <div style="padding-top: 55px">
+                        <span style="" class="glyphicon glyphicon-trash"></span> <span>确认删除此房源</span> <br/>
+                        <input id="houseid" value="" type="hidden"/>
+                    </div><br/>
+                    <button id="confirm" class="btn">确认</button> <button id="cancel" class="btn">取消</button>
+                    <button style="display: none" id="close" class="btn">关闭</button>
+                </div>
+
+
+                   <div id="del_success" style="display:none;box-shadow: 2px 4px 10px #000;z-index: 2;background-color: #fbfbfb;width:300px;height:180px;position: fixed;left: 40%;top:32%;text-align: center;font-size: 20px">
+                    <div style="padding-top: 55px">
+                        <span style="" class="glyphicon "></span> <span>删除房源成功</span> <br/>
+                    </div><br/>
+                    
+                </div>
+
+
+
                 <!-- end  page header-->
 
                 <div class="box-content"><!--BEGIN CONTENT-->
                     <div class="content">
                         <div class="row">
                             <div class="col-lg-12">
-                            <p>您最多可刷新 5 次房源,您已经刷新了3次房源,您还可以刷新2次房源！(刷新房源可以使您的房屋在搜索时排列靠前)</p>
+                            <!--<p>您最多可刷新 5 次房源,您已经刷新了3次房源,您还可以刷新2次房源！(刷新房源可以使您的房屋在搜索时排列靠前)</p>-->
                             <form name="opform" id="opform" method="get" action="<?=$handle?>">
                                     <input type="hidden" name="house_type" value="<?=$house_type?>" id="house_type">
                                     <div class="btn-toolbar mtm mbm">
@@ -118,7 +137,7 @@ use lib\form\Form;
                                         <tr>
                                             <td><?=$value['id']?></td>
                                             <td>
-                                                <p><a href="#" target="_blank"><?=$value['title']?></a> <span class="text-warning">[图]</span></p>
+                                                <p><a href="#" target="_blank"><?if($value['title']==''){$this->loadModel('sale'); $title = $this->sale->title($value);echo $title['title'];}else{ echo $value['title'];} ?></a> <span class="text-warning"><?=$value['img_path']==''?'':$value['img_path'] ?></span></p>
                                                 <p><?=$value['shi']?>室<?=$value['ting']?>厅<?=$value['wei']?>卫 <?=$value['total_area']?>m² <span class="text-danger"><?=$value['price']?></span>万元</p>
                                             </td>
                                             <td><?=$value['hits']?></td>
@@ -128,7 +147,7 @@ use lib\form\Form;
                                             <td>
                                                 <a href="/sale/detail?id=<?=$value['id']?>" target="_blank" class="btn btn-info">查看</a>
                                                 <a href="edit?house_type=<?=$house_type?>&esf_id=<?=$value['id']?>" target="_blank" class="btn btn-info">编辑</a>
-                                                <a href="#" onclick="return confirm('确定删除该收藏吗？');" class="btn btn-info">删除</a>
+                                                <a href="#" onclick="del('<?=$value['id']?>');" class="btn btn-info">删除</a>
 
                                                
                                                    <input type="button" value="刷新" onclick="refresh(<?=$value['id']?>)" class="btn btn-info" id="refresh"/>
@@ -217,7 +236,35 @@ Form::jsmin($jsArr);
       },
     })
  }
-    
+  $("#confirm").click(function(){
+        $("#prompt").css("display","none");
+        var url = "del"
+        $.ajax({
+            type:'POST',
+            url:url,
+            dataType:'JSON',
+            data:{
+                houseid:$("#houseid").val()
+            },
+            success:function(result){
+                if(result.status==1){
+                    $("#del_success").show().delay(1000).hide(0);
+                    location.href=location.href;
+                }
+            },
+            error:function(result){alert('参数错误');}
+        })
+    });
+
+    $("#cancel").click(function(){
+        $("#prompt").css("display","none");
+    });
+
+    function del(id){
+        $("#houseid").val(id);
+        $("#prompt").css("display","block");
+    }
+
 
 
 

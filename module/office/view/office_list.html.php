@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>乐山商铺写字楼出租</title>
+<title>写字楼出售_<?=$this->config->siteName;?></title>
 <!-- Bootstrap Core CSS -->
 <link href="/js/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -33,11 +33,10 @@
     .filter-item form input {
         border: 1px solid #ccc;
         height: 18px;
-        line-height: 18px;
+        line-height: 1px;
         margin: -4px 0 0;
-        padding: 10px;
+        padding: 10px 3px;
         text-align: center;
-        width: 35px;
     }
     .list-item .info .where span{color: #333;display:inline-block;font-size:14px;font-weight:700;line-height:18px;white-space:nowrap;margin-right:5px;}
 
@@ -136,16 +135,19 @@
                 
                <? foreach($area as $key=>$value) {
                     $seleted = '';
-                    if($key==$total_area)
+                    if($key===$total_area)
                     $seleted = ' class="item-on"';
                     echo "<a target=\"_self\" href=\"javascript:searchhouse('".$key."','total_area')\"><span".$seleted.">".$value."</span></a>";
                 }
                 ?>
                   <div class="areacond">
-                            <input type="text" value="" autocomplete="off" id="from_area"  maxlength="5" class="from-area " onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> -
-                            <input type="text" value="" autocomplete="off" id="to_area"  maxlength="5" class="to-area " onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">&nbsp;<span class="">平米</span>
-                            <input type="button" value="确定" id="arearange_search" class="smit">
-                    </div>
+                      <form id="pr_form_apf_id_11">
+                          <? $measures = explode('-',$total_area); if(strlen($total_area)!=1){ $seleted = " item-on";} ?>
+                          <input type="text" value="<?=$measures[0] == 0?'':$measures[0]?>" autocomplete="off" id="from_area" name="from_area" size="2"   maxlength="5" class="from-area area_custom custom <?=$seleted ?>"> -
+                          <input type="text" value="<? if(strlen($total_area)==1){ echo '';}else{ ?><? if($measures[1]==0){echo '';}else{ echo count($measures)==1?'':$measures[1];} ?><? } ?>" autocomplete="off" id="to_area" name="to_area" maxlength="5" size="2"  class="to-area area_custom custom <?=$seleted ?>">&nbsp;<span class="">平米</span>
+                          <input type="button" value="确定" style="display: none" onclick="range_search('total_area')" id="arearange_search" class="smit">
+                      </form>
+                  </div>
          
                 </div>
 
@@ -164,9 +166,12 @@
                     }
                     ?>
                     <div class="pricecond">
-                            <input type="text" value="" autocomplete="off" id="from_price" maxlength="5" class="from-price " onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> -
-                            <input type="text" value="" autocomplete="off" id="to_price" maxlength="5"  class="to-price " onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  >&nbsp;<span class="">元</span>
-                            <input type="button" value="确定"  id="pricerange_search" class="smit">
+                        <form>
+                            <? $prices = explode('-',$price);  if(strlen($price)!=1){ $seleted = " item-on";} ?>
+                            <input type="text" value="<?=$prices[0] == 0?'':$prices[0]?>" autocomplete="off" id="from_price" maxlength="5" size="2"   name="from_price" class="from-price price_custom custom <?=$seleted ?>"> -
+                            <input type="text" value="<? if(strlen($price)==1){ echo '';}else{ ?><? if($prices[1]==0){echo '';}else{ echo count($prices)==1?'':$prices[1];} ?><? } ?>" autocomplete="off" id="to_price" maxlength="5" size="2" name="to_price" class="to-price price_custom custom <?=$seleted ?>">&nbsp;<span class="">元</span>
+                            <input type="button" value="确定" onclick="range_search('price')" style="display:none" id="pricerange_search" class="smit">
+                        </form>
                     </div>
                    
                 </div>
@@ -361,6 +366,55 @@
     function searchhouse(key,obj){
         $("#"+obj).val(key);
         document.searchform.submit();
+    }
+
+    $(".custom").keyup(function(){
+        this.size=(this.value.length>4?this.value.length:2);
+        this.value=this.value.replace(/\D/gi,'')
+    });
+
+    $(document).click(function(e){
+        e = window.event || e; // 兼容IE7
+        obj = $(e.srcElement || e.target);
+        if ($(obj).is("#pricerange_search,.price_custom")) {
+            $("#pricerange_search").css("display","inline-block");
+        } else {
+            $("#pricerange_search").css("display","none");
+        }
+    });
+    $(document).click(function(e){
+        e = window.event || e; // 兼容IE7
+        obj = $(e.srcElement || e.target);
+        if ($(obj).is("#arearange_search,.area_custom")) {
+            $("#arearange_search").css("display","inline-block");
+        } else {
+            $("#arearange_search").css("display","none");
+        }
+    });
+
+    function range_search(type){
+        if($('#from_'+type).val() != '' || $('#to_'+type).val() != ''){
+            var from = 0;
+            var to = 0;
+            if($('#from_'+type).val()!=''){
+                from = $("#from_"+type).val();
+            }
+            if($('#to_'+type).val()!=''){
+                to = $("#to_"+type).val();
+            }
+            if($("#from_"+type).val()!='' && $("#to_"+type).val()!=''){
+                if(parseInt(from) > parseInt(to)){
+                    $('#from_'+type).val(to);
+                    $('#to_'+type).val(from);
+                    $("#"+type).val(to+"-"+from);
+                }else{
+                    $("#"+type).val(from+"-"+to);
+                }
+            }else{
+                $("#"+type).val(from+"-"+to);
+            }
+            document.searchform.submit();
+        }
     }
 
     function areaOrder(){

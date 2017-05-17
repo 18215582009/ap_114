@@ -46,11 +46,11 @@ class user_common extends SecuredControl
 
     /* 看房记录 */
     public function cons(){
-        $page_info = '';
-        $pageSize = 15;
+        $pageInfo = "";
+        $pageSize = 10;
         $offset = 0;
-        $subPages=5;//每次显示的页数
-        $currentPage = isset($_GET['p']) ? (int)$_GET['p'] : 0;
+        $subPages=10;//每次显示的页数
+        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 0;
         if($currentPage>0) $offset=($currentPage-1)*$pageSize;
         $where = ' where 1 ';
         if(isset($_GET)){
@@ -58,24 +58,26 @@ class user_common extends SecuredControl
             if(!empty($starttime)){
                 $time = strtotime($starttime);
                 $where .= " and uc.create_date >= '{$time}' ";
-                $page_info .= "uc.start={$starttime}&";
+                $pageInfo .= "uc.start={$starttime}&";
             }
             if(!empty($endtime)){
                 $time = strtotime($endtime);
                 $where .= " and uc.create_date <= '{$time}' ";
-                $page_info .= "end={$endtime}&";
+                $pageInfo .= "end={$endtime}&";
             }
         }
-        $sql = " select uc.*,e.id,e.title,e.house_type,e.price,e.linkman,e.telphone,e.link_require,e.flag,e.total_area,e.shi,e.ting,e.wei
+        $sql = " select uc.*,e.id,e.title,e.reside,e.house_type,e.price,e.linkman,e.telphone,e.link_require,e.flag,e.total_area,e.shi,e.ting,e.wei,e.img_path
                 from fc_esf_user_cons as uc left join fc_esf as e on e.id = uc.esf_id
 			".$where." and uc.create_uid = '".$this->session->userid."' AND score=0 group by uc.id order by uc.create_date desc";
         $limit = " limit $offset,$pageSize ";
         $res = $this->pdo->getAll($sql.$limit);
-        $count = $this->pdo->getRow(" select count(distinct uc.id) as count  from  fc_esf_user_cons as uc
+        $sqlcount = " select count(distinct uc.id) as count  from  fc_esf_user_cons as uc
 			left join fc_esf as e on e.id = uc.esf_id
-			".$where." and uc.create_uid = '".$this->session->userid."'   ");
+			".$where." and uc.create_uid = '".$this->session->userid."'";
 
-        $page=new pager_page($pageSize,$count['count'],$currentPage,$subPages,"?action=cons&".$page_info."p=",3);
+        $count = $this->pdo->getRow($sqlcount);
+        $recordCount = $count['count'];
+        $page=new pager_page($pageSize,$recordCount,$currentPage,$subPages,$pageInfo,5);
         $splitPageStr=$page->get_page_html();
         foreach($res as $key=>$val){
             //$res[$key]['hx'] = getFitment($val['id']);

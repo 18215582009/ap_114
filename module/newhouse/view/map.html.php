@@ -233,15 +233,15 @@
             <div class="map-head-wrp clearfix">
                 <div class="map-filter search-box">
 
-                    <form class="search-form left mll mrl" method="GET" action="">
-                        <input placeholder="请输入小区名称或地址..." class="input-search" name="kw" maxlength="100" autocomplete="off" value="" type="text">
+                  
+                        <input placeholder="请输入小区名称或地址..." class="input-search" name="kw" maxlength="100" id = "kw" autocomplete="off" value="" type="text">
                         <input type="hidden" id="page" value="1">
                         <input type="hidden" id="pm_type" value="">
                         <input type="hidden" id="borough" value="">
                         <input type="hidden" id="apa_room" value="">
                         <input type="hidden" id="price" value="">
-                        <button type="submit" class="btn-search"><i class="fa fa-search"></i></button>
-                    </form>
+                        <button type="buuton" class="btn-search"  onclick="searchHouse()"><i class="fa fa-search"></i></button>
+           
 
                     <div class="dropdown pull-left">
                         <a data-toggle="dropdown" class="btn btn-map split" data-target="#" href="javascript:;">
@@ -330,7 +330,7 @@
         <div class="list-head">
             <h1 class="list-attr">成都市</h1>
             <h2 class="list-summary">
-                共找到在售房源 <b class="text-danger" id="total">50474</b> 套
+                共找到在售房源 <b class="text-danger" id="total"></b> 套
             </h2>
         </div>
         <div class="list-result">
@@ -420,11 +420,12 @@
         var borough = $("#borough").val();
         var apa_room = $("#apa_room").val();
         var price = $("#price").val();
-
+        var keyword= $("#kw").val();
         $.ajax({
             url: "/newhouse/apiMapSearch",
             dataType: "json",
             data:{
+                keyword:keyword,
                 page: page,
                 pm_type:pm_type,
                 borough:borough,
@@ -444,6 +445,7 @@
 
     //渲染列表
     function houseList(obj){
+
         $('#total').html(obj.total);
 
         //处理分页

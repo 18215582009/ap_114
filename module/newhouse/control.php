@@ -7,20 +7,21 @@
  * @package     CandorPHP
  * @version     $Id: control.php,v 1.4 2012/02/16 09:53:49 lj Exp $
  */
+
 class newhouse extends Control
 {
+    protected $pdo;
     /* 构造函数。*/
     public function __construct()
     {
         parent::__construct();
+        $this->pdo = $this->newhouse->pdo;
     }
 
     /* 新房首页 */
     public function index()
     {
         $HouseListInfo = $this->newhouse->searchHouseList($_GET);
-      
-//        var_dump($HouseListInfo['list']);
         $this->assign('borough',$HouseListInfo['borough']);
         $this->assign('room',$HouseListInfo['room']);
         $this->assign('price',$HouseListInfo['price']);
@@ -33,10 +34,25 @@ class newhouse extends Control
         $this->assign('pageInfo',$HouseListInfo['pageInfo']);
         $this->assign('pageNation',$HouseListInfo['pageNation']);
         $this->assign('keyword',$HouseListInfo['keyword']);
-        $this->assign('recommend',$HouseListInfo['recommend']);
-        $this->assign('youlike',$HouseListInfo['youlike']);
+        $this->assign('recommend',$this->recommend());
+        $this->assign('youlike',$this->youlike());
         $this->assign('condition',$HouseListInfo['condition']);
         $this->display('newhouse','house_list');
+    }
+
+    /* 猜你喜欢 */
+    public function youlike(){
+        $sql = "select id,name,red_house_price_average,pm_type,img_url from fc_project where borough = '510104' and flag = 1 limit 6";
+        $youlike = $this->pdo->getAll($sql);
+        return $youlike;
+    }
+
+    /* 推荐楼盘 */
+    public function recommend(){
+        $sql = "select fp.*,count(fpr.project_id) as sum from fc_project as fp LEFT JOIN fc_project_reserve as fpr on fp.id=fpr.project_id
+                AND fpr.type=2 AND fpr.flag=1 GROUP BY fp.id ORDER BY fp.live_date DESC limit 3";
+        $recommend = $this->pdo->getAll($sql);
+        return $recommend;
     }
 
     /* 新房详细 */
@@ -44,32 +60,35 @@ class newhouse extends Control
     {
         $id = isset($_GET['id'])?$_GET['id']:0;
         $pm_type = isset($_GET['pm_type'])?$_GET['pm_type']:0;
-        if($id>0) {
-            $DetailInfo = $this->newhouse->HouseDetail($id);
-            if(isset($DetailInfo['id'])) {
-                $OtherInfo = $this->newhouse->otherDetail($id);
-                $this->assign('OtherInfo',$OtherInfo);
-                //print_r($OtherInfo);exit;
-                $this->assign('pm_type', $pm_type);
-                $this->assign('info', $DetailInfo);
-                $this->display('newhouse','house_detail');
-            }else{
-                lib\util\Util::error('404');
-            }
+        $DetailInfo = $this->newhouse->HouseDetail($id);
+        if(isset($DetailInfo['id'])) {
+            $OtherInfo = $this->newhouse->otherDetail($id);
+            $this->assign('OtherInfo',$OtherInfo);
+            $this->assign('pm_type', $pm_type);
+            $this->assign('youlike',$this->youlike());
+            $this->assign('info', $DetailInfo);
+            $this->display('newhouse','house_detail');
         }else{
-            //没有找到您需要的信息
-            lib\util\Util::error('404');
+                lib\util\Util::error('404');
         }
+
     }
 
     public function mapHouse()
     {
+
+
         $this->display('newhouse','map');
     }
 
     public function apiMapSearch()
     {
+
+
         $HouseListInfo = $this->newhouse->searchHouseList($_GET);
+
+
+
 
         /* json 数据格式
         var data = {
@@ -83,7 +102,10 @@ class newhouse extends Control
         };
         */
 
-        echo json_encode($HouseListInfo);
+
+
+
+        echo json_encode($HouseListInfo);exit;
     }
 
     public function chart(){

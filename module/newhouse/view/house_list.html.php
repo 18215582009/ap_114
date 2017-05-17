@@ -511,13 +511,6 @@
                 </a>
             </div>
         <? } ?>
-<!--        <div class="col-md-2 guess-item clearfix">              -->
-<!--            <a target="_blank" rel="nofollow" href="#">-->
-<!--                <img width="170" height="125" src="/theme/agency/img/133x100m.jpg">-->
-<!--                <p class="g-name">温江-锦汇城</p>-->
-<!--                <p class="g-price"><em>4250</em>元/㎡</p>-->
-<!--            </a>-->
-<!--        </div>-->
     </div>
 </div>
 

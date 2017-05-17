@@ -640,7 +640,15 @@
                         </a>
                         <div class="col-md-6">
                             <div class="tilte">
-                                <h3 class="title"><a target="_blank" href="/rent/detail?id=<?=$info['id'] ?>" class="items-name esf_name"><?=$info['title']==''?$info['reside']:$info['title']?></a></h3>
+                                <h3 class="title"><a target="_blank" href="/rent/detail?id=<?=$info['id'] ?>" class="items-name esf_name">
+                                        <? if(!empty($info['title'])){
+                                            echo $info['title'];
+                                        }else{
+                                            $this->loadModel('sale');
+                                            $title = $this->sale->title($info);
+                                            echo $title['title'].$title['price'];
+                                        }?>
+                                </a></h3>
                             </div>
                             <div class="info">
                                 <p class="where">
@@ -673,10 +681,10 @@
                             <p class="price"><span><?=round($info['price'])==0?'待定</span>':round($info['price']).'</span>元/月'?></p>
                             <div class="discount-item">
                                 <p class="favor-tag"><em title="高层全款优惠6％，按揭优惠5％" class="discount-txt"><?=$info['hits']==0?"0":$info['hits'] ?>人看过此房</em></p>
-                                <div class="btn landlord" data-toggle="modal" data-target="#viewphone" onclick="landlord('<?=$info['id']?>')">联系房东</div>
+                                <div class="btn landlord" data-toggle="modal" data-target="#viewphone" onclick="landlord('<?=$info['id']?>','viewphone')">联系房东</div>
                                 <div id="landlordphone" style="display:none" class="tel"></div>
                             </div>
-                            <a class="collection_report report" style="float: right" data-toggle="modal" data-target="#report"><span class="glyphicon glyphicon-exclamation-sign"></span><span>举报</span></a>
+                            <a class="collection_report report" style="float: right" onclick="landlord('<?=$info['id']?>','report')" data-toggle="modal" data-target="#report"><span class="glyphicon glyphicon-exclamation-sign"></span><span>举报</span></a>
                             <a class="collection_report collection" onclick="collection('<?=$info['id']?>')" style="float: right"><span class="glyphicon glyphicon-star"></span><span>收藏&nbsp;&nbsp;</span></a>
                         </div>
                     </div>
@@ -740,7 +748,7 @@
             <div class="row list-advs">
                 <h1 class="h-5">购房问答</h1>
                 <ul>
-                    <? foreach($information as $key=>$info){ ?>
+                    <? foreach($interlocution as $key=>$info){ ?>
                         <li class="title"><a href="/news/detail?type=info&id=<?=$info['id']?>"><?=$info['title']?></a></li>
                     <? } ?>
                 </ul>
@@ -754,7 +762,7 @@
             <div class="col-md-2 guess-item clearfix">
                 <a target="_blank" rel="nofollow" href="/sale/detail?id=<?=$info['id']?>">
                     <img width="170" height="125" onerror="javascript:this.src='/images/pic_default.jpg'" src="<?=$info['img_path']?>">
-                    <p class="g-name"><?=$info['title']?></p>
+                    <p class="g-name"><?=$info['title']==''?$info['reside']:$info['title']?></p>
                     <p class="g-price"><em><?=round($info['price'])==0?'待定</em>':round($info['price']).'</em>元/月'?></p>
                 </a>
             </div>
@@ -854,14 +862,15 @@
                     <p>您举报房源的原因是 (必填,可多选):</p>
                     <input id="esf_id" type="hidden" value=""/>
                     <ul>
-                        <li><input class="checkbox" id="check1" type="checkbox"/>&nbsp;<label for="check1">房子不存在或已经卖了</label></li>
-                        <li><input class="checkbox" id="check2" type="checkbox"/>&nbsp;<label for="check2">图文与实际不符</label></li>
-                        <li><input class="checkbox" id="check3" type="checkbox"/>&nbsp;<label for="check3">价格与实际不符</label></li>
-                        <li><input class="checkbox" id="check4" type="checkbox"/>&nbsp;<label for="check4">其他</label></li>
+                        <li><input class="checkbox" id="check1" name="check" type="checkbox" value="1"/>&nbsp;<label for="check1">房子不存在或已经卖了</label></li>
+                        <li><input class="checkbox" id="check2" name="check" type="checkbox" value="2"/>&nbsp;<label for="check2">图文与实际不符</label></li>
+                        <li><input class="checkbox" id="check3" name="check" type="checkbox" value="3"/>&nbsp;<label for="check3">价格与实际不符</label></li>
+                        <li><input class="checkbox" id="check4" name="check" type="checkbox" value="4"/>&nbsp;<label for="check4">其他</label></li>
                     </ul>
-                    <textarea id="textarea" placeholder="您可在此写下具体描述,请至少输入10个汉字"></textarea>
+                    <input id="type" name="type" type="hidden" value=""/>
+                    <textarea id="textarea" name="textarea" placeholder="您可在此写下具体描述,请至少输入10个汉字"></textarea>
                     <span style="float:right;position:relative;top: -25px;left: -4px"><span id="textsum">0</span>/<span>100</span></span>
-                    <input id="submit" disabled type="button" value="提交"/>
+                    <input id="submit" disabled type="button" data-dismiss="" value="提交"/>
                 </form>
             </div>
 
@@ -949,14 +958,16 @@ function login(){
     });
 }
 
-
-function landlord(id){
+function landlord(id,type){
     $("#houseid").val(id);
+    event.stopPropagation();
+    <? if(isset($_SESSION['userid'])){ ?>
+    $("#"+type).modal("show");
+    <? }else{ ?>
+    $("#userlogin").modal("show");
+    <? } ?>
 }
-//联系房东
-$('div.list-item').on('click', '.landlord', function(){
-},'click','.close',function(){
-});
+
 //消费积分查看房东电话
 $(".phoneyse").click(function(){
     var esf_id = $("#houseid").val();
@@ -980,14 +991,14 @@ $(".phoneyse").click(function(){
                 $("#m"+id+">.favor-pos>.discount-item>#landlordphone").html("<i class='fa fa-phone'> </i>&nbsp; "+result.telphone);
                 $("#m"+id+">.favor-pos>.discount-item>#landlordphone").css("display","block");
                 $("#m"+id+">.favor-pos>.discount-item>.landlord").css("display","none");
-                $('#integral_cue').html("房东："+result.linkman+"&nbsp;&nbsp;电话："+result.telphone+result.integral);
+                $('#integral_cue').html("房东："+result.linkman+"&nbsp;&nbsp;电话："+result.telphone);
                 $(".phoneyse").css("display","none");
             }
         },
         error:function(result){alert('no');}
     });
 });
-
+//关闭获取到的房东信息
 $(".closes").click(function(){
     setTimeout("integral_cue()",1000);
 });
@@ -1007,7 +1018,7 @@ function collection(obj){
             dataType:'JSON',
             data:{
                 esf_id:obj,
-                house_type:2
+                house_type:1
             },
             success:function(result){
                 $("#prompt").css("display","block");
@@ -1018,15 +1029,12 @@ function collection(obj){
         });
     }
     event.stopPropagation();
+    <? }else{ ?>
+    event.stopPropagation();
+    $("#userlogin").modal("show");
     <? } ?>
 }
-$('div.list-item').on('click', '.collection', function(){
-},'click','.close',function(){
-});
 //举报
-$('div.list-item').on('click', '.report', function(){
-},'click','.close',function(){
-});
 $("#textarea").keyup(function(){
     var text = $("#textarea").val();
     if(text.length >= 10){
@@ -1037,6 +1045,40 @@ $("#textarea").keyup(function(){
         $("#submit").css("background","#e0e0e0");
     }
     $("#textsum").html(text.length);
+});
+
+$("#submit").click(function(){
+    var aa = document.getElementsByName("check");
+    var ss = "";
+    for (var i = 0; i < aa.length; i++) {
+        if (aa[i].checked) {
+            ss += aa[i].value+",";
+        }
+    }
+    if(ss==""){
+        alert("请选择举报原因");
+    }else{
+        ss =  ss.substr(0, ss.length - 1);
+        $.ajax({
+            type:"post",
+            url:"/sale/report",
+            dataType:"JSON",
+            data:{
+                houseid:$("#houseid").val(),
+                type:ss,
+                reason:$("#textarea").val(),
+                page_url:"sale_list"
+            },
+            success:function(result){
+                alert(result);
+                $("#report").modal('hide');
+                $("#textarea").val("");
+                $(".checkbox").prop("checked",false);
+            },
+            error:function(result){alert("数据错误,请修改后从新提交");}
+        });
+    }
+
 });
 
 //自定义内容验证

@@ -37,7 +37,7 @@
 		));
 	?>
 	<!-- end  page header-->
-	
+
 	<!-- begin box-content -->
 	<div class="box-content">
       <!--begin content-->
@@ -60,17 +60,17 @@
                           <div class="panel-body">
                               <div class="row">
                                   <div class="col-md-4">
-                              
+
                                 <?=Form::input('name',empty($Info['name'])? '':$Info['name'],$handle,'片区名称');?>
                                 <?=Form::select('direction',$this->config->direction_option,empty($Info['direction'])?'':$Info['direction'],$handle,'方位');?>
-                                
+
                               </div>
 
 
                                <div class="col-md-4">
                                		<?=Form::select('borough',$this->config->borough_option,empty($Info['borough'])?'':$Info['borough'],$handle,'所在城区');?>
 								<?=Form::select('circle',$this->config->circle_option,empty($Info['circle'])?'':$Info['circle'],$handle,'环线');?>
-                               	 
+
                                </div>
 
                                 <div class="col-md-4">
@@ -106,7 +106,7 @@
                                      </div>
                                  </div>
                               </div>
-                              
+
                               <div class="col-md-12">
                                 <?=Form::input('traffic',$Info['traffic'],$handle,'公交',1);?>
                                 <?=Form::input('market',$Info['market'],$handle,'商场',1);?>
@@ -121,13 +121,13 @@
                                 <?=Form::input('cinema',$Info['cinema'],$handle,'电影院',1);?>
                                 <?=Form::input('ktv',$Info['ktv'],$handle,'KTV',1);?>
                               </div>
-        
+
                              </div><!-- row end -->
                              <?=lib\form\Form::btn_main($this->config->module->btn,$handle,2);?>
 
 
                          </div>
-                         
+
                         </div>
                       </div>
                     </div>
@@ -158,7 +158,7 @@
 <div class="text-content" id="show-map">
 <p class="map-head">[<span id="close-map">关闭</span>]</p>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4" ></script>
-<div id="container" ></div>  
+<div id="container" ></div>
 <div style="margin-left:88px;">
 x-坐标：<input type="text" name="map_x1" id="map_x1" value="<?=$Info['map_x']?>" class="posinput" />
 y-坐标：<input type="text" name="map_y1" id="map_y1" value="<?=$Info['map_y']?>" class="posinput" />
@@ -181,7 +181,7 @@ jQuery(document).ready(function () {
 		initMap();
 		return false;
 	});
-                
+
 	$("#close-map,.close-box").bind('click',function(){
 		if( $("#map_x").val()==''&& $("#map_y").val()=='')
 		{
@@ -202,39 +202,39 @@ jQuery(document).ready(function () {
 });
 
 function vk(){
-	$("#opform").submit();	
+	$("#opform").submit();
 	//$("#opbtn").click();
 }
 function cancel(){
 	prompt('您确认放弃操作嘛？','warning');
 }
 
-function initMap(){  
-	// 初始化地图，设置中心点坐标和地图级别  
-	var map = new BMap.Map("container");// 创建地图实例 
+function initMap(){
+	// 初始化地图，设置中心点坐标和地图级别
+	var map = new BMap.Map("container");// 创建地图实例
 
 	var _point_x = 104.072251
 	var _point_y = 30.663455
-			
+
 	if($("#map_x").val()>0&&$("#map_y").val()>0&$("#map_x").val().length>0&&$("#map_y").val().length>0)
 	{
 		_point_x = $("#map_x").val();
 		_point_y = $("#map_y").val();
 		$("#map_x1").val($("#map_x").val());
 		$("#map_y1").val($("#map_y").val());
-	}   
-	var point = new BMap.Point(_point_x,_point_y);    
-	map.addControl(new BMap.NavigationControl()); map.enableScrollWheelZoom() ;        
+	}
+	var point = new BMap.Point(_point_x,_point_y);
+	map.addControl(new BMap.NavigationControl()); map.enableScrollWheelZoom() ;
 	marker = new BMap.Marker(new BMap.Point(_point_x,_point_y));
-	map.centerAndZoom(point, 17); map.addOverlay(marker); 
+	map.centerAndZoom(point, 17); map.addOverlay(marker);
 	var mapx = 'map_x';
 	var mapy = 'map_y';
 	var marker = '';
 				// 将标注添加到地图中
-	map.addEventListener("click", function(e){  
+	map.addEventListener("click", function(e){
 		map.clearOverlays();
 		marker = new BMap.Marker(new BMap.Point(e.point.lng,e.point.lat));
-		map.addOverlay(marker); 
+		map.addOverlay(marker);
 		$("#map_x1").val(e.point.lng)  ;
 		$("#map_y1").val(e.point.lat)  ;
 	});
@@ -329,10 +329,10 @@ function LRs(results){
 					case 'busstop' :
 									busline += results[i]['ki'][j]['address']+'|'+results[i]['ki'][j]['point']['lng']+'-'+results[i]['ki'][j]['point']['lat']+';';
 									break;
-									
+
 				}//switch1 end
 			}else{
-			
+
 				switch(s_content_key[i]){
 					case 'subway' :
 									$("#subway").val(results[i]['ki'][j]['title']+'|'+results[i]['ki'][j]['point']['lng']+'-'+results[i]['ki'][j]['point']['lat']+'，'+$("#subway").val());
@@ -343,12 +343,12 @@ function LRs(results){
 					case 'ktv' :
 									$("#ktv").val(results[i]['ki'][j]['title']+'|'+results[i]['ki'][j]['point']['lng']+'-'+results[i]['ki'][j]['point']['lat']+'，'+$("#ktv").val());
 									break;
-									
+
 				}//switch2 end
 			}//if end
 		}
 	}
-	
+
 	if(s_type==1){
 		//合并超市与商场
 		$("#market").val($("#market").val()+smarket);
@@ -362,7 +362,7 @@ function LRs(results){
 					Bus_new.push(Bus_arr[i]);
 				}
 			}
-			
+
 			$("#traffic").val(Bus_new.join(','));
 			setTimeout(function(){
 					//$("#getarea_button").removeAttr('disabled');

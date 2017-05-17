@@ -20,6 +20,14 @@ use lib\form\Form;
     <link rel='stylesheet' href='/theme/client/css/user_center.css' type='text/css' media='screen' />
     <!-- Theme CSS -->
     <link href="/theme/agency/css/agency.css" rel="stylesheet">
+    <style>
+        #mengban {
+            width : 100%;
+            height: 100%;
+            position : absolute;
+            z-index : 99;
+        }
+    </style>
 </head>
 <body class="font-source-sans-pro sidebar-color-white">
 <div class="fluid">
@@ -41,13 +49,16 @@ use lib\form\Form;
                     'user_common');
                 ?>
                 <!--弹出提示-->
-                <div id="prompt" style="display: none;box-shadow: 2px 4px 10px #000;z-index: 2;background-color: #fbfbfb;width:300px;height:180px;position: fixed;left: 40%;top:32%;text-align: center;font-size: 20px">
-                    <div style="padding-top: 55px">
-                        <span style="" class="glyphicon glyphicon-trash"></span> <span>确认删除此房源</span> <br/>
-                        <input id="houseid" value="" type="hidden"/>
-                    </div><br/>
-                    <button id="confirm" class="btn">确认</button> <button id="cancel" class="btn">取消</button>
-                    <button style="display: none" id="close" class="btn">关闭</button>
+
+                <div id="mengban" style="display:none">
+                    <div id="prompt" style="display: none;box-shadow: 2px 4px 10px #000;z-index: 2;background-color: #fbfbfb;width:300px;height:180px;position: fixed;left: 40%;top:32%;text-align: center;font-size: 20px">
+                        <div style="padding-top: 55px">
+                            <span style="" class="glyphicon glyphicon-trash"></span> <span>确认删除此房源</span> <br/>
+                            <input id="houseid" value="" type="hidden"/>
+                        </div><br/>
+                        <button id="confirm" class="btn">确认</button> <button id="cancel" class="btn">取消</button>
+                        <button style="display: none" id="close" class="btn">关闭</button>
+                    </div>
                 </div>
                 <!-- end  page header-->
                 <div class="box-content"><!--BEGIN CONTENT-->
@@ -88,7 +99,15 @@ use lib\form\Form;
                                     <tr>
                                         <td><?=$info['id']?></td>
                                         <td>
-                                            <p><a href="<?=$url?>" target="_blank"><?=$info['title']?></a> <font color="#FF6600">[图]</font> <?=$info['shi']?>室<?=$info['ting']?>厅<?=$info['wei']?>卫
+                                            <p><a href="<?=$url?>" target="_blank">
+                                                    <? if(!empty($info['title'])){
+                                                        echo $info['title'];
+                                                    }else{
+                                                        $this->loadModel('sale');
+                                                        $title = $this->sale->title($info);
+                                                        echo $title['title'];
+                                                    }?>
+                                            </a> <? if(!empty($info['img_path'])){echo "<font color='#FF6600'>[图]</font> ";} ?><?=$info['shi']?>室<?=$info['ting']?>厅<?=$info['wei']?>卫
                                             <?=$info['total_area']?>m² <font color="#FF0000"><?=round($info['price'])?></font><?=$info['fhouse_type']==1?"元/月":"万元"?></p>
                                         </td>
                                         <td>
@@ -161,9 +180,13 @@ Form::jsmin($jsArr);
         })
     });
 
+
     $("#cancel").click(function(){
         $("#prompt").css("display","none");
-        $("#confirm").css("display","block");
+        $("#confirm").css("display","inline-block");
+        $("#mengban").css("display","none");
+        $("#topdiv").css("display","none");
+//        $("body").css("overflow","auto");
     });
     $("#close").click(function(){
         window.location = "/user_common/fav";
@@ -173,6 +196,8 @@ Form::jsmin($jsArr);
     function leave(id){
         $("#houseid").val(id);
         $("#prompt").css("display","block");
+        $("#mengban").css("display","");
+//        $("body").css("overflow","hidden");
     }
 
 

@@ -32,7 +32,7 @@ class user_commonModel extends Model
         $collection = array();
 
         $pageInfo = "";
-        $pageSize = 15;
+        $pageSize = 10;
         $offset = 0;
         $subPages=10;//每次显示的页数
         $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 0;
@@ -44,7 +44,7 @@ class user_commonModel extends Model
         }
 
         $sql = "select f.house_type as fhouse_type,f.create_date as fcreate_date,e.* from fc_esf_user_favorites as f left join fc_esf as e on f.esf_id=e.id where
-                f.create_uid='$userid' ".$where." limit $offset,$pageSize";
+                f.create_uid='$userid' ".$where." ORDER BY f.create_date desc limit $offset,$pageSize";
         $sqlcount = "select count(*) as count from fc_esf_user_favorites as f left join fc_esf as e on f.esf_id=e.id where
                 f.create_uid='$userid'".$where."";
         $collection['house'] = $this->pdo->getAll($sql);
@@ -69,7 +69,7 @@ class user_commonModel extends Model
         $management['userinfo'] = $this->pdo->getAll($sql);
 
         //消费记录
-        $sql = "select * from fc_user_log where create_uid='$userid' and score = 40 and score_use = 1";
+        $sql = "select uc.*,fe.title from fc_esf_user_cons as uc LEFT JOIN fc_esf as fe on uc.esf_id=fe.id where uc.create_uid='$userid' and uc.score = 40";
         $management['consumption'] = $this->pdo->getAll($sql);
 
         return $management;

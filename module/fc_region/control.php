@@ -16,12 +16,12 @@ class fc_region extends SecuredControl
 {
 	/**
 	 * 数据库连接。
-     * 
+     *
      * @var object
      * @access pdo
      */
 	protected $pdo;
-	
+
     /* 构造函数。*/
     public function __construct()
     {
@@ -32,6 +32,7 @@ class fc_region extends SecuredControl
 	/* index方法，也是默认的方法。 */
     public function index()
     {
+
 		$name = trim(isset($_GET["name"])?$_GET["name"]:"");
 		$page_info = "";
 		$orderField = isset($_GET['sort']) ? $_GET['sort'] : 'id';
@@ -51,7 +52,7 @@ class fc_region extends SecuredControl
 			}
 	    }
 	    $select_columns = "select %s from fc_region %s %s %s";
-	    
+
 	    $order = "order by $orderField $orderValue";
 	    $limit = "limit $offset,$pageSize";
 	    $count = " count(id) as count ";
@@ -71,7 +72,7 @@ class fc_region extends SecuredControl
 
 	/** 新增片区
 	@params --by  xiewen   在删除的时候必须同时删除
-	 */ 
+	 */
     public function add()
     {
 		$this->assign('handle',"add");
@@ -82,14 +83,14 @@ class fc_region extends SecuredControl
 			$param = $_POST;
 			unset($param["id"]);
 			$arr= array();
-			ksort($region_option);	
+			ksort($region_option);
 			foreach ($region_option as $key => $value) {
 				$arr[$key]['k'] = $key;
 				$arr[$key]['v'] =$value;
 			}
 			$max =end($arr);
 			$max_code = $max['k'];
-			$param['code'] = $max_code+1; //查看type为 224的最大值,依次加1 
+			$param['code'] = $max_code+1; //查看type为 224的最大值,依次加1
 			$rlt = $this->pdo->add($param,'fc_region');
 			$sys_code['code'] = $param['code'];
 			$sys_code['name'] = $param['name'];
@@ -139,6 +140,11 @@ class fc_region extends SecuredControl
 			if($id){
 				$sql = "select * from fc_region where id=".$id;
 				$Info = $this->pdo->getRow($sql);
+
+				//print_r($Info);exit;
+
+
+
 				$this->assign('Info',$Info);
 				$this->display('fc_region','edit');
 			}else{

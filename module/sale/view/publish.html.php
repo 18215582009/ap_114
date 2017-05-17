@@ -161,18 +161,27 @@
                         <label><i>*</i>类型</label>
                         <select class="int-text" id="pm_type" name="pm_type" style="width:100px;">
                             <option value="">房屋类型</option>
-                            <option value="1">电梯</option>
-                            <option value="2">多层</option>
+                            <? foreach($this->config->pm_type_option as $key=>$item){
+                                if($key > 0){
+                                    echo "<option value=".$key.">$item</option>";
+                                }
+                            } ?>
                         </select>
                         <select class="int-text" id="fitmen_type" name="fitmen_type" style="width:100px;">
                             <option value="">装修</option>
-                            <option value="1">简装</option>
-                            <option value="2">精装</option>
+                            <? foreach($this->config->fitment_option as $key=>$item){
+                                if($key > 0){
+                                    echo "<option value=".$key.">$item</option>";
+                                }
+                            } ?>
                         </select>
                         <select class="int-text" id="toward" name="toward" style="width:100px;">
                             <option value="">朝向</option>
-                            <option value="1">东</option>
-                            <option value="2">西</option>
+                            <? foreach($this->config->orientation_option as $key=>$item){
+                                if($key > 0){
+                                    echo "<option value=".$key.">$item</option>";
+                                }
+                            } ?>
                         </select>
                     </div>
 
